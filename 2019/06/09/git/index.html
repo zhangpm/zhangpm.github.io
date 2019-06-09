@@ -16,7 +16,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/git_3part.png">
 <meta property="og:image" content="http://yoursite.com/git_reset.jpg">
-<meta property="og:updated_time" content="2019-06-09T13:06:26.827Z">
+<meta property="og:updated_time" content="2019-06-09T13:09:37.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub_Learn">
 <meta name="twitter:description" content="GitHub_Learn https://git-scm.com/dochttps://www.liaoxuefeng.com/ git bash 基本命令同linux bash命令，如ls，mkdir，rm等  0. 三个区域 工作区（working Directory）：简单的理解你在电脑里能看到的目录。 暂存区（stage）：Git的版本库里存了很多东西，其中最重要的就是称为stage（或者">
@@ -124,8 +124,14 @@
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add file1.txt</span><br><span class="line">$ git add file2.txt file3.txt</span><br><span class="line">$ git commit -m <span class="string">"add 3 files."</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git add . </span><br><span class="line">```  全部添加</span><br><span class="line">## 3. 版本回退</span><br><span class="line">1. git log 查看日志</span><br><span class="line">2. 用HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100</span><br><span class="line">3. git reset命令 退回上一版本</span><br><span class="line">```bash</span><br><span class="line">$ git reset --hard HEAD^</span><br></pre></td></tr></table></figure>
+<p><code>git add .</code>全部添加</p>
+<h2 id="3-版本回退"><a href="#3-版本回退" class="headerlink" title="3. 版本回退"></a>3. 版本回退</h2><ol>
+<li>git log 查看日志</li>
+<li>用HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100</li>
+<li>git reset命令 退回上一版本<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard HEAD^</span><br></pre></td></tr></table></figure>
 
+</li>
+</ol>
 <p>慎用hard<br><img src="/git_reset.jpg" alt="Pic_dlog2" title="dlog"></p>
 <ol start="4">
 <li><p>回到未来版本：按照log中的版本号 <code>git reset --hard 1094a</code></p>
@@ -157,49 +163,84 @@
 <h2 id="5-分支"><a href="#5-分支" class="headerlink" title="5. 分支"></a>5. 分支</h2><blockquote>
 <p>1 查看</p>
 <ol>
-<li>查看分支<figure class="highlight plain"><figcaption><span>branch ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2. 查看远程分支```git branch -r</span><br></pre></td></tr></table></figure></li>
+<li>查看分支<code>git branch</code></li>
+<li>查看远程分支<code>git branch -r</code></li>
+<li>查看全部分支<code>git branch -a</code></li>
+<li>查看分支合并情况<code>git log --graph --pretty=oneline --abbrev-commit</code></li>
 </ol>
 </blockquote>
-<ol start="3">
-<li>查看全部分支<figure class="highlight plain"><figcaption><span>branch -a```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4. 查看分支合并情况```git log --graph --pretty=oneline --abbrev-commit</span><br></pre></td></tr></table></figure></li>
-</ol>
 <blockquote>
 <p>2 添加 <strong>“dev 为分支名”</strong></p>
 <ol>
-<li>创建本地分支<figure class="highlight plain"><figcaption><span>branch dev```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2. 切换到新创建的分支```git checkout dev```切换后，文件中的目录即检出未当前分支下的内容</span><br><span class="line">3. 在当前分支下add 和commit文件</span><br><span class="line">4. 将新分支push到github```git push origin dev</span><br></pre></td></tr></table></figure></li>
+<li>创建本地分支<code>git branch dev</code></li>
+<li>切换到新创建的分支<code>git checkout dev</code>切换后，文件中的目录即检出未当前分支下的内容</li>
+<li>在当前分支下add 和commit文件</li>
+<li>将新分支push到github<code>git push origin dev</code></li>
+<li>**<code>git checkout -b dev</code>  -b参数表示创建并切换，相当于git branch dev + git checkout dev</li>
 </ol>
 </blockquote>
-<ol start="5">
-<li><p>**<figure class="highlight plain"><figcaption><span>checkout -b dev```  -b参数表示创建并切换，相当于git branch dev + git checkout dev</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;3 删除</span><br><span class="line">1. 删除本地：```git branch -d dev``` </span><br><span class="line">2. 未合并强制删除：```git branch -D dev</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>3 删除</p>
+<ol>
+<li>删除本地：<code>git branch -d dev</code></li>
+<li>未合并强制删除：<code>git branch -D dev</code></li>
+<li>删除远程分支<code>git push origin --delete dev</code></li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>3.5 本地和远程分支的各种关联增删总结</strong></p>
+<ol>
+<li>远程仓库有master 和dev 分支，要拉到本地<ul>
+<li><code>git clone XXX</code>,克隆后本地master 和远程origin/master默认关联，但是dev默认不关联</li>
+<li><code>git checkout -b dev origin/dev</code>本地创建dev，关联origin/dev</li>
+<li>上述语句等同于<code>git checkout -b dev</code>+<code>git pull origin dev</code>??</li>
+</ul>
 </li>
-<li><p>删除远程分支<figure class="highlight plain"><figcaption><span>push origin --delete dev```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;**3.5 本地和远程分支的各种关联增删总结**</span><br><span class="line">1. 远程仓库有master 和dev 分支，要拉到本地</span><br><span class="line">   * ```git clone XXX```,克隆后本地master 和远程origin/master默认关联，但是dev默认不关联</span><br><span class="line">   * ```git checkout -b dev origin/dev```本地创建dev，关联origin/dev</span><br><span class="line">   * 上述语句等同于```git checkout -b dev ```+```git pull origin dev```??</span><br><span class="line">2. 远程仓库只有master，本地分支push到远程</span><br><span class="line">   * ```git push origin dev</span><br></pre></td></tr></table></figure></p>
+<li>远程仓库只有master，本地分支push到远程<ul>
+<li><code>git push origin dev</code></li>
+</ul>
 </li>
-<li><p>建立本地分支后，关联远程分支：</p>
-<ul>
-<li><figure class="highlight plain"><figcaption><span>branch --set-upstream-to</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* eg. ```git branch --set-upstream-to=origin/dev dev</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>建立本地分支后，关联远程分支：<ul>
+<li><code>git branch --set-upstream-to=origin/remote_branch  your_branch</code></li>
+<li>eg. <code>git branch --set-upstream-to=origin/dev dev</code><br>其中，origin/remote_branch是你本地分支对应的远程分支；your_branch是你当前的本地分支。</li>
 </ul>
 </li>
 </ol>
-<p>其中，origin/remote_branch是你本地分支对应的远程分支；your_branch是你当前的本地分支。</p>
+</blockquote>
 <blockquote>
 <p>4 合并分支</p>
 <ol>
 <li>git merge dev</li>
 <li>合并成功是fast foward 模式，合并后无分支记录</li>
 <li>合并的两个分支同时改动同一位置，会产生合并冲突，先解决冲突，在文件中修改后，add，commit，然后即合并完成，可删除分支</li>
-<li>no-ff 非fast foward模式，合并后有分支记录<figure class="highlight plain"><figcaption><span>merge --no-ff -m "merge with no-ff" dev```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; 分支策略</span><br><span class="line">1. master 应为稳定版，平时不在上面干活</span><br><span class="line">2. 在dev分支上干活，发布版本时merge到master上</span><br><span class="line">3. 各部分工作各做分支，先合并到dev，再合并到master</span><br><span class="line"></span><br><span class="line">&gt; 保持工作状态stash</span><br><span class="line">应用: 工作一半，不想提交，但是要去作别的</span><br><span class="line">1. 保存现场```git stash</span><br></pre></td></tr></table></figure></li>
+<li>no-ff 非fast foward模式，合并后有分支记录<code>git merge --no-ff -m &quot;merge with no-ff&quot; dev</code></li>
 </ol>
 </blockquote>
-<ol start="2">
-<li><p>查看保存<figure class="highlight plain"><figcaption><span>stash list```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3. 恢复现场：</span><br><span class="line">   * 恢复``` git stash apply ```，删除记录 ```git slash drop</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>恢复并删除记录<figure class="highlight plain"><figcaption><span>stash pop```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; 分支远程推送策略：</span><br><span class="line">1. 远程推送：```git push origin dev</span><br></pre></td></tr></table></figure></li>
+<blockquote>
+<p>分支策略</p>
+<ol>
+<li>master 应为稳定版，平时不在上面干活</li>
+<li>在dev分支上干活，发布版本时merge到master上</li>
+<li>各部分工作各做分支，先合并到dev，再合并到master</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>保持工作状态stash<br>应用: 工作一半，不想提交，但是要去作别的</p>
+<ol>
+<li>保存现场<code>git stash</code></li>
+<li>查看保存<code>git stash list</code></li>
+<li>恢复现场：<ul>
+<li>恢复<code>git stash apply</code>，删除记录 <code>git slash drop</code></li>
+<li>恢复并删除记录<code>git stash pop</code></li>
 </ul>
 </li>
-<li><p>策略：</p>
-<ul>
+</ol>
+</blockquote>
+<blockquote>
+<p>分支远程推送策略：</p>
+<ol>
+<li>远程推送：<code>git push origin dev</code></li>
+<li>策略：<ul>
 <li>master 推送，保持同步</li>
 <li>dev 开发分支（develop），保持同步</li>
 <li>bug分支，本地修复，无需推送到远程</li>
@@ -207,6 +248,7 @@
 </ul>
 </li>
 </ol>
+</blockquote>
 <h2 id="6-多人协作"><a href="#6-多人协作" class="headerlink" title="6. 多人协作"></a>6. 多人协作</h2><ol>
 <li>首先，可以试图用git push origin &lt;branch-name&gt;推送自己的修改</li>
 <li>若失败，则git pull先拉取最新版本。</li>
@@ -215,22 +257,17 @@
 <li>如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令git branch –set-upstream-to <branch-name> origin/<branch-name></branch-name></branch-name></li>
 </ol>
 <h2 id="tag标签"><a href="#tag标签" class="headerlink" title="tag标签"></a>tag标签</h2><ol>
-<li><figure class="highlight plain"><figcaption><span>tag v1.0```当前commit打标签“v1.0”</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2. ```git tag```查看全部标签</span><br><span class="line">3. ```git tag v0.9 f52c633```给commit号为f...打标签v0.9</span><br><span class="line">4. commit id 号查看：```git log --pretty=oneline --abbrev-commit</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>git tag -a v0.1 -m &quot;version 0.1 released&quot; 1094adb</code> -m 添加说明</p>
-</li>
-<li><p><code>git show v0.1</code> 显示说明</p>
-</li>
-<li><p>标签总是和某个commit挂钩</p>
-</li>
-<li><p><code>git tag -d v0.1</code>删除标签</p>
-</li>
-<li><p><code>git push origin v1.0</code>标签推送到远程</p>
-</li>
-<li><p><code>git push origin --tags</code>全部标签推送</p>
-</li>
-<li><p>删除已推送的标签：先删本地<code>git tag -d v0.1</code>，再<code>git push origin :refs/tags/&lt;tagname&gt;</code>,登录github查看删除结果</p>
-</li>
+<li><code>git tag v1.0</code>当前commit打标签“v1.0”</li>
+<li><code>git tag</code>查看全部标签</li>
+<li><code>git tag v0.9 f52c633</code>给commit号为f…打标签v0.9</li>
+<li>commit id 号查看：<code>git log --pretty=oneline --abbrev-commit</code></li>
+<li><code>git tag -a v0.1 -m &quot;version 0.1 released&quot; 1094adb</code> -m 添加说明</li>
+<li><code>git show v0.1</code> 显示说明</li>
+<li>标签总是和某个commit挂钩</li>
+<li><code>git tag -d v0.1</code>删除标签</li>
+<li><code>git push origin v1.0</code>标签推送到远程</li>
+<li><code>git push origin --tags</code>全部标签推送</li>
+<li>删除已推送的标签：先删本地<code>git tag -d v0.1</code>，再<code>git push origin :refs/tags/&lt;tagname&gt;</code>,登录github查看删除结果</li>
 </ol>
 <h2 id="参与（下载）开源项目"><a href="#参与（下载）开源项目" class="headerlink" title="参与（下载）开源项目"></a>参与（下载）开源项目</h2><ol>
 <li>在GitHub上，可以任意Fork开源仓库；</li>
