@@ -16,7 +16,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/git_3part.png">
 <meta property="og:image" content="http://yoursite.com/git_reset.jpg">
-<meta property="og:updated_time" content="2019-06-09T13:13:42.155Z">
+<meta property="og:updated_time" content="2019-06-09T13:17:08.936Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub_Learn">
 <meta name="twitter:description" content="GitHub_Learn https://git-scm.com/dochttps://www.liaoxuefeng.com/ git bash 基本命令同linux bash命令，如ls，mkdir，rm等  0. 三个区域 工作区（working Directory）：简单的理解你在电脑里能看到的目录。 暂存区（stage）：Git的版本库里存了很多东西，其中最重要的就是称为stage（或者">
@@ -134,14 +134,12 @@
 </ol>
 <p>慎用hard<br><img src="/git_reset.jpg" alt="Pic_dlog2" title="dlog"></p>
 <ol start="4">
-<li><p>回到未来版本：按照log中的版本号 <code>git reset --hard 1094a</code></p>
-</li>
-<li><p>git reflog 查看命令历史</p>
-</li>
-<li><p>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p>
-</li>
-<li><p>命令git rm用于从版本库删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。</p>
-<h2 id="4-远程仓库连接，创建远程仓库"><a href="#4-远程仓库连接，创建远程仓库" class="headerlink" title="4. 远程仓库连接，创建远程仓库"></a>4. 远程仓库连接，创建远程仓库</h2><h3 id="先有本地仓库，后连接远程仓库"><a href="#先有本地仓库，后连接远程仓库" class="headerlink" title="先有本地仓库，后连接远程仓库"></a>先有本地仓库，后连接远程仓库</h3></li>
+<li>回到未来版本：按照log中的版本号 <code>git reset --hard 1094a</code></li>
+<li>git reflog 查看命令历史</li>
+<li>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</li>
+<li>命令git rm用于从版本库删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。</li>
+</ol>
+<h2 id="4-远程仓库连接，创建远程仓库"><a href="#4-远程仓库连接，创建远程仓库" class="headerlink" title="4. 远程仓库连接，创建远程仓库"></a>4. 远程仓库连接，创建远程仓库</h2><h3 id="先有本地仓库，后连接远程仓库"><a href="#先有本地仓库，后连接远程仓库" class="headerlink" title="先有本地仓库，后连接远程仓库"></a>先有本地仓库，后连接远程仓库</h3><ol>
 <li><p>本地版本库创建：建文件夹</p>
 </li>
 <li><p>登录github，Create a new repo，</p>
