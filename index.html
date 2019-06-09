@@ -84,13 +84,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="GitHub-Learn"><a href="#GitHub-Learn" class="headerlink" title="GitHub_Learn"></a>GitHub_Learn</h1><blockquote>
-<p><a href="https://git-scm.com/doc" target="_blank" rel="noopener">https://git-scm.com/doc</a><br><a href="https://www.liaoxuefeng.com/" target="_blank" rel="noopener">https://www.liaoxuefeng.com/</a><br> git bash 基本命令同linux bash命令，如ls，mkdir，rm等</p>
-</blockquote>
+        <h1 id="GitHub-Learn"><a href="#GitHub-Learn" class="headerlink" title="GitHub_Learn"></a>GitHub_Learn</h1><p><a href="https://git-scm.com/doc" target="_blank" rel="noopener">https://git-scm.com/doc</a><br><a href="https://www.liaoxuefeng.com/" target="_blank" rel="noopener">https://www.liaoxuefeng.com/</a><br>git bash 基本命令同linux bash命令，如ls，mkdir，rm等</p>
 <h2 id="0-三个区域"><a href="#0-三个区域" class="headerlink" title="0. 三个区域"></a>0. 三个区域</h2><ul>
 <li>工作区（working Directory）：简单的理解你在<strong>电脑里能看到的目录</strong>。</li>
 <li>暂存区（stage）：Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。</li>
-<li>版本库（Repository）：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。<br><img src="/git_3part.png" alt="Pic_dlog2" title="dlog"></li>
+<li>版本库（Repository）：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。<br><img src="https://raw.githubusercontent.com/zhangpm/Pictures/master/git_note/git_3part.png" alt="Pic_dlog2" title="dlog"></li>
 </ul>
 <h2 id="1-创建版本库（仓库）repository"><a href="#1-创建版本库（仓库）repository" class="headerlink" title="1. 创建版本库（仓库）repository"></a>1. 创建版本库（仓库）repository</h2><ol>
 <li>创建空目录，然后cd到此目录下 git init <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir learngit</span><br><span class="line">$ <span class="built_in">cd</span> learngit</span><br><span class="line">$ <span class="built_in">pwd</span></span><br><span class="line">/Users/michael/learngit</span><br></pre></td></tr></table></figure>
@@ -109,17 +107,16 @@
 </li>
 <li><p>用命令git commit告诉Git，把文件提交到仓库</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">"wrote a readme file"</span></span><br><span class="line">[master (root-commit) eaadf4e] wrote a readme file</span><br><span class="line"> 1 file changed, 2 insertions(+)</span><br><span class="line"> create mode 100644 readme.txt</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
-<blockquote>
-<p>git commit命令，-m后面输入的是本次提交的说明</p>
-</blockquote>
-<blockquote>
-<p>为什么Git添加文件需要add，commit一共两步呢？因为commit可以一次提交很多文件，所以你可以多次add不同的文件，比如：</p>
-</blockquote>
+<ul>
+<li><p>git commit命令，-m后面输入的是本次提交的说明</p>
+</li>
+<li><p>为什么Git添加文件需要add，commit一共两步呢？因为commit可以一次提交很多文件，所以你可以多次add不同的文件，比如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add file1.txt</span><br><span class="line">$ git add file2.txt file3.txt</span><br><span class="line">$ git commit -m <span class="string">"add 3 files."</span></span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
 <p><code>git add .</code>全部添加</p>
 <h2 id="3-版本回退"><a href="#3-版本回退" class="headerlink" title="3. 版本回退"></a>3. 版本回退</h2><ol>
 <li>git log 查看日志</li>
@@ -128,7 +125,7 @@
 
 </li>
 </ol>
-<p>慎用hard<br><img src="/git_reset.jpg" alt="Pic_dlog2" title="dlog"></p>
+<p>慎用hard<br><img src="https://raw.githubusercontent.com/zhangpm/Pictures/master/git_note/git_reset.jpg" alt="Pic_dlog2" title="dlog"></p>
 <ol start="4">
 <li>回到未来版本：按照log中的版本号 <code>git reset --hard 1094a</code></li>
 <li>git reflog 查看命令历史</li>
@@ -138,7 +135,7 @@
 <h2 id="4-远程仓库连接，创建远程仓库"><a href="#4-远程仓库连接，创建远程仓库" class="headerlink" title="4. 远程仓库连接，创建远程仓库"></a>4. 远程仓库连接，创建远程仓库</h2><h3 id="4-1-先有本地仓库，后连接远程仓库"><a href="#4-1-先有本地仓库，后连接远程仓库" class="headerlink" title="4.1 先有本地仓库，后连接远程仓库"></a>4.1 先有本地仓库，后连接远程仓库</h3><ol>
 <li><p>本地版本库创建：建文件夹</p>
 </li>
-<li><p>登录github，Create a new repo，</p>
+<li><p>登录github，Create a new repo，不要readme</p>
 </li>
 <li><p>本地连接和推送到远程</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/zhangpm/git_note.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
