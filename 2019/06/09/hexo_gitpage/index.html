@@ -7,17 +7,17 @@
   
   <title>Hexo + GitHub 个人主页 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Hexo + GitHub 个人主页1.安装 node.js  git,github账号  新建文件夹blog，在文件夹下右键-git bash  安装hexo：npm install -g hexo-cli  输入：hexo init; npm install； npm install hexo-deployer-git –save  进入github网站，新建repository,”name”">
+  <meta name="description" content="1.安装 node.js  git,github账号  新建文件夹blog，在文件夹下右键-git bash  安装hexo：npm install -g hexo-cli  输入：hexo init; npm install； npm install hexo-deployer-git –save  进入github网站，新建repository,”name”填写“用户名.github.io”，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo + GitHub 个人主页">
 <meta property="og:url" content="http://yoursite.com/2019/06/09/hexo_gitpage/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Hexo + GitHub 个人主页1.安装 node.js  git,github账号  新建文件夹blog，在文件夹下右键-git bash  安装hexo：npm install -g hexo-cli  输入：hexo init; npm install； npm install hexo-deployer-git –save  进入github网站，新建repository,”name”">
+<meta property="og:description" content="1.安装 node.js  git,github账号  新建文件夹blog，在文件夹下右键-git bash  安装hexo：npm install -g hexo-cli  输入：hexo init; npm install； npm install hexo-deployer-git –save  进入github网站，新建repository,”name”填写“用户名.github.io”，">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-09T12:31:08.480Z">
+<meta property="og:updated_time" content="2019-06-09T12:33:47.231Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + GitHub 个人主页">
-<meta name="twitter:description" content="Hexo + GitHub 个人主页1.安装 node.js  git,github账号  新建文件夹blog，在文件夹下右键-git bash  安装hexo：npm install -g hexo-cli  输入：hexo init; npm install； npm install hexo-deployer-git –save  进入github网站，新建repository,”name”">
+<meta name="twitter:description" content="1.安装 node.js  git,github账号  新建文件夹blog，在文件夹下右键-git bash  安装hexo：npm install -g hexo-cli  输入：hexo init; npm install； npm install hexo-deployer-git –save  进入github网站，新建repository,”name”填写“用户名.github.io”，">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -86,7 +86,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Hexo-GitHub-个人主页"><a href="#Hexo-GitHub-个人主页" class="headerlink" title="Hexo + GitHub 个人主页"></a>Hexo + GitHub 个人主页</h1><h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h2><ol>
+        <h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h2><ol>
 <li><p>node.js</p>
 </li>
 <li><p>git,github账号</p>
@@ -104,7 +104,14 @@
 <li><p>到blog文件夹下找到_config.yml,打开，在最后修改和添加：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">git@github.com:zhangpm/pengmiao.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><figure class="highlight plain"><figcaption><span>g -d```, 即部署到git, **重要**</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">9. 打开网页：https://zhangpm.github.io/</span><br><span class="line">## 2. 更新和添加博客</span><br><span class="line">1. 在文件夹下G:\git\blog\source\_posts 添加markdown文件</span><br><span class="line">2. 部署博客```hexo g -d</span><br></pre></td></tr></table></figure></li>
+<li><p>即部署到git, <strong>重要</strong><br><code>hexo g -d</code>,</p>
+</li>
+<li><p>打开网页：<a href="https://zhangpm.github.io/" target="_blank" rel="noopener">https://zhangpm.github.io/</a></p>
+<h2 id="2-更新和添加博客"><a href="#2-更新和添加博客" class="headerlink" title="2. 更新和添加博客"></a>2. 更新和添加博客</h2></li>
+<li><p>在文件夹下G:\git\blog\source_posts 添加markdown文件</p>
+</li>
+<li><p>部署博客“hexo g -d”</p>
+</li>
 </ol>
 
       
