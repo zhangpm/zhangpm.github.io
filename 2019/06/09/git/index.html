@@ -5,15 +5,22 @@
   
 
   
-  <title>Hexo</title>
+  <title>GitHub_Learn | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="GitHub_Learn https://git-scm.com/dochttps://www.liaoxuefeng.com/ git bash 基本命令同linux bash命令，如ls，mkdir，rm等  0. 三个区域 工作区（working Directory）：简单的理解你在电脑里能看到的目录。 暂存区（stage）：Git的版本库里存了很多东西，其中最重要的就是称为stage（或者">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitHub_Learn">
+<meta property="og:url" content="http://yoursite.com/2019/06/09/git/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="GitHub_Learn https://git-scm.com/dochttps://www.liaoxuefeng.com/ git bash 基本命令同linux bash命令，如ls，mkdir，rm等  0. 三个区域 工作区（working Directory）：简单的理解你在电脑里能看到的目录。 暂存区（stage）：Git的版本库里存了很多东西，其中最重要的就是称为stage（或者">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/git_3part.png">
+<meta property="og:image" content="http://yoursite.com/git_reset.jpg">
+<meta property="og:updated_time" content="2019-06-09T12:49:26.367Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="GitHub_Learn">
+<meta name="twitter:description" content="GitHub_Learn https://git-scm.com/dochttps://www.liaoxuefeng.com/ git bash 基本命令同linux bash命令，如ls，mkdir，rm等  0. 三个区域 工作区（working Directory）：简单的理解你在电脑里能看到的目录。 暂存区（stage）：Git的版本库里存了很多东西，其中最重要的就是称为stage（或者">
+<meta name="twitter:image" content="http://yoursite.com/git_3part.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,9 +67,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/06/09/git/" class="article-date">
   <time datetime="2019-06-09T12:48:53.850Z" itemprop="datePublished">2019-06-09</time>
@@ -75,8 +80,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/09/git/">GitHub_Learn</a>
+    <h1 class="article-title" itemprop="name">
+      GitHub_Learn
     </h1>
   
 
@@ -214,129 +219,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hexo_gitpage" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/09/hexo_gitpage/" class="article-date">
-  <time datetime="2019-06-09T12:27:29.547Z" itemprop="datePublished">2019-06-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/09/hexo_gitpage/">Hexo + GitHub 个人主页</a>
-    </h1>
+    <a href="/2019/06/09/hexo_gitpage/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hexo + GitHub 个人主页</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h2><ol>
-<li><p>node.js</p>
-</li>
-<li><p>git,github账号</p>
-</li>
-<li><p>新建文件夹blog，在文件夹下右键-git bash</p>
-</li>
-<li><p>安装hexo：npm install -g hexo-cli</p>
-</li>
-<li><p>输入：hexo init; npm install； npm install hexo-deployer-git –save</p>
-</li>
-<li><p>进入github网站，新建repository,”name”填写“用户名.github.io”，例如“pengmiao.github.io”</p>
-</li>
-<li><p>生成repository，复制ssh或http地址</p>
-</li>
-<li><p>到blog文件夹下找到_config.yml,打开，在最后修改和添加：</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">git@github.com:zhangpm/pengmiao.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>即部署到git, <strong>重要</strong><br><code>hexo g -d</code>,</p>
-</li>
-<li><p>打开网页：<a href="https://zhangpm.github.io/" target="_blank" rel="noopener">https://zhangpm.github.io/</a></p>
-<h2 id="2-更新和添加博客"><a href="#2-更新和添加博客" class="headerlink" title="2. 更新和添加博客"></a>2. 更新和添加博客</h2></li>
-<li><p>在文件夹下G:\git\blog\source_posts 添加markdown文件</p>
-</li>
-<li><p>部署博客“hexo g -d”</p>
-<h2 id="3-更换主题"><a href="#3-更换主题" class="headerlink" title="3. 更换主题"></a>3. 更换主题</h2></li>
-<li><p>Hexo官网，themes，找主题</p>
-</li>
-<li><p>在blog目录下按照安装说明操作,一般会修改blog下的config（不是主题下）</p>
-</li>
-<li><p>在所用主题的目录下找config.yml，修改图片和名字</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/09/hexo_gitpage/" data-id="cjwoxanl70000rwuko4os7sbg" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/09/hello-world/" class="article-date">
-  <time datetime="2019-06-09T10:07:58.465Z" itemprop="datePublished">2019-06-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/09/hello-world/" data-id="cjwosgzn10000lkukyat2wzpq" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
