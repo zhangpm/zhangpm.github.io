@@ -16,7 +16,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/git_3part.png">
 <meta property="og:image" content="http://yoursite.com/git_reset.jpg">
-<meta property="og:updated_time" content="2019-06-09T13:09:37.401Z">
+<meta property="og:updated_time" content="2019-06-09T13:13:42.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub_Learn">
 <meta name="twitter:description" content="GitHub_Learn https://git-scm.com/dochttps://www.liaoxuefeng.com/ git bash 基本命令同linux bash命令，如ls，mkdir，rm等  0. 三个区域 工作区（working Directory）：简单的理解你在电脑里能看到的目录。 暂存区（stage）：Git的版本库里存了很多东西，其中最重要的就是称为stage（或者">
@@ -160,36 +160,25 @@
 <li><p>git clone <a href="https://github.com/zhangpm/New_try.git" target="_blank" rel="noopener">https://github.com/zhangpm/New_try.git</a></p>
 </li>
 </ol>
-<h2 id="5-分支"><a href="#5-分支" class="headerlink" title="5. 分支"></a>5. 分支</h2><blockquote>
-<p>1 查看</p>
-<ol>
+<h2 id="5-分支"><a href="#5-分支" class="headerlink" title="5. 分支"></a>5. 分支</h2><h3 id="1-查看"><a href="#1-查看" class="headerlink" title="1 查看"></a>1 查看</h3><ol>
 <li>查看分支<code>git branch</code></li>
 <li>查看远程分支<code>git branch -r</code></li>
 <li>查看全部分支<code>git branch -a</code></li>
 <li>查看分支合并情况<code>git log --graph --pretty=oneline --abbrev-commit</code></li>
 </ol>
-</blockquote>
-<blockquote>
-<p>2 添加 <strong>“dev 为分支名”</strong></p>
-<ol>
+<h3 id="2-添加-“dev-为分支名”"><a href="#2-添加-“dev-为分支名”" class="headerlink" title="2 添加 “dev 为分支名”"></a>2 添加 <strong>“dev 为分支名”</strong></h3><ol>
 <li>创建本地分支<code>git branch dev</code></li>
 <li>切换到新创建的分支<code>git checkout dev</code>切换后，文件中的目录即检出未当前分支下的内容</li>
 <li>在当前分支下add 和commit文件</li>
 <li>将新分支push到github<code>git push origin dev</code></li>
 <li>**<code>git checkout -b dev</code>  -b参数表示创建并切换，相当于git branch dev + git checkout dev</li>
 </ol>
-</blockquote>
-<blockquote>
-<p>3 删除</p>
-<ol>
+<h3 id="3-删除"><a href="#3-删除" class="headerlink" title="3 删除"></a>3 删除</h3><ol>
 <li>删除本地：<code>git branch -d dev</code></li>
 <li>未合并强制删除：<code>git branch -D dev</code></li>
 <li>删除远程分支<code>git push origin --delete dev</code></li>
 </ol>
-</blockquote>
-<blockquote>
-<p><strong>3.5 本地和远程分支的各种关联增删总结</strong></p>
-<ol>
+<h3 id="3-5-本地和远程分支的各种关联增删总结"><a href="#3-5-本地和远程分支的各种关联增删总结" class="headerlink" title="3.5 本地和远程分支的各种关联增删总结"></a>3.5 本地和远程分支的各种关联增删总结</h3><ol>
 <li>远程仓库有master 和dev 分支，要拉到本地<ul>
 <li><code>git clone XXX</code>,克隆后本地master 和远程origin/master默认关联，但是dev默认不关联</li>
 <li><code>git checkout -b dev origin/dev</code>本地创建dev，关联origin/dev</li>
@@ -206,26 +195,18 @@
 </ul>
 </li>
 </ol>
-</blockquote>
-<blockquote>
-<p>4 合并分支</p>
-<ol>
+<h3 id="4-合并分支"><a href="#4-合并分支" class="headerlink" title="4 合并分支"></a>4 合并分支</h3><ol>
 <li>git merge dev</li>
 <li>合并成功是fast foward 模式，合并后无分支记录</li>
 <li>合并的两个分支同时改动同一位置，会产生合并冲突，先解决冲突，在文件中修改后，add，commit，然后即合并完成，可删除分支</li>
 <li>no-ff 非fast foward模式，合并后有分支记录<code>git merge --no-ff -m &quot;merge with no-ff&quot; dev</code></li>
 </ol>
-</blockquote>
-<blockquote>
-<p>分支策略</p>
-<ol>
+<h3 id="5-分支策略"><a href="#5-分支策略" class="headerlink" title="5 分支策略"></a>5 分支策略</h3><ol>
 <li>master 应为稳定版，平时不在上面干活</li>
 <li>在dev分支上干活，发布版本时merge到master上</li>
 <li>各部分工作各做分支，先合并到dev，再合并到master</li>
 </ol>
-</blockquote>
-<blockquote>
-<p>保持工作状态stash<br>应用: 工作一半，不想提交，但是要去作别的</p>
+<h3 id="6-保持工作状态stash"><a href="#6-保持工作状态stash" class="headerlink" title="6 保持工作状态stash"></a>6 保持工作状态stash</h3><p>应用: 工作一半，不想提交，但是要去作别的</p>
 <ol>
 <li>保存现场<code>git stash</code></li>
 <li>查看保存<code>git stash list</code></li>
@@ -235,10 +216,7 @@
 </ul>
 </li>
 </ol>
-</blockquote>
-<blockquote>
-<p>分支远程推送策略：</p>
-<ol>
+<h3 id="7-分支远程推送策略："><a href="#7-分支远程推送策略：" class="headerlink" title="7 分支远程推送策略："></a>7 分支远程推送策略：</h3><ol>
 <li>远程推送：<code>git push origin dev</code></li>
 <li>策略：<ul>
 <li>master 推送，保持同步</li>
@@ -248,7 +226,6 @@
 </ul>
 </li>
 </ol>
-</blockquote>
 <h2 id="6-多人协作"><a href="#6-多人协作" class="headerlink" title="6. 多人协作"></a>6. 多人协作</h2><ol>
 <li>首先，可以试图用git push origin &lt;branch-name&gt;推送自己的修改</li>
 <li>若失败，则git pull先拉取最新版本。</li>
