@@ -16,7 +16,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/git_3part.png">
 <meta property="og:image" content="http://yoursite.com/git_reset.jpg">
-<meta property="og:updated_time" content="2019-06-09T12:49:26.367Z">
+<meta property="og:updated_time" content="2019-06-09T13:06:26.827Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub_Learn">
 <meta name="twitter:description" content="GitHub_Learn https://git-scm.com/dochttps://www.liaoxuefeng.com/ git bash 基本命令同linux bash命令，如ls，mkdir，rm等  0. 三个区域 工作区（working Directory）：简单的理解你在电脑里能看到的目录。 暂存区（stage）：Git的版本库里存了很多东西，其中最重要的就是称为stage（或者">
@@ -124,22 +124,52 @@
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add file1.txt</span><br><span class="line">$ git add file2.txt file3.txt</span><br><span class="line">$ git commit -m <span class="string">"add 3 files."</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><figcaption><span>add . ```  全部添加</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">## 3. 版本回退</span><br><span class="line">1. git log 查看日志</span><br><span class="line">2. 用HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100</span><br><span class="line">3. git reset命令 退回上一版本</span><br><span class="line">```bash</span><br><span class="line">$ git reset --hard HEAD^</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git add . </span><br><span class="line">```  全部添加</span><br><span class="line">## 3. 版本回退</span><br><span class="line">1. git log 查看日志</span><br><span class="line">2. 用HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100</span><br><span class="line">3. git reset命令 退回上一版本</span><br><span class="line">```bash</span><br><span class="line">$ git reset --hard HEAD^</span><br></pre></td></tr></table></figure>
 
 <p>慎用hard<br><img src="/git_reset.jpg" alt="Pic_dlog2" title="dlog"></p>
 <ol start="4">
-<li><p>回到未来版本：按照log中的版本号 <figure class="highlight plain"><figcaption><span>reset --hard 1094a```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">5. git reflog 查看命令历史</span><br><span class="line">6. git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</span><br><span class="line">7. 命令git rm用于从版本库删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。</span><br><span class="line">## 4. 远程仓库连接，创建远程仓库</span><br><span class="line">### 先有本地仓库，后连接远程仓库</span><br><span class="line">1. 本地版本库创建：建文件夹</span><br><span class="line">2. 登录github，Create a new repo，</span><br><span class="line">3. 本地连接和推送到远程</span><br><span class="line">```bash</span><br><span class="line">git remote add origin https://github.com/zhangpm/git_note.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure></p>
+<li><p>回到未来版本：按照log中的版本号 <code>git reset --hard 1094a</code></p>
+</li>
+<li><p>git reflog 查看命令历史</p>
+</li>
+<li><p>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p>
+</li>
+<li><p>命令git rm用于从版本库删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。</p>
+<h2 id="4-远程仓库连接，创建远程仓库"><a href="#4-远程仓库连接，创建远程仓库" class="headerlink" title="4. 远程仓库连接，创建远程仓库"></a>4. 远程仓库连接，创建远程仓库</h2><h3 id="先有本地仓库，后连接远程仓库"><a href="#先有本地仓库，后连接远程仓库" class="headerlink" title="先有本地仓库，后连接远程仓库"></a>先有本地仓库，后连接远程仓库</h3></li>
+<li><p>本地版本库创建：建文件夹</p>
+</li>
+<li><p>登录github，Create a new repo，</p>
+</li>
+<li><p>本地连接和推送到远程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/zhangpm/git_note.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>origin 是远程默认名，master本地名</p>
 </li>
-<li><p>查看远程，<figure class="highlight plain"><figcaption><span>remote (-v)```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">### 先有远程，后克隆</span><br><span class="line">1. github 创建新repository</span><br><span class="line">2. clone or download 复制地址（http或ssh）“https://github.com/zhangpm/New_try.git”</span><br><span class="line">3. git clone https://github.com/zhangpm/New_try.git</span><br><span class="line"></span><br><span class="line">## 5. 分支</span><br><span class="line">&gt; 1 查看</span><br><span class="line">1. 查看分支```git branch</span><br></pre></td></tr></table></figure></p>
+<li><p>查看远程，<code>git remote (-v)</code></p>
+<h3 id="先有远程，后克隆"><a href="#先有远程，后克隆" class="headerlink" title="先有远程，后克隆"></a>先有远程，后克隆</h3></li>
+<li><p>github 创建新repository</p>
 </li>
-<li><p>查看远程分支<figure class="highlight plain"><figcaption><span>branch -r ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3. 查看全部分支```git branch -a</span><br></pre></td></tr></table></figure></p>
+<li><p>clone or download 复制地址（http或ssh）“<a href="https://github.com/zhangpm/New_try.git”" target="_blank" rel="noopener">https://github.com/zhangpm/New_try.git”</a></p>
 </li>
-<li><p>查看分支合并情况<figure class="highlight plain"><figcaption><span>log --graph --pretty</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;2 添加 **&quot;dev 为分支名&quot;**</span><br><span class="line">1. 创建本地分支```git branch dev</span><br></pre></td></tr></table></figure></p>
+<li><p>git clone <a href="https://github.com/zhangpm/New_try.git" target="_blank" rel="noopener">https://github.com/zhangpm/New_try.git</a></p>
 </li>
-<li><p>切换到新创建的分支<figure class="highlight plain"><figcaption><span>checkout dev```切换后，文件中的目录即检出未当前分支下的内容</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3. 在当前分支下add 和commit文件</span><br><span class="line">4. 将新分支push到github```git push origin dev</span><br></pre></td></tr></table></figure></p>
-</li>
+</ol>
+<h2 id="5-分支"><a href="#5-分支" class="headerlink" title="5. 分支"></a>5. 分支</h2><blockquote>
+<p>1 查看</p>
+<ol>
+<li>查看分支<figure class="highlight plain"><figcaption><span>branch ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2. 查看远程分支```git branch -r</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<ol start="3">
+<li>查看全部分支<figure class="highlight plain"><figcaption><span>branch -a```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4. 查看分支合并情况```git log --graph --pretty=oneline --abbrev-commit</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>2 添加 <strong>“dev 为分支名”</strong></p>
+<ol>
+<li>创建本地分支<figure class="highlight plain"><figcaption><span>branch dev```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2. 切换到新创建的分支```git checkout dev```切换后，文件中的目录即检出未当前分支下的内容</span><br><span class="line">3. 在当前分支下add 和commit文件</span><br><span class="line">4. 将新分支push到github```git push origin dev</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+<ol start="5">
 <li><p>**<figure class="highlight plain"><figcaption><span>checkout -b dev```  -b参数表示创建并切换，相当于git branch dev + git checkout dev</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;3 删除</span><br><span class="line">1. 删除本地：```git branch -d dev``` </span><br><span class="line">2. 未合并强制删除：```git branch -D dev</span><br></pre></td></tr></table></figure></p>
 </li>
 <li><p>删除远程分支<figure class="highlight plain"><figcaption><span>push origin --delete dev```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;**3.5 本地和远程分支的各种关联增删总结**</span><br><span class="line">1. 远程仓库有master 和dev 分支，要拉到本地</span><br><span class="line">   * ```git clone XXX```,克隆后本地master 和远程origin/master默认关联，但是dev默认不关联</span><br><span class="line">   * ```git checkout -b dev origin/dev```本地创建dev，关联origin/dev</span><br><span class="line">   * 上述语句等同于```git checkout -b dev ```+```git pull origin dev```??</span><br><span class="line">2. 远程仓库只有master，本地分支push到远程</span><br><span class="line">   * ```git push origin dev</span><br></pre></td></tr></table></figure></p>
