@@ -86,7 +86,6 @@
       
         <h1 id="1-Deep-Reinforcement-Learning"><a href="#1-Deep-Reinforcement-Learning" class="headerlink" title="1.Deep Reinforcement Learning"></a>1.Deep Reinforcement Learning</h1><blockquote>
 <p><a href="https://www.bilibili.com/video/av48285039/?p=81" target="_blank" rel="noopener">https://www.bilibili.com/video/av48285039/?p=81</a></p>
-</blockquote>
 <h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline:"></a>Outline:</h2><ul>
 <li>Policy_based<ul>
 <li>Actor</li>
@@ -119,32 +118,33 @@
 </li>
 <li>How to calculate the <strong>expectation</strong>?<ul>
 <li>An episode is a trajectory $\tau$</li>
-<li>$\tau={s_1,a_1,r_1,s_2,a_2,r_2,…s_T,a_T,r_T }$</li>
+<li>$\tau=\{s_1,a_1,r_1,s_2,a_2,r_2,…s_T,a_T,r_T \}$</li>
 <li>$R(\tau)=\sum_{n=1}^Nr_n$</li>
 <li>if you use an actor,each $\tau$ has a probability to be sampled. the probability depends on the actor parameter $\theta$</li>
-<li>$\overline{R}<em>\theta=\sum</em>{\tau}R(\tau)P(\tau|\theta)$:sum over all possible trajectory.</li>
+<li>$\overline{R}_\theta=\sum_{\tau}R(\tau)P(\tau|\theta)$:sum over all possible trajectory.</li>
 <li>Use $\pi_\theta$ to play the game N times, obtain{$\tau^1,\tau^2,…,\tau^N$},<strong>sample</strong> $\tau$ from P($\tau|\theta$) N times  </li>
-<li><strong><em>IMPORTANT EQUATION NO. 1:</em></strong></li>
-<li>$$\overline{R}<em>\theta=\sum</em>{\tau}R(\tau)P(\tau|\theta)\approx \frac{1}{N}\sum_{n=1}^{N}R(\tau^n)$$</li>
+<li><strong>_IMPORTANT EQUATION NO. 1:_</strong></li>
+<li><script type="math/tex; mode=display">\overline{R}_\theta=\sum_{\tau}R(\tau)P(\tau|\theta)\approx \frac{1}{N}\sum_{n=1}^{N}R(\tau^n)</script></li>
 <li><strong>Sample</strong>,对所有trajectory（路径）的期望reward（求和求平均）</li>
 </ul>
 </li>
 <li>choose best actor : Gradient Ascent</li>
 </ol>
 <ul>
-<li>6.1 Problem Statement:<br>$$ \theta^\star=argmax_\theta \overline{R}<em>\theta $$<br>$$<br>\overline{R}_\theta=\sum</em>{\tau}R(\tau)P(\tau|\theta)<br>$$</li>
+<li>6.1 Problem Statement:<script type="math/tex; mode=display">\theta^\star=argmax_\theta \overline{R}_\theta</script><script type="math/tex; mode=display">
+\overline{R}_\theta=\sum_{\tau}R(\tau)P(\tau|\theta)</script></li>
 <li>6.2 Gradient ascent:<ul>
 <li>start with $\theta^0$</li>
 <li>$\theta^1 \leftarrow \theta^0 + \eta\nabla\overline{R}_{\theta^0}$</li>
 <li>$\theta^2 \leftarrow \theta^1 + \eta\nabla\overline{R}_{\theta^1}$</li>
 <li>。。。</li>
-<li>$\theta={w_1,w_2,w_3,…}$</li>
-<li>$\nabla\overline{R}<em>{\theta}=\left[\begin{matrix}<br>\partial\overline{R}</em>{\theta}/\partial w_1 \<br>\partial\overline{R}<em>{\theta}/\partial w_2\<br>…\<br>\partial\overline{R}</em>{\theta}/\partial w_n<br>…<br>\end{matrix}<br>\right]$</li>
-<li><strong><em>IMPORTANT EQUATION NO. 2</em></strong> (come from  <strong><em>IMPORTANT EQUATION NO. 1</em></strong>):</li>
+<li>$\theta=\{w_1,w_2,w_3,…\}$</li>
+<li>$\nabla\overline{R}_{\theta}=\left[\begin{matrix}<br>\partial\overline{R}_{\theta}/\partial w_1 \\<br>\partial\overline{R}_{\theta}/\partial w_2\\<br>…\\<br>\partial\overline{R}_{\theta}/\partial w_n<br>…<br>\end{matrix}<br>\right]$</li>
+<li><strong>_IMPORTANT EQUATION NO. 2_</strong> (come from  <strong>_IMPORTANT EQUATION NO. 1_</strong>):</li>
 <li><img src="/pic/Gradient_Ascent.JPG" alt="Pic" title="DRL_structure"></li>
-<li>推导得：$\nabla\overline{R}<em>{\theta}\approx\frac{1}{N}\sum</em>{n=1}^{N}R(\tau^n)\nabla logP(\tau|\theta )$</li>
+<li>推导得：$\nabla\overline{R}_{\theta}\approx\frac{1}{N}\sum_{n=1}^{N}R(\tau^n)\nabla logP(\tau|\theta )$</li>
 <li>问题化为计算$\nabla logP(\tau|\theta )$<h4 id="计算-nabla-logP-tau-theta"><a href="#计算-nabla-logP-tau-theta" class="headerlink" title="计算 $\nabla logP(\tau|\theta )$"></a>计算 $\nabla logP(\tau|\theta )$</h4></li>
-<li>$\tau={s_1,a_1,r_1,s_2,a_2,r_2,…s_T,a_T,r_T }$</li>
+<li>$\tau=\{s_1,a_1,r_1,s_2,a_2,r_2,…s_T,a_T,r_T \}$</li>
 <li><img src="/pic/dlog.JPG" alt="Pic_dlog" title="dlog"></li>
 <li>公式含义（游戏为例）：$\theta$下采取$\tau$路径的概率 = 第一画面为s1的概率<em>（s1,$\theta$）下采取a1动作的概率</em>(s1,a1)下转移到s2动作并获得r1奖励的概率*。。。</li>
 <li>取log，乘变加，对$\theta$微分，忽略无关部分</li>
@@ -160,9 +160,9 @@
 </ul>
 </li>
 </ul>
+</blockquote>
 <h2 id="Value-based-Approach——learn-a-Critic"><a href="#Value-based-Approach——learn-a-Critic" class="headerlink" title="Value_based Approach——learn a Critic"></a>Value_based Approach——learn a Critic</h2><blockquote>
 <p><a href="https://www.bilibili.com/video/av48285039/?p=81" target="_blank" rel="noopener">https://www.bilibili.com/video/av48285039/?p=81</a></p>
-</blockquote>
 <h2 id="Outline-1"><a href="#Outline-1" class="headerlink" title="Outline:"></a>Outline:</h2><ul>
 <li>Policy_based<ul>
 <li>Actor</li>
@@ -195,32 +195,33 @@
 </li>
 <li>How to calculate the <strong>expectation</strong>?<ul>
 <li>An episode is a trajectory $\tau$</li>
-<li>$\tau={s_1,a_1,r_1,s_2,a_2,r_2,…s_T,a_T,r_T }$</li>
+<li>$\tau=\{s_1,a_1,r_1,s_2,a_2,r_2,…s_T,a_T,r_T \}$</li>
 <li>$R(\tau)=\sum_{n=1}^Nr_n$</li>
 <li>if you use an actor,each $\tau$ has a probability to be sampled. the probability depends on the actor parameter $\theta$</li>
-<li>$\overline{R}<em>\theta=\sum</em>{\tau}R(\tau)P(\tau|\theta)$:sum over all possible trajectory.</li>
+<li>$\overline{R}_\theta=\sum_{\tau}R(\tau)P(\tau|\theta)$:sum over all possible trajectory.</li>
 <li>Use $\pi_\theta$ to play the game N times, obtain{$\tau^1,\tau^2,…,\tau^N$},<strong>sample</strong> $\tau$ from P($\tau|\theta$) N times  </li>
-<li><strong><em>IMPORTANT EQUATION NO. 1:</em></strong></li>
-<li>$$\overline{R}<em>\theta=\sum</em>{\tau}R(\tau)P(\tau|\theta)\approx \frac{1}{N}\sum_{n=1}^{N}R(\tau^n)$$</li>
+<li><strong>_IMPORTANT EQUATION NO. 1:_</strong></li>
+<li><script type="math/tex; mode=display">\overline{R}_\theta=\sum_{\tau}R(\tau)P(\tau|\theta)\approx \frac{1}{N}\sum_{n=1}^{N}R(\tau^n)</script></li>
 <li><strong>Sample</strong>,对所有trajectory（路径）的期望reward（求和求平均）</li>
 </ul>
 </li>
 <li>choose best actor : Gradient Ascent</li>
 </ol>
 <ul>
-<li>6.1 Problem Statement:<br>$$ \theta^\star=argmax_\theta \overline{R}<em>\theta $$<br>$$<br>\overline{R}_\theta=\sum</em>{\tau}R(\tau)P(\tau|\theta)<br>$$</li>
+<li>6.1 Problem Statement:<script type="math/tex; mode=display">\theta^\star=argmax_\theta \overline{R}_\theta</script><script type="math/tex; mode=display">
+\overline{R}_\theta=\sum_{\tau}R(\tau)P(\tau|\theta)</script></li>
 <li>6.2 Gradient ascent:<ul>
 <li>start with $\theta^0$</li>
 <li>$\theta^1 \leftarrow \theta^0 + \eta\nabla\overline{R}_{\theta^0}$</li>
 <li>$\theta^2 \leftarrow \theta^1 + \eta\nabla\overline{R}_{\theta^1}$</li>
 <li>。。。</li>
-<li>$\theta={w_1,w_2,w_3,…}$</li>
-<li>$\nabla\overline{R}<em>{\theta}=\left[\begin{matrix}<br>\partial\overline{R}</em>{\theta}/\partial w_1 \<br>\partial\overline{R}<em>{\theta}/\partial w_2\<br>…\<br>\partial\overline{R}</em>{\theta}/\partial w_n<br>…<br>\end{matrix}<br>\right]$</li>
-<li><strong><em>IMPORTANT EQUATION NO. 2</em></strong> (come from  <strong><em>IMPORTANT EQUATION NO. 1</em></strong>):</li>
+<li>$\theta=\{w_1,w_2,w_3,…\}$</li>
+<li>$\nabla\overline{R}_{\theta}=\left[\begin{matrix}<br>\partial\overline{R}_{\theta}/\partial w_1 \\<br>\partial\overline{R}_{\theta}/\partial w_2\\<br>…\\<br>\partial\overline{R}_{\theta}/\partial w_n<br>…<br>\end{matrix}<br>\right]$</li>
+<li><strong>_IMPORTANT EQUATION NO. 2_</strong> (come from  <strong>_IMPORTANT EQUATION NO. 1_</strong>):</li>
 <li><img src="/pic/Gradient_Ascent.JPG" alt="Pic" title="DRL_structure"></li>
-<li>推导得：$\nabla\overline{R}<em>{\theta}\approx\frac{1}{N}\sum</em>{n=1}^{N}R(\tau^n)\nabla logP(\tau|\theta )$</li>
+<li>推导得：$\nabla\overline{R}_{\theta}\approx\frac{1}{N}\sum_{n=1}^{N}R(\tau^n)\nabla logP(\tau|\theta )$</li>
 <li>问题化为计算$\nabla logP(\tau|\theta )$<h4 id="计算-nabla-logP-tau-theta-1"><a href="#计算-nabla-logP-tau-theta-1" class="headerlink" title="计算 $\nabla logP(\tau|\theta )$"></a>计算 $\nabla logP(\tau|\theta )$</h4></li>
-<li>$\tau={s_1,a_1,r_1,s_2,a_2,r_2,…s_T,a_T,r_T }$</li>
+<li>$\tau=\{s_1,a_1,r_1,s_2,a_2,r_2,…s_T,a_T,r_T \}$</li>
 <li><img src="/pic/dlog.JPG" alt="Pic_dlog" title="dlog"></li>
 <li>公式含义（游戏为例）：$\theta$下采取$\tau$路径的概率 = 第一画面为s1的概率<em>（s1,$\theta$）下采取a1动作的概率</em>(s1,a1)下转移到s2动作并获得r1奖励的概率*。。。</li>
 <li>取log，乘变加，对$\theta$微分，忽略无关部分</li>
@@ -236,6 +237,7 @@
 </ul>
 </li>
 </ul>
+</blockquote>
 <h2 id="Value-based-Approach——learn-a-Critic-1"><a href="#Value-based-Approach——learn-a-Critic-1" class="headerlink" title="Value_based Approach——learn a Critic"></a>Value_based Approach——learn a Critic</h2>
       
     </div>
@@ -723,5 +725,22 @@
 
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+
 </body>
 </html>
