@@ -7,12 +7,12 @@
   
   <title>RDL_李宏毅 | Pengmiao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.Deep Reinforcement Learning https://www.bilibili.com/video/av48285039/?p=81 Outline: Policy_based Actor   Value_based CriticPolicy_based Approach——learn an actor     Action= $ \pi(Observation) $ 3 s">
+  <meta name="description" content="1.Deep Reinforcement Learning https://www.bilibili.com/video/av48285039/?p=81Outline: Policy_based Actor   Value_based CriticPolicy_based Approach——learn an actor     Action= $ \pi(Observation) $ 3 st">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RDL_李宏毅">
 <meta property="og:url" content="http://yoursite.com/2019/06/16/RDL_李宏毅/index.html">
 <meta property="og:site_name" content="Pengmiao&#39;s Blog">
-<meta property="og:description" content="1.Deep Reinforcement Learning https://www.bilibili.com/video/av48285039/?p=81 Outline: Policy_based Actor   Value_based CriticPolicy_based Approach——learn an actor     Action= $ \pi(Observation) $ 3 s">
+<meta property="og:description" content="1.Deep Reinforcement Learning https://www.bilibili.com/video/av48285039/?p=81Outline: Policy_based Actor   Value_based CriticPolicy_based Approach——learn an actor     Action= $ \pi(Observation) $ 3 st">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/pic/DRL_structure.JPG">
 <meta property="og:image" content="http://yoursite.com/pic/Gradient_Ascent.JPG">
@@ -21,17 +21,10 @@
 <meta property="og:image" content="http://yoursite.com/pic/dlog3.JPG">
 <meta property="og:image" content="http://yoursite.com/pic/dlog4.JPG">
 <meta property="og:image" content="http://yoursite.com/pic/dlog5.JPG">
-<meta property="og:image" content="http://yoursite.com/pic/DRL_structure.JPG">
-<meta property="og:image" content="http://yoursite.com/pic/Gradient_Ascent.JPG">
-<meta property="og:image" content="http://yoursite.com/pic/dlog.JPG">
-<meta property="og:image" content="http://yoursite.com/pic/dlog2.JPG">
-<meta property="og:image" content="http://yoursite.com/pic/dlog3.JPG">
-<meta property="og:image" content="http://yoursite.com/pic/dlog4.JPG">
-<meta property="og:image" content="http://yoursite.com/pic/dlog5.JPG">
-<meta property="og:updated_time" content="2019-06-16T02:41:09.294Z">
+<meta property="og:updated_time" content="2019-06-16T02:45:06.628Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RDL_李宏毅">
-<meta name="twitter:description" content="1.Deep Reinforcement Learning https://www.bilibili.com/video/av48285039/?p=81 Outline: Policy_based Actor   Value_based CriticPolicy_based Approach——learn an actor     Action= $ \pi(Observation) $ 3 s">
+<meta name="twitter:description" content="1.Deep Reinforcement Learning https://www.bilibili.com/video/av48285039/?p=81Outline: Policy_based Actor   Value_based CriticPolicy_based Approach——learn an actor     Action= $ \pi(Observation) $ 3 st">
 <meta name="twitter:image" content="http://yoursite.com/pic/DRL_structure.JPG">
   
     <link rel="alternate" href="/atom.xml" title="Pengmiao&#39;s Blog" type="application/atom+xml">
@@ -101,9 +94,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-Deep-Reinforcement-Learning"><a href="#1-Deep-Reinforcement-Learning" class="headerlink" title="1.Deep Reinforcement Learning"></a>1.Deep Reinforcement Learning</h1><blockquote>
-<p><a href="https://www.bilibili.com/video/av48285039/?p=81" target="_blank" rel="noopener">https://www.bilibili.com/video/av48285039/?p=81</a></p>
-<h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline:"></a>Outline:</h2><ul>
+        <h1 id="1-Deep-Reinforcement-Learning"><a href="#1-Deep-Reinforcement-Learning" class="headerlink" title="1.Deep Reinforcement Learning"></a>1.Deep Reinforcement Learning</h1><ul>
+<li><a href="https://www.bilibili.com/video/av48285039/?p=81" target="_blank" rel="noopener">https://www.bilibili.com/video/av48285039/?p=81</a><h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline:"></a>Outline:</h2></li>
 <li>Policy_based<ul>
 <li>Actor</li>
 </ul>
@@ -177,85 +169,7 @@
 </ul>
 </li>
 </ul>
-</blockquote>
-<h2 id="Value-based-Approach——learn-a-Critic"><a href="#Value-based-Approach——learn-a-Critic" class="headerlink" title="Value_based Approach——learn a Critic"></a>Value_based Approach——learn a Critic</h2><blockquote>
-<p><a href="https://www.bilibili.com/video/av48285039/?p=81" target="_blank" rel="noopener">https://www.bilibili.com/video/av48285039/?p=81</a></p>
-<h2 id="Outline-1"><a href="#Outline-1" class="headerlink" title="Outline:"></a>Outline:</h2><ul>
-<li>Policy_based<ul>
-<li>Actor</li>
-</ul>
-</li>
-<li>Value_based<ul>
-<li>Critic<h2 id="Policy-based-Approach——learn-an-actor-1"><a href="#Policy-based-Approach——learn-an-actor-1" class="headerlink" title="Policy_based Approach——learn an actor"></a>Policy_based Approach——learn an actor</h2></li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>Action=$\pi(Observation)$</li>
-<li>3 steps<ul>
-<li>1) Neural Network as Actor</li>
-<li>2) goodness of function</li>
-<li>3) pick the best function</li>
-</ul>
-</li>
-<li>example as a video game<ul>
-<li>Input: the observation of machine(as a vector or matrix)</li>
-<li>Output: actions’ score(probability) vector</li>
-<li><img src="/pic/DRL_structure.JPG" alt="Pic" title="DRL_structure"></li>
-</ul>
-</li>
-<li>Goodness of Actor<ul>
-<li>actor $\pi_\theta(s)$ with network parameter $\theta$</li>
-<li>total reward:$R_\theta=\sum_t^Tr_t$</li>
-<li>$R_\theta$ has randomness, so we need to maximize the <strong>expected value $\overline{R}_\theta$</strong></li>
-</ul>
-</li>
-<li>How to calculate the <strong>expectation</strong>?<ul>
-<li>An episode is a trajectory $\tau$</li>
-<li>$\tau=\{s_1,a_1,r_1,s_2,a_2,r_2,…s_T,a_T,r_T \}$</li>
-<li>$R(\tau)=\sum_{n=1}^Nr_n$</li>
-<li>if you use an actor,each $\tau$ has a probability to be sampled. the probability depends on the actor parameter $\theta$</li>
-<li>$\overline{R}_\theta=\sum_{\tau}R(\tau)P(\tau|\theta)$:sum over all possible trajectory.</li>
-<li>Use $\pi_\theta$ to play the game N times, obtain{$\tau^1,\tau^2,…,\tau^N$},<strong>sample</strong> $\tau$ from P($\tau|\theta$) N times  </li>
-<li><strong>_IMPORTANT EQUATION NO. 1:_</strong></li>
-<li><script type="math/tex; mode=display">\overline{R}_\theta=\sum_{\tau}R(\tau)P(\tau|\theta)\approx \frac{1}{N}\sum_{n=1}^{N}R(\tau^n)</script></li>
-<li><strong>Sample</strong>,对所有trajectory（路径）的期望reward（求和求平均）</li>
-</ul>
-</li>
-<li>choose best actor : Gradient Ascent</li>
-</ol>
-<ul>
-<li>6.1 Problem Statement:<script type="math/tex; mode=display">\theta^\star=argmax_\theta \overline{R}_\theta</script><script type="math/tex; mode=display">
-\overline{R}_\theta=\sum_{\tau}R(\tau)P(\tau|\theta)</script></li>
-<li>6.2 Gradient ascent:<ul>
-<li>start with $\theta^0$</li>
-<li>$\theta^1 \leftarrow \theta^0 + \eta\nabla\overline{R}_{\theta^0}$</li>
-<li>$\theta^2 \leftarrow \theta^1 + \eta\nabla\overline{R}_{\theta^1}$</li>
-<li>。。。</li>
-<li>$\theta=\{w_1,w_2,w_3,…\}$</li>
-<li>$\nabla\overline{R}_{\theta}=\left[\begin{matrix}<br>\partial\overline{R}_{\theta}/\partial w_1 \\<br>\partial\overline{R}_{\theta}/\partial w_2\\<br>…\\<br>\partial\overline{R}_{\theta}/\partial w_n<br>…<br>\end{matrix}<br>\right]$</li>
-<li><strong>_IMPORTANT EQUATION NO. 2_</strong> (come from  <strong>_IMPORTANT EQUATION NO. 1_</strong>):</li>
-<li><img src="/pic/Gradient_Ascent.JPG" alt="Pic" title="DRL_structure"></li>
-<li>推导得：$\nabla\overline{R}_{\theta}\approx\frac{1}{N}\sum_{n=1}^{N}R(\tau^n)\nabla logP(\tau|\theta )$</li>
-<li>问题化为计算$\nabla logP(\tau|\theta )$<h4 id="计算-nabla-logP-tau-theta-1"><a href="#计算-nabla-logP-tau-theta-1" class="headerlink" title="计算 $\nabla logP(\tau|\theta )$"></a>计算 $\nabla logP(\tau|\theta )$</h4></li>
-<li>$\tau=\{s_1,a_1,r_1,s_2,a_2,r_2,…s_T,a_T,r_T \}$</li>
-<li><img src="/pic/dlog.JPG" alt="Pic_dlog" title="dlog"></li>
-<li>公式含义（游戏为例）：$\theta$下采取$\tau$路径的概率 = 第一画面为s1的概率<em>（s1,$\theta$）下采取a1动作的概率</em>(s1,a1)下转移到s2动作并获得r1奖励的概率*。。。</li>
-<li>取log，乘变加，对$\theta$微分，忽略无关部分</li>
-<li><img src="/pic/dlog2.JPG" alt="Pic_dlog2" title="dlog"></li>
-<li>so，结合之前，可得到：<img src="/pic/dlog3.JPG" alt="Pic_dlog2" title="dlog"></li>
-<li>注意：公式中，p概率是在时间t下的状态s和动作a，但是reward R是全过程的值；理解为有些动作不会产生reward，但是会对全局reward产生影响</li>
-<li>注意2：为什么取log？<img src="/pic/dlog4.JPG" alt="Pic_dlog2" title="dlog"><ul>
-<li>即是dp/p，相当于做了normalization，去除概率大小本身的影响，只考虑变化</li>
-</ul>
-</li>
-<li>Add a baseline: 防止没sample到的action的概率减少</li>
-<li><img src="/pic/dlog5.JPG" alt="Pic_dlog2" title="dlog"></li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<h2 id="Value-based-Approach——learn-a-Critic-1"><a href="#Value-based-Approach——learn-a-Critic-1" class="headerlink" title="Value_based Approach——learn a Critic"></a>Value_based Approach——learn a Critic</h2>
+
       
     </div>
     <footer class="article-footer">
