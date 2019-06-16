@@ -62,6 +62,189 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-RDL_李宏毅" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/16/RDL_李宏毅/" class="article-date">
+  <time datetime="2019-06-16T01:37:19.270Z" itemprop="datePublished">2019-06-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/16/RDL_李宏毅/">RDL_李宏毅</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-Deep-Reinforcement-Learning"><a href="#1-Deep-Reinforcement-Learning" class="headerlink" title="1.Deep Reinforcement Learning"></a>1.Deep Reinforcement Learning</h1><blockquote>
+<p><a href="https://www.bilibili.com/video/av48285039/?p=81" target="_blank" rel="noopener">https://www.bilibili.com/video/av48285039/?p=81</a></p>
+</blockquote>
+<h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline:"></a>Outline:</h2><ul>
+<li>Policy_based<ul>
+<li>Actor</li>
+</ul>
+</li>
+<li>Value_based<ul>
+<li>Critic<h2 id="Policy-based-Approach——learn-an-actor"><a href="#Policy-based-Approach——learn-an-actor" class="headerlink" title="Policy_based Approach——learn an actor"></a>Policy_based Approach——learn an actor</h2></li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Action=$\pi(Observation)$</li>
+<li>3 steps<ul>
+<li>1) Neural Network as Actor</li>
+<li>2) goodness of function</li>
+<li>3) pick the best function</li>
+</ul>
+</li>
+<li>example as a video game<ul>
+<li>Input: the observation of machine(as a vector or matrix)</li>
+<li>Output: actions’ score(probability) vector</li>
+<li><img src="/pic/DRL_structure.JPG" alt="Pic" title="DRL_structure"></li>
+</ul>
+</li>
+<li>Goodness of Actor<ul>
+<li>actor $\pi_\theta(s)$ with network parameter $\theta$</li>
+<li>total reward:$R_\theta=\sum_t^Tr_t$</li>
+<li>$R_\theta$ has randomness, so we need to maximize the <strong>expected value $\overline{R}_\theta$</strong></li>
+</ul>
+</li>
+<li>How to calculate the <strong>expectation</strong>?<ul>
+<li>An episode is a trajectory $\tau$</li>
+<li>$\tau={s_1,a_1,r_1,s_2,a_2,r_2,…s_T,a_T,r_T }$</li>
+<li>$R(\tau)=\sum_{n=1}^Nr_n$</li>
+<li>if you use an actor,each $\tau$ has a probability to be sampled. the probability depends on the actor parameter $\theta$</li>
+<li>$\overline{R}<em>\theta=\sum</em>{\tau}R(\tau)P(\tau|\theta)$:sum over all possible trajectory.</li>
+<li>Use $\pi_\theta$ to play the game N times, obtain{$\tau^1,\tau^2,…,\tau^N$},<strong>sample</strong> $\tau$ from P($\tau|\theta$) N times  </li>
+<li><strong><em>IMPORTANT EQUATION NO. 1:</em></strong></li>
+<li>$$\overline{R}<em>\theta=\sum</em>{\tau}R(\tau)P(\tau|\theta)\approx \frac{1}{N}\sum_{n=1}^{N}R(\tau^n)$$</li>
+<li><strong>Sample</strong>,对所有trajectory（路径）的期望reward（求和求平均）</li>
+</ul>
+</li>
+<li>choose best actor : Gradient Ascent</li>
+</ol>
+<ul>
+<li>6.1 Problem Statement:<br>$$ \theta^\star=argmax_\theta \overline{R}<em>\theta $$<br>$$<br>\overline{R}_\theta=\sum</em>{\tau}R(\tau)P(\tau|\theta)<br>$$</li>
+<li>6.2 Gradient ascent:<ul>
+<li>start with $\theta^0$</li>
+<li>$\theta^1 \leftarrow \theta^0 + \eta\nabla\overline{R}_{\theta^0}$</li>
+<li>$\theta^2 \leftarrow \theta^1 + \eta\nabla\overline{R}_{\theta^1}$</li>
+<li>。。。</li>
+<li>$\theta={w_1,w_2,w_3,…}$</li>
+<li>$\nabla\overline{R}<em>{\theta}=\left[\begin{matrix}<br>\partial\overline{R}</em>{\theta}/\partial w_1 \<br>\partial\overline{R}<em>{\theta}/\partial w_2\<br>…\<br>\partial\overline{R}</em>{\theta}/\partial w_n<br>…<br>\end{matrix}<br>\right]$</li>
+<li><strong><em>IMPORTANT EQUATION NO. 2</em></strong> (come from  <strong><em>IMPORTANT EQUATION NO. 1</em></strong>):</li>
+<li><img src="/pic/Gradient_Ascent.JPG" alt="Pic" title="DRL_structure"></li>
+<li>推导得：$\nabla\overline{R}<em>{\theta}\approx\frac{1}{N}\sum</em>{n=1}^{N}R(\tau^n)\nabla logP(\tau|\theta )$</li>
+<li>问题化为计算$\nabla logP(\tau|\theta )$<h4 id="计算-nabla-logP-tau-theta"><a href="#计算-nabla-logP-tau-theta" class="headerlink" title="计算 $\nabla logP(\tau|\theta )$"></a>计算 $\nabla logP(\tau|\theta )$</h4></li>
+<li>$\tau={s_1,a_1,r_1,s_2,a_2,r_2,…s_T,a_T,r_T }$</li>
+<li><img src="/pic/dlog.JPG" alt="Pic_dlog" title="dlog"></li>
+<li>公式含义（游戏为例）：$\theta$下采取$\tau$路径的概率 = 第一画面为s1的概率<em>（s1,$\theta$）下采取a1动作的概率</em>(s1,a1)下转移到s2动作并获得r1奖励的概率*。。。</li>
+<li>取log，乘变加，对$\theta$微分，忽略无关部分</li>
+<li><img src="/pic/dlog2.JPG" alt="Pic_dlog2" title="dlog"></li>
+<li>so，结合之前，可得到：<img src="/pic/dlog3.JPG" alt="Pic_dlog2" title="dlog"></li>
+<li>注意：公式中，p概率是在时间t下的状态s和动作a，但是reward R是全过程的值；理解为有些动作不会产生reward，但是会对全局reward产生影响</li>
+<li>注意2：为什么取log？<img src="/pic/dlog4.JPG" alt="Pic_dlog2" title="dlog"><ul>
+<li>即是dp/p，相当于做了normalization，去除概率大小本身的影响，只考虑变化</li>
+</ul>
+</li>
+<li>Add a baseline: 防止没sample到的action的概率减少</li>
+<li><img src="/pic/dlog5.JPG" alt="Pic_dlog2" title="dlog"></li>
+</ul>
+</li>
+</ul>
+<h2 id="Value-based-Approach——learn-a-Critic"><a href="#Value-based-Approach——learn-a-Critic" class="headerlink" title="Value_based Approach——learn a Critic"></a>Value_based Approach——learn a Critic</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/16/RDL_李宏毅/" data-id="cjwyaf4zt0001icukvvt7jzgs" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Dynamic_Programming" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/11/Dynamic_Programming/" class="article-date">
+  <time datetime="2019-06-11T12:54:19.610Z" itemprop="datePublished">2019-06-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/11/Dynamic_Programming/">Dynamic Programming</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><h2 id="1-Fibonacci-Sequence"><a href="#1-Fibonacci-Sequence" class="headerlink" title="1. Fibonacci Sequence"></a>1. Fibonacci Sequence</h2><ol>
+<li>1,1,2,3,4,5,8,13</li>
+<li>fib(n)=fib(n-1)+fib(n-2) (n!=1 or 2)</li>
+<li>递归关系：overlap sub-problem</li>
+<li>计算时会生成树，复杂度为O($2^n$),出现很多重复计算</li>
+<li>Capture.JPG</li>
+<li>出现重复计算，即重叠子问题（overlap sub-problem），保存已经算过的值</li>
+<li>代码：</li>
+</ol>
+<ul>
+<li><p>1) 简单递归 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fab</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="comment"># 终止条件 边界</span></span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 最优子结构 状态转移公式</span></span><br><span class="line">        <span class="keyword">return</span> fab(n - <span class="number">1</span>) + fab(n - <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2) 去掉重复运算，记录结果 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义字典</span></span><br><span class="line">dict_fab = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fab_2</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="comment"># 终止条件 边界</span></span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> dict_fab.get(n):</span><br><span class="line">    <span class="comment">#get返回指定键的值，如果值不在字典中返回default值None</span></span><br><span class="line">        print(<span class="string">'*'</span>)</span><br><span class="line">        <span class="keyword">return</span> dict_fab.get(n)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 最优子结构 状态转移公式</span></span><br><span class="line">        <span class="comment"># 字典添加键值对：字典[键]=值</span></span><br><span class="line">        dict_fab[n] = fab_2(n - <span class="number">1</span>) + fab_2(n - <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> dict_fab[n]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3) 动态规划算法：由前向后推</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 最终优化 动态规划  （大问题化成若干相同类型的子问题 然后一个个解决子问题）</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fab_3</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="comment"># 由前往后推</span></span><br><span class="line">    a = <span class="number">1</span></span><br><span class="line">    b = <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">2</span>:</span><br><span class="line">        print(<span class="string">'fab(&#123;&#125;)=&#123;&#125;'</span>.format(n, b))</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n - <span class="number">2</span>):</span><br><span class="line">        print(a, b)</span><br><span class="line">        a, b = b, a + b</span><br><span class="line">    print(<span class="string">'fab(&#123;&#125;)=&#123;&#125;'</span>.format(n, b))</span><br><span class="line">    <span class="keyword">return</span> b</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>例题：</p>
+<ol>
+<li>1,2,4,1,7,8,3 数字选择，不能相邻，使求和最大<br>解：<br>上式给入数组v[0,,,n],<br>转移公式：<br>$$ OPT(n)=max\left{<br>\begin{aligned}<br>OPT(prev(n))+v(n), 选 \<br>OPT(n-1)， 不选 \<br>\end{aligned}<br>\right.$$<br>说明：</li>
+</ol>
+<ul>
+<li>选第n个，则计算prev(n)个（不选n后可选的数）的最优解加上n的值；</li>
+<li>不选第n个，则计算n-1个的最优解<br>递归出口：<br>上式子最后是opt(1)=max(v(1),opt(0));opt(0)=1</li>
+</ul>
+<p>代码：<strong>动态规划一般为非递归形式，在递归（从后向前）的基础上改为非递归（从前向后）</strong><br>递归法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">v=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rec_opt</span><span class="params">(v,i)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> i==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> v[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">elif</span> i==<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> max(v[<span class="number">1</span>],rec_opt(v,<span class="number">0</span>))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> max(rec_opt(v,i<span class="number">-2</span>)+v[i],rec_opt(v,i<span class="number">-1</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(rec_opt(v,<span class="number">6</span>))</span><br></pre></td></tr></table></figure>
+
+<p>非递归：自底向上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lenth=len(v)</span><br><span class="line">opt=[<span class="number">0</span>]*len(v)</span><br><span class="line">opt[<span class="number">0</span>]=v[<span class="number">0</span>]</span><br><span class="line">opt[<span class="number">1</span>]=max(v[<span class="number">1</span>],rec_opt(v,<span class="number">0</span>))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dp_opt</span><span class="params">(v)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,lenth):</span><br><span class="line">        A=opt[i<span class="number">-2</span>]+v[i]</span><br><span class="line">        B=opt[i<span class="number">-1</span>]</span><br><span class="line">        opt[i]= max(A, B)</span><br><span class="line">    <span class="keyword">return</span> opt[<span class="number">-1</span>]</span><br><span class="line">print(dp_opt(v))</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/11/Dynamic_Programming/" data-id="cjwyaf4z70000icuk720wp82i" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/06/09/git/" class="article-date">
@@ -404,6 +587,14 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/06/16/RDL_李宏毅/">RDL_李宏毅</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/11/Dynamic_Programming/">Dynamic Programming</a>
+          </li>
         
           <li>
             <a href="/2019/06/09/git/">GitHub_Learn</a>

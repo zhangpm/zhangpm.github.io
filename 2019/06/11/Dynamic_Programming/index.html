@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Dynamic Programming | Pengmiao&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="动态规划1. Fibonacci Sequence 1,1,2,3,4,5,8,13 fib(n)=fib(n-1)+fib(n-2) (n!=1 or 2) 递归关系：overlap sub-problem 计算时会生成树，复杂度为O($2^n$),出现很多重复计算 Capture.JPG 出现重复计算，即重叠子问题（overlap sub-problem），保存已经算过的值 代码：   1)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dynamic Programming">
+<meta property="og:url" content="http://yoursite.com/2019/06/11/Dynamic_Programming/index.html">
+<meta property="og:site_name" content="Pengmiao&#39;s Blog">
+<meta property="og:description" content="动态规划1. Fibonacci Sequence 1,1,2,3,4,5,8,13 fib(n)=fib(n-1)+fib(n-2) (n!=1 or 2) 递归关系：overlap sub-problem 计算时会生成树，复杂度为O($2^n$),出现很多重复计算 Capture.JPG 出现重复计算，即重叠子问题（overlap sub-problem），保存已经算过的值 代码：   1)">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-11T14:59:54.803Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dynamic Programming">
+<meta name="twitter:description" content="动态规划1. Fibonacci Sequence 1,1,2,3,4,5,8,13 fib(n)=fib(n-1)+fib(n-2) (n!=1 or 2) 递归关系：overlap sub-problem 计算时会生成树，复杂度为O($2^n$),出现很多重复计算 Capture.JPG 出现重复计算，即重叠子问题（overlap sub-problem），保存已经算过的值 代码：   1)">
+  
+    <link rel="alternate" href="/atom.xml" title="Pengmiao&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Pengmiao&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Dynamic_Programming" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/11/Dynamic_Programming/" class="article-date">
+  <time datetime="2019-06-11T12:54:19.610Z" itemprop="datePublished">2019-06-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Dynamic Programming
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><h2 id="1-Fibonacci-Sequence"><a href="#1-Fibonacci-Sequence" class="headerlink" title="1. Fibonacci Sequence"></a>1. Fibonacci Sequence</h2><ol>
+<li>1,1,2,3,4,5,8,13</li>
+<li>fib(n)=fib(n-1)+fib(n-2) (n!=1 or 2)</li>
+<li>递归关系：overlap sub-problem</li>
+<li>计算时会生成树，复杂度为O($2^n$),出现很多重复计算</li>
+<li>Capture.JPG</li>
+<li>出现重复计算，即重叠子问题（overlap sub-problem），保存已经算过的值</li>
+<li>代码：</li>
+</ol>
+<ul>
+<li><p>1) 简单递归 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fab</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="comment"># 终止条件 边界</span></span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 最优子结构 状态转移公式</span></span><br><span class="line">        <span class="keyword">return</span> fab(n - <span class="number">1</span>) + fab(n - <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2) 去掉重复运算，记录结果 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义字典</span></span><br><span class="line">dict_fab = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fab_2</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="comment"># 终止条件 边界</span></span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> dict_fab.get(n):</span><br><span class="line">    <span class="comment">#get返回指定键的值，如果值不在字典中返回default值None</span></span><br><span class="line">        print(<span class="string">'*'</span>)</span><br><span class="line">        <span class="keyword">return</span> dict_fab.get(n)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 最优子结构 状态转移公式</span></span><br><span class="line">        <span class="comment"># 字典添加键值对：字典[键]=值</span></span><br><span class="line">        dict_fab[n] = fab_2(n - <span class="number">1</span>) + fab_2(n - <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> dict_fab[n]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3) 动态规划算法：由前向后推</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 最终优化 动态规划  （大问题化成若干相同类型的子问题 然后一个个解决子问题）</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fab_3</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="comment"># 由前往后推</span></span><br><span class="line">    a = <span class="number">1</span></span><br><span class="line">    b = <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">2</span>:</span><br><span class="line">        print(<span class="string">'fab(&#123;&#125;)=&#123;&#125;'</span>.format(n, b))</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n - <span class="number">2</span>):</span><br><span class="line">        print(a, b)</span><br><span class="line">        a, b = b, a + b</span><br><span class="line">    print(<span class="string">'fab(&#123;&#125;)=&#123;&#125;'</span>.format(n, b))</span><br><span class="line">    <span class="keyword">return</span> b</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>例题：</p>
+<ol>
+<li>1,2,4,1,7,8,3 数字选择，不能相邻，使求和最大<br>解：<br>上式给入数组v[0,,,n],<br>转移公式：<br>$$ OPT(n)=max\left{<br>\begin{aligned}<br>OPT(prev(n))+v(n), 选 \<br>OPT(n-1)， 不选 \<br>\end{aligned}<br>\right.$$<br>说明：</li>
+</ol>
+<ul>
+<li>选第n个，则计算prev(n)个（不选n后可选的数）的最优解加上n的值；</li>
+<li>不选第n个，则计算n-1个的最优解<br>递归出口：<br>上式子最后是opt(1)=max(v(1),opt(0));opt(0)=1</li>
+</ul>
+<p>代码：<strong>动态规划一般为非递归形式，在递归（从后向前）的基础上改为非递归（从前向后）</strong><br>递归法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">v=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rec_opt</span><span class="params">(v,i)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> i==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> v[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">elif</span> i==<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> max(v[<span class="number">1</span>],rec_opt(v,<span class="number">0</span>))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> max(rec_opt(v,i<span class="number">-2</span>)+v[i],rec_opt(v,i<span class="number">-1</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(rec_opt(v,<span class="number">6</span>))</span><br></pre></td></tr></table></figure>
+
+<p>非递归：自底向上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">lenth=len(v)</span><br><span class="line">opt=[<span class="number">0</span>]*len(v)</span><br><span class="line">opt[<span class="number">0</span>]=v[<span class="number">0</span>]</span><br><span class="line">opt[<span class="number">1</span>]=max(v[<span class="number">1</span>],rec_opt(v,<span class="number">0</span>))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dp_opt</span><span class="params">(v)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>,lenth):</span><br><span class="line">        A=opt[i<span class="number">-2</span>]+v[i]</span><br><span class="line">        B=opt[i<span class="number">-1</span>]</span><br><span class="line">        opt[i]= max(A, B)</span><br><span class="line">    <span class="keyword">return</span> opt[<span class="number">-1</span>]</span><br><span class="line">print(dp_opt(v))</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/11/Dynamic_Programming/" data-id="cjwyaf4z70000icuk720wp82i" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/16/RDL_李宏毅/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          RDL_李宏毅
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/09/git/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">GitHub_Learn</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/16/RDL_李宏毅/">RDL_李宏毅</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/11/Dynamic_Programming/">Dynamic Programming</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/09/git/">GitHub_Learn</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/09/hexo_gitpage/">Hexo + GitHub 个人主页</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/09/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
