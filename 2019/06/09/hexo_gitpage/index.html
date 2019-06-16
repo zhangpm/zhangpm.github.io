@@ -7,17 +7,17 @@
   
   <title>Hexo + GitHub 个人主页 | Pengmiao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.安装 node.js  git,github账号  新建文件夹blog，在文件夹下右键-git bash  安装hexo：npm install -g hexo-cli  输入：hexo init; npm install； npm install hexo-deployer-git –save  进入github网站，新建repository,”name”填写“用户名.github.io”，">
+  <meta name="description" content="1.安装 node.js git,github账号 新建文件夹blog，在文件夹下右键-git bash 安装hexo：npm install -g hexo-cli 输入：hexo init; npm install； npm install hexo-deployer-git —save 进入github网站，新建repository,”name”填写“用户名.github.io”，例如“pe">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo + GitHub 个人主页">
 <meta property="og:url" content="http://yoursite.com/2019/06/09/hexo_gitpage/index.html">
 <meta property="og:site_name" content="Pengmiao&#39;s Blog">
-<meta property="og:description" content="1.安装 node.js  git,github账号  新建文件夹blog，在文件夹下右键-git bash  安装hexo：npm install -g hexo-cli  输入：hexo init; npm install； npm install hexo-deployer-git –save  进入github网站，新建repository,”name”填写“用户名.github.io”，">
+<meta property="og:description" content="1.安装 node.js git,github账号 新建文件夹blog，在文件夹下右键-git bash 安装hexo：npm install -g hexo-cli 输入：hexo init; npm install； npm install hexo-deployer-git —save 进入github网站，新建repository,”name”填写“用户名.github.io”，例如“pe">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-09T12:47:51.595Z">
+<meta property="og:updated_time" content="2019-06-16T03:01:23.406Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo + GitHub 个人主页">
-<meta name="twitter:description" content="1.安装 node.js  git,github账号  新建文件夹blog，在文件夹下右键-git bash  安装hexo：npm install -g hexo-cli  输入：hexo init; npm install； npm install hexo-deployer-git –save  进入github网站，新建repository,”name”填写“用户名.github.io”，">
+<meta name="twitter:description" content="1.安装 node.js git,github账号 新建文件夹blog，在文件夹下右键-git bash 安装hexo：npm install -g hexo-cli 输入：hexo init; npm install； npm install hexo-deployer-git —save 进入github网站，新建repository,”name”填写“用户名.github.io”，例如“pe">
   
     <link rel="alternate" href="/atom.xml" title="Pengmiao&#39;s Blog" type="application/atom+xml">
   
@@ -87,37 +87,31 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h2><ol>
-<li><p>node.js</p>
-</li>
-<li><p>git,github账号</p>
-</li>
-<li><p>新建文件夹blog，在文件夹下右键-git bash</p>
-</li>
-<li><p>安装hexo：npm install -g hexo-cli</p>
-</li>
-<li><p>输入：hexo init; npm install； npm install hexo-deployer-git –save</p>
-</li>
-<li><p>进入github网站，新建repository,”name”填写“用户名.github.io”，例如“pengmiao.github.io”</p>
-</li>
-<li><p>生成repository，复制ssh或http地址</p>
-</li>
+<li>node.js</li>
+<li>git,github账号</li>
+<li>新建文件夹blog，在文件夹下右键-git bash</li>
+<li>安装hexo：npm install -g hexo-cli</li>
+<li>输入：hexo init; npm install； npm install hexo-deployer-git —save</li>
+<li>进入github网站，新建repository,”name”填写“用户名.github.io”，例如“pengmiao.github.io”</li>
+<li>生成repository，复制ssh或http地址</li>
 <li><p>到blog文件夹下找到_config.yml,打开，在最后修改和添加：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="string">git@github.com:zhangpm/pengmiao.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>即部署到git, <strong>重要</strong><br><code>hexo g -d</code>,</p>
 </li>
-<li><p>打开网页：<a href="https://zhangpm.github.io/" target="_blank" rel="noopener">https://zhangpm.github.io/</a></p>
-<h2 id="2-更新和添加博客"><a href="#2-更新和添加博客" class="headerlink" title="2. 更新和添加博客"></a>2. 更新和添加博客</h2></li>
-<li><p>在文件夹下G:\git\blog\source_posts 添加markdown文件</p>
-</li>
-<li><p>部署博客“hexo g -d”</p>
-<h2 id="3-更换主题"><a href="#3-更换主题" class="headerlink" title="3. 更换主题"></a>3. 更换主题</h2></li>
-<li><p>Hexo官网，themes，找主题</p>
-</li>
-<li><p>在blog目录下按照安装说明操作,一般会修改blog下的config（不是主题下）</p>
-</li>
-<li><p>在所用主题的目录下找config.yml，修改图片和名字</p>
-</li>
+<li>打开网页：<a href="https://zhangpm.github.io/" target="_blank" rel="noopener">https://zhangpm.github.io/</a><h2 id="2-更新和添加博客"><a href="#2-更新和添加博客" class="headerlink" title="2. 更新和添加博客"></a>2. 更新和添加博客</h2></li>
+<li>在文件夹下G:\git\blog\source_posts 添加markdown文件</li>
+<li>部署博客“hexo g -d”</li>
+</ol>
+<h2 id="3-更换主题"><a href="#3-更换主题" class="headerlink" title="3. 更换主题"></a>3. 更换主题</h2><ol>
+<li>Hexo官网，themes，找主题</li>
+<li>在blog目录下按照安装说明操作,一般会修改blog下的config（不是主题下）</li>
+<li>在所用主题的目录下找config.yml，修改图片和名字</li>
+</ol>
+<h2 id="4-渲染数学公式"><a href="#4-渲染数学公式" class="headerlink" title="4. 渲染数学公式"></a>4. 渲染数学公式</h2><p><a href="https://www.jianshu.com/p/7ab21c7f0674" target="_blank" rel="noopener">https://www.jianshu.com/p/7ab21c7f0674</a></p>
+<h2 id="5-图片处理"><a href="#5-图片处理" class="headerlink" title="5. 图片处理"></a>5. 图片处理</h2><ol>
+<li>CMD连接文件夹：mklink G:\git\blog\source_posts\pic G:\git\blog\source\pic</li>
+<li>markdown中写入/pic/图片，本机取_posts\pic，远程取\source\pic，内容一样，均可显示</li>
 </ol>
 
       
