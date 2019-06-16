@@ -15,12 +15,12 @@
 <meta property="og:description" content="1.Deep Reinforcement Learning https://www.bilibili.com/video/av48285039/?p=81  Outline: Policy_based Actor   Value_based CriticPolicy_based Approach——learn an actor     Action= $ \pi(Observation) $ 3">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/pic/DRL_structure.JPG">
-<meta property="og:image" content="https://raw.githubusercontent.com/zhangpm/Pictures/master/Deep_Reinforcement_Learning/Gradient_Ascent.JPG">
-<meta property="og:image" content="https://raw.githubusercontent.com/zhangpm/Pictures/master/Deep_Reinforcement_Learning/dlog.JPG">
-<meta property="og:image" content="https://raw.githubusercontent.com/zhangpm/Pictures/master/Deep_Reinforcement_Learning//dlog2.JPG">
-<meta property="og:image" content="https://raw.githubusercontent.com/zhangpm/Pictures/master/Deep_Reinforcement_Learning/dlog3.JPG">
-<meta property="og:image" content="https://raw.githubusercontent.com/zhangpm/Pictures/master/Deep_Reinforcement_Learning/dlog4.JPG">
-<meta property="og:image" content="https://raw.githubusercontent.com/zhangpm/Pictures/master/Deep_Reinforcement_Learning/dlog5.JPG">
+<meta property="og:image" content="http://yoursite.com/pic/Gradient_Ascent.JPG">
+<meta property="og:image" content="http://yoursite.com/pic/dlog.JPG">
+<meta property="og:image" content="http://yoursite.com/pic/dlog2.JPG">
+<meta property="og:image" content="http://yoursite.com/pic/dlog3.JPG">
+<meta property="og:image" content="http://yoursite.com/pic/dlog4.JPG">
+<meta property="og:image" content="http://yoursite.com/pic/dlog5.JPG">
 <meta property="og:image" content="http://yoursite.com/pic/DRL_structure.JPG">
 <meta property="og:image" content="http://yoursite.com/pic/Gradient_Ascent.JPG">
 <meta property="og:image" content="http://yoursite.com/pic/dlog.JPG">
@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://yoursite.com/pic/dlog3.JPG">
 <meta property="og:image" content="http://yoursite.com/pic/dlog4.JPG">
 <meta property="og:image" content="http://yoursite.com/pic/dlog5.JPG">
-<meta property="og:updated_time" content="2019-06-16T02:11:56.654Z">
+<meta property="og:updated_time" content="2019-06-16T02:14:48.138Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RDL_李宏毅">
 <meta name="twitter:description" content="1.Deep Reinforcement Learning https://www.bilibili.com/video/av48285039/?p=81  Outline: Policy_based Actor   Value_based CriticPolicy_based Approach——learn an actor     Action= $ \pi(Observation) $ 3">
@@ -158,22 +158,22 @@
 <li>$\theta={w_1,w_2,w_3,…}$</li>
 <li>$\nabla\overline{R}<em>{\theta}=\left[\begin{matrix}<br>\partial\overline{R}</em>{\theta}/\partial w_1 \<br>\partial\overline{R}<em>{\theta}/\partial w_2\<br>…\<br>\partial\overline{R}</em>{\theta}/\partial w_n<br>…<br>\end{matrix}<br>\right]$</li>
 <li><strong><em>IMPORTANT EQUATION NO. 2</em></strong> (come from  <strong><em>IMPORTANT EQUATION NO. 1</em></strong>):</li>
-<li><img src="https://raw.githubusercontent.com/zhangpm/Pictures/master/Deep_Reinforcement_Learning/Gradient_Ascent.JPG" alt="Pic" title="DRL_structure"></li>
+<li><img src="/pic/Gradient_Ascent.JPG" alt="Pic" title="DRL_structure"></li>
 <li>推导得：$\nabla\overline{R}<em>{\theta}\approx\frac{1}{N}\sum</em>{n=1}^{N}R(\tau^n)\nabla logP(\tau|\theta )$</li>
 <li>问题化为计算$\nabla logP(\tau|\theta )$<h4 id="计算-nabla-logP-tau-theta"><a href="#计算-nabla-logP-tau-theta" class="headerlink" title="计算 $\nabla logP(\tau|\theta )$"></a>计算 $\nabla logP(\tau|\theta )$</h4></li>
 <li>$\tau={s_1,a_1,r_1,s_2,a_2,r_2,…s_T,a_T,r_T }$</li>
-<li><img src="https://raw.githubusercontent.com/zhangpm/Pictures/master/Deep_Reinforcement_Learning/dlog.JPG" alt="Pic_dlog" title="dlog"></li>
+<li><img src="/pic/dlog.JPG" alt="Pic_dlog" title="dlog"></li>
 <li>公式含义（游戏为例）：$\theta$下采取$\tau$路径的概率 = 第一画面为s1的概率<em>（s1,$\theta$）下采取a1动作的概率</em>(s1,a1)下转移到s2动作并获得r1奖励的概率*。。。</li>
 <li>取log，乘变加，对$\theta$微分，忽略无关部分</li>
-<li><img src="https://raw.githubusercontent.com/zhangpm/Pictures/master/Deep_Reinforcement_Learning//dlog2.JPG" alt="Pic_dlog2" title="dlog"></li>
-<li>so，结合之前，可得到：<img src="https://raw.githubusercontent.com/zhangpm/Pictures/master/Deep_Reinforcement_Learning/dlog3.JPG" alt="Pic_dlog2" title="dlog"></li>
+<li><img src="/pic/dlog2.JPG" alt="Pic_dlog2" title="dlog"></li>
+<li>so，结合之前，可得到：<img src="/pic/dlog3.JPG" alt="Pic_dlog2" title="dlog"></li>
 <li>注意：公式中，p概率是在时间t下的状态s和动作a，但是reward R是全过程的值；理解为有些动作不会产生reward，但是会对全局reward产生影响</li>
-<li>注意2：为什么取log？<img src="https://raw.githubusercontent.com/zhangpm/Pictures/master/Deep_Reinforcement_Learning/dlog4.JPG" alt="Pic_dlog2" title="dlog"><ul>
+<li>注意2：为什么取log？<img src="/pic/dlog4.JPG" alt="Pic_dlog2" title="dlog"><ul>
 <li>即是dp/p，相当于做了normalization，去除概率大小本身的影响，只考虑变化</li>
 </ul>
 </li>
 <li>Add a baseline: 防止没sample到的action的概率减少</li>
-<li><img src="https://raw.githubusercontent.com/zhangpm/Pictures/master/Deep_Reinforcement_Learning/dlog5.JPG" alt="Pic_dlog2" title="dlog"></li>
+<li><img src="/pic/dlog5.JPG" alt="Pic_dlog2" title="dlog"></li>
 </ul>
 </li>
 </ul>
