@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Pengmiao&#39;s Blog">
 <meta property="og:description" content="https://www.bilibili.com/video/av47009997/?p=25 文件操作 shell 提示符[用户@主机名 目录]提示符  root：#   用户：$ linux 命令输入规律：命令 [选项]（[参数]）[选项的值]（[参数的值]） 常见选项：-h —help -字母，—单词 hwclock 硬件时间 关机： shutdown,init,reboot init 命令">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-17T02:15:19.060Z">
+<meta property="og:updated_time" content="2019-06-17T02:21:48.018Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux Note">
 <meta name="twitter:description" content="https://www.bilibili.com/video/av47009997/?p=25 文件操作 shell 提示符[用户@主机名 目录]提示符  root：#   用户：$ linux 命令输入规律：命令 [选项]（[参数]）[选项的值]（[参数的值]） 常见选项：-h —help -字母，—单词 hwclock 硬件时间 关机： shutdown,init,reboot init 命令">
@@ -106,16 +106,19 @@
 <li>/bin 命令，二进制可执行文件</li>
 <li>/sbin 系统命令 reboot等</li>
 <li>/mnt 挂载点</li>
-<li>/dev 设备文件 ：<br>/dev/sda 硬盘<br>一切皆文件<h2 id="相对路径，绝对路径"><a href="#相对路径，绝对路径" class="headerlink" title="相对路径，绝对路径"></a>相对路径，绝对路径</h2></li>
-<li>. 表示当前目录； ..表示上级目录<br>cd ./;  cd ../<h2 id="文件和文件夹"><a href="#文件和文件夹" class="headerlink" title="文件和文件夹"></a>文件和文件夹</h2></li>
+<li>/dev 设备文件 ：<br>/dev/sda 硬盘<br>一切皆文件</li>
+</ol>
+<h2 id="相对路径，绝对路径"><a href="#相对路径，绝对路径" class="headerlink" title="相对路径，绝对路径"></a>相对路径，绝对路径</h2><ol>
+<li>. 表示当前目录； ..表示上级目录<br>cd ./;  cd ../</li>
+</ol>
+<h2 id="文件和文件夹"><a href="#文件和文件夹" class="headerlink" title="文件和文件夹"></a>文件和文件夹</h2><ol>
 <li>创建文件：touch a.txt</li>
 <li>创建目录：mkdir /tmp/test</li>
 <li>创建多个 -p 连同父目录一起创建<br>eg. mkdir -p /a/b/c</li>
 <li>cd !$ : 上一命令的最后一个参数</li>
 <li>cd ../../</li>
 <li>查看文件：cat；vim；more；less</li>
-<li>head -n 显示前3行，默认10行<br>tail -n 显示后n行<pre><code> -f 动态显示数据， 查看日志
-</code></pre></li>
+<li>head -n 显示前3行，默认10行<br>tail -n 显示后n行； -f 动态显示数据， 查看日志</li>
 <li>文件的复制：cp 源文件 目标文件</li>
 <li>目录的复制：cp -r 。。。 递归执行</li>
 <li>蓝色显示：目录；浅蓝色：软链接； 普通色：文件</li>
@@ -193,9 +196,11 @@
 <li>echo aaa&gt;&gt;a.txt aaa追加到a.txt</li>
 <li>chattr +a 无法删除的文件 +i 无法追加</li>
 <li>lsattr a.txt 查看attr权限</li>
-<li>charttr -a 去除a权限<h1 id="p17软件包安装"><a href="#p17软件包安装" class="headerlink" title="p17软件包安装"></a>p17软件包安装</h1></li>
+<li>charttr -a 去除a权限</li>
 </ol>
 </li>
+</ol>
+<h1 id="p17软件包安装"><a href="#p17软件包安装" class="headerlink" title="p17软件包安装"></a>p17软件包安装</h1><ol>
 <li>挂载：mount</li>
 <li>ls(ll) /a/b |wc -l，查看行数</li>
 <li>源码安装：需要：开发工具，开发库<ol>
@@ -232,9 +237,10 @@
 </ul>
 </li>
 <li><p>top 动态查看进程 </p>
-<p>PID| USER|     PR | NI  |  VIRT  |  RES  |  SHR| S | %CPU| %MEM<br>-|-|-|-|-|-|-|-|-|-|-<br>|进程号|用户||nice优先级||实际使用内存大小|进程状态（6条）|||</p>
+<p>|PID| USER|     PR | NI  |  VIRT  |  RES  |  SHR| S | %CPU| %MEM|<br>|-|-|-|-|-|-|-|-|-|-|<br>|进程号|用户||nice优先级||实际使用内存大小|进程状态（6条）||||</p>
 </li>
-<li>q退出, M 按内存排序，P 按CPU排序,&lt;&gt;翻页</li>
+<li><p>q退出, M 按内存排序，P 按CPU排序,&lt;&gt;翻页</p>
+</li>
 <li><strong>kill 信号 PID</strong> 停止（控制）进程； 信号：</li>
 </ol>
 <ul>
