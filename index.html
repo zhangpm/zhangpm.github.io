@@ -62,6 +62,274 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Linux_note" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/17/Linux_note/" class="article-date">
+  <time datetime="2019-06-17T02:14:05.841Z" itemprop="datePublished">2019-06-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/17/Linux_note/">Linux Note</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.bilibili.com/video/av47009997/?p=25" target="_blank" rel="noopener">https://www.bilibili.com/video/av47009997/?p=25</a></p>
+<h1 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h1><ol>
+<li>shell 提示符[用户@主机名 目录]提示符  root：#   用户：$</li>
+<li>linux 命令输入规律：<br>命令 [选项]（[参数]）[选项的值]（[参数的值]）</li>
+<li>常见选项：-h —help -字母，—单词</li>
+<li>hwclock 硬件时间</li>
+<li>关机： shutdown,init,reboot</li>
+<li>init 命令：切换系统运行级别，7个启动级别<br>init 0: 0级别，即关机<br>init 6：重启</li>
+</ol>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><ol>
+<li>/ 根分区</li>
+<li>/etc 配置文件，启动关闭脚本：/etc/passwd,etc/init.d/network</li>
+<li>/boot 启动加载文件</li>
+<li>/home 用户</li>
+<li>/var 可增长目录</li>
+<li>/root 管理员 </li>
+<li>/usr unix software resource</li>
+<li>/bin 命令，二进制可执行文件</li>
+<li>/sbin 系统命令 reboot等</li>
+<li>/mnt 挂载点</li>
+<li>/dev 设备文件 ：<br>/dev/sda 硬盘<br>一切皆文件<h2 id="相对路径，绝对路径"><a href="#相对路径，绝对路径" class="headerlink" title="相对路径，绝对路径"></a>相对路径，绝对路径</h2></li>
+<li>. 表示当前目录； ..表示上级目录<br>cd ./;  cd ../<h2 id="文件和文件夹"><a href="#文件和文件夹" class="headerlink" title="文件和文件夹"></a>文件和文件夹</h2></li>
+<li>创建文件：touch a.txt</li>
+<li>创建目录：mkdir /tmp/test</li>
+<li>创建多个 -p 连同父目录一起创建<br>eg. mkdir -p /a/b/c</li>
+<li>cd !$ : 上一命令的最后一个参数</li>
+<li>cd ../../</li>
+<li>查看文件：cat；vim；more；less</li>
+<li>head -n 显示前3行，默认10行<br>tail -n 显示后n行<pre><code> -f 动态显示数据， 查看日志
+</code></pre></li>
+<li>文件的复制：cp 源文件 目标文件</li>
+<li>目录的复制：cp -r 。。。 递归执行</li>
+<li>蓝色显示：目录；浅蓝色：软链接； 普通色：文件</li>
+<li>删除 rm -rf 全部删除：-r递归，-f强制删除</li>
+<li>重命名：mv 文件名（目录） 新文件名（目录）</li>
+</ol>
+<h1 id="p9-远程连接工具"><a href="#p9-远程连接工具" class="headerlink" title="p9-远程连接工具"></a>p9-远程连接工具</h1><ol>
+<li>xmanager</li>
+<li>查看linux ip地址： ifconfig</li>
+<li>安装ssh： <ol>
+<li>更新软件源：sudo apt-get update ，sudo apt-get upgrade</li>
+<li>安装ssh: sudo apt-get install -y openssh-server</li>
+</ol>
+</li>
+<li>XShell连接，填写用户名zhangpm，密码zhangpm123</li>
+<li>Xstart, ubuntu安装xterm: sudo apt-get install -y xterm<br>Xstart 命令选xterm</li>
+<li>uname -m 查看系统版本</li>
+</ol>
+<h1 id="p-10-vim使用"><a href="#p-10-vim使用" class="headerlink" title="p-10 vim使用"></a>p-10 vim使用</h1><ol>
+<li>rpm 安装软件</li>
+<li><p>模式：</p>
+<ol>
+<li><p>命令行模式：<br>:w 保存；<br>:q 退出<br>:q! 强退<br>:wq 保存退<br>:wq! 强制保存退出<br>: r修改单个文字<br>:ZZ 保存<br>:%s/this/that 每一行第一个this替换成that<br>:%s/this/that/g 文本中所有this 替换成that</p>
+</li>
+<li><p>视图模式：ctrl V<br> *多行注释：</p>
+<ol>
+<li>ctrl v</li>
+<li>移动光标选中多行</li>
+<li>按大写I</li>
+<li>插入注释符号</li>
+<li>Esc</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>搜索： “/”符号  n下找，N下找<br>:noh 不高亮显示</li>
+<li>:!+命令行命令</li>
+<li>:set nu 显示行号</li>
+<li>行首 gg</li>
+<li>行尾 G</li>
+<li>自定义vim ： vim /root/.vimrc， 写入自定义，例如 set nu</li>
+</ol>
+<h1 id="p-11"><a href="#p-11" class="headerlink" title="p-11"></a>p-11</h1><ol>
+<li>Xshell rz 命令上传文件到linux<ol>
+<li>安装rz： sudo apt-get install lrzsz</li>
+</ol>
+</li>
+<li>文字乱码：win：gb2312； linux: utf-8<br>转码：iconv -f gb2312 c.txt -o sss.txt</li>
+<li>linux-&gt;windows, 串行，处理回车不同（换行符问题）<br>解决：安装unix2dos.<br>unix2dos b.txt</li>
+</ol>
+<h1 id="p12-文件-用户，组"><a href="#p12-文件-用户，组" class="headerlink" title="p12-文件,用户，组"></a>p12-文件,用户，组</h1><ol>
+<li>root:x:0:0:root:/root:/bin/bash<pre><code>     UID            Shell
+</code></pre></li>
+<li>密码： /etc/shadow</li>
+<li>添加用户：useradd -u 5003 zhangpm2</li>
+<li>修改当前用户密码：passwd</li>
+<li>非交互添加密码：echo 123456 | passwd —stdin root</li>
+<li>linux 用户密码加密：sha512</li>
+<li>usermod 更改用户模式</li>
+<li>userdel 删除用户 -username</li>
+<li>添加组：groupadd XX</li>
+<li><p>su 切换用户：</p>
+<p>​    切换到root：su</p>
+<p>​    切换到其他用户：su - zhangpm  （注意中间的短横，代表连带shell一同切换）</p>
+</li>
+<li>single user mode 单用户模式，破解更改root密码<br>方法2：root passwd 中x密码占位符删掉，登录则不需密码</li>
+<li>权限：<ol>
+<li>文件：r w x 读 写 执行</li>
+<li>目录：r读，w增删移动文件，x进入</li>
+<li>修改权限：chmod</li>
+<li>chomd u+r 拥有者user加r权限<br> g-w 组减去w权限<br> o=x others覆盖赋值x权限<br> a+x all加x权限</li>
+<li>chown 修改所属组 -R递归</li>
+<li>touch a.txt 创建a文件</li>
+<li>只读文件可以强制改写</li>
+<li>echo aaa&gt;&gt;a.txt aaa追加到a.txt</li>
+<li>chattr +a 无法删除的文件 +i 无法追加</li>
+<li>lsattr a.txt 查看attr权限</li>
+<li>charttr -a 去除a权限<h1 id="p17软件包安装"><a href="#p17软件包安装" class="headerlink" title="p17软件包安装"></a>p17软件包安装</h1></li>
+</ol>
+</li>
+<li>挂载：mount</li>
+<li>ls(ll) /a/b |wc -l，查看行数</li>
+<li>源码安装：需要：开发工具，开发库<ol>
+<li>解压：<strong>tar -jxvf</strong> 文件名； gz结尾文件：tar -zxvf</li>
+<li>cd 文件名</li>
+<li>检查安装环境：<strong>./configure</strong>：可能报错，需要安装部分包</li>
+<li>编译：<strong>make</strong></li>
+<li>安装：<strong>make install</strong></li>
+<li>删除：在安装路径下：<strong>make uninstall</strong>，<strong>make clean</strong></li>
+</ol>
+</li>
+</ol>
+<h1 id="P19"><a href="#P19" class="headerlink" title="P19"></a>P19</h1><ol>
+<li>tar 命令。打包，压缩<br>tar -cf（-cvf） a.tar foo bar 打包create tar<br>tar -tvf archive.tar  ~list all files in tar<br>tar -xf（-xvf） archive.tar   extract files from tar</li>
+<li>c:create;v:verbose(详细);f:file;x:extract</li>
+<li>tar —help | grep v 查看tar命令help里的“-v”</li>
+<li>linux 拓展名不能代表类型</li>
+<li>查看文件类型：file 文件名（路径）</li>
+<li>解包：tar -xvf archive.tar -C PATH</li>
+<li>du -h /boot/ 查看文件大小：disk usage</li>
+<li>tar 打包+压缩：格式：.tar.gz 或 .tgz<br>语法：tar -czvf newfile.tar.gz SOURCE<br>-z, —gzip<br>解压缩：tar -zxvf newfile.tar.gz -C PATH<br>-C: change directory to</li>
+<li>bz2 : 另一种压缩格式：z改为j</li>
+<li>zip 压缩<br>zip a.zip FILE 压缩文件<br>zip -r a.zip DIRECTION 压缩目录<br>解压：unzip -d PATH</li>
+</ol>
+<h1 id="P21-进程管理"><a href="#P21-进程管理" class="headerlink" title="P21 进程管理"></a>P21 进程管理</h1><ol>
+<li>程序：静态； 进程：动态</li>
+<li>进程和线程：一个程序至少一个进程，一个进程至少一个线程<br>进程之间内存独立；<br>线程之间内存共享，高并发好，安全性差</li>
+<li>进程树：pstree：（ps：processes）</li>
+<li>man ps 查看ps命令手册</li>
+<li>ps -aux （a：all，u：user；x：执行命令）</li>
+<li>ps STAT 状态：5种：<br>R:RUNNING<br>S: sleeping<br>T: 暂停（ctrl z）<br>(ctrl c 停止)<br>Z：zombie僵尸状态<br>D：不可中断</li>
+<li>&lt; 高优先级<br>N 低优先级<br>s 包含子进程<br>l 多线程<ul>
+<li>前台程序</li>
+</ul>
+</li>
+<li><p>top 动态查看进程 </p>
+<p>PID| USER|     PR | NI  |  VIRT  |  RES  |  SHR| S | %CPU| %MEM<br>-|-|-|-|-|-|-|-|-|-|-<br>|进程号|用户||nice优先级||实际使用内存大小|进程状态（6条）|||</p>
+</li>
+<li>q退出, M 按内存排序，P 按CPU排序,&lt;&gt;翻页</li>
+<li><strong>kill 信号 PID</strong> 停止（控制）进程； 信号：</li>
+</ol>
+<ul>
+<li>1，HUP 重启 </li>
+<li>2，INT = ctrl c 通知终止</li>
+<li>9，kill 强行中断</li>
+<li>19，stop = ctrl z</li>
+<li>eg. kill -9 [PID]</li>
+</ul>
+<ol>
+<li>killall 程序名<br>或：pkill 程序名</li>
+<li>nice 优先级<ol>
+<li>-20 ~ 19，高~低</li>
+<li>nice -n -5 vim a.txt 用优先级-5打开a.txt，优先级高，运行快</li>
+<li>renice -n 5 pid</li>
+</ol>
+</li>
+<li>jobs列出所有后台进程</li>
+<li>后台变前台：fg + 后台进程序列号</li>
+<li>查看系统内存<ol>
+<li>free -m</li>
+<li>buffer缓存读入/cache缓存待写入</li>
+<li>存储结构：disk-&gt;buffer/cache-&gt;memory</li>
+</ol>
+</li>
+<li>远程终端后台运行的方法：<ol>
+<li>screen 安装，使用</li>
+<li>敲screen</li>
+<li>输入ctrl+a+d</li>
+<li>显示detached</li>
+<li>重新连接：</li>
+<li>screen ls 查看id</li>
+<li>screen -r id</li>
+<li>screen -wipe 清楚死去的窗口</li>
+<li>方法2：nohub 命令 &amp;</li>
+</ol>
+</li>
+</ol>
+<h1 id="P24-输入输出重定向"><a href="#P24-输入输出重定向" class="headerlink" title="P24 输入输出重定向"></a>P24 输入输出重定向</h1><ol>
+<li>文件描述符：<ul>
+<li>0：STDIN, 标准输入</li>
+<li>1: STDOUT，标准输出</li>
+<li>2: STDERR，标准错误输出</li>
+</ul>
+</li>
+<li>输出重定向：<ul>
+<li><blockquote>
+<p>默认为1</p>
+</blockquote>
+</li>
+<li>eg: xxx &gt;/dev/null  2&gt;&amp;1  </li>
+<li>解释：/dev/null:黑洞文件夹；&gt;为输出重定向；</li>
+<li>1&gt; 标准输出重定向</li>
+<li>2&gt; 标准错误输出重定向</li>
+<li>&amp; 等同于</li>
+<li>2&gt;&amp;1：错误输出重定向等同于1</li>
+<li>eg：ls /home 1&gt;a.txt</li>
+<li>把ls的结果重定向给a.txt</li>
+<li>eg: ls /home/ /homee 1&gt;log.txt 2&gt;err.txt</li>
+<li>ls /home/ /homee &gt; a.txt 2&gt;&amp;1</li>
+<li>ls语句标准输出1重定向到a.txt，错误2输出重定向到“等同于1”，即也是a.txt</li>
+<li>> 和 &gt;&gt; 的区别：&gt;&gt;表示追加写入；> 覆盖写入</li>
+</ul>
+</li>
+<li>输入重定向：\&lt;<ul>
+<li>eg: wc 命令，word count</li>
+<li>用法1：cat /etc/passwd | wc -l 行数统计</li>
+<li>用法2：<code>wc &lt; /etc/passwd</code> 显示行；单词；大小</li>
+<li><code>&lt;&lt;EOF</code> </li>
+<li><code>cat &gt; a.txt &lt;&lt;EOF</code> 输入以EOF结尾的文字，输入到a.txt, 并cat输出</li>
+</ul>
+</li>
+<li>管道 <code>|</code> 输出作为输入<ul>
+<li>eg: cat /etc/passwd | more</li>
+</ul>
+</li>
+<li><code>tee</code>标准输出的内容写到文件中<ul>
+<li>cat /etc/passwd | tee a.txt</li>
+<li>跟<code>&gt;</code>区别：&gt;不显示</li>
+</ul>
+</li>
+</ol>
+<h1 id="P25-文件查找命令"><a href="#P25-文件查找命令" class="headerlink" title="P25 文件查找命令"></a>P25 文件查找命令</h1><p>1. </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/17/Linux_note/" data-id="cjwzqy5h70000r8ukx4v93ugt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-RDL_李宏毅" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/06/16/RDL_李宏毅/" class="article-date">
@@ -584,6 +852,10 @@
       <ul>
         
           <li>
+            <a href="/2019/06/17/Linux_note/">Linux Note</a>
+          </li>
+        
+          <li>
             <a href="/2019/06/16/RDL_李宏毅/">RDL_李宏毅</a>
           </li>
         
@@ -597,10 +869,6 @@
         
           <li>
             <a href="/2019/06/09/hexo_gitpage/">Hexo + GitHub 个人主页</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/09/hello-world/">Hello World</a>
           </li>
         
       </ul>
