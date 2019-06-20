@@ -7,12 +7,12 @@
   
   <title>RDL_李宏毅 | Pengmiao&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.Deep Reinforcement Learning https://www.bilibili.com/video/av48285039/?p=81  Outline: Policy_based Actor   Value_based Critic    Policy_based Approach——learn an actor Action= $ \pi(Observation) $ 3">
+  <meta name="description" content="Deep Reinforcement Learning https://www.bilibili.com/video/av48285039/?p=81  Outline: Policy_based Actor   Value_based Critic    1. Policy_based Approach——learn an actor Action= $ \pi(Observation) $ 3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RDL_李宏毅">
 <meta property="og:url" content="http://yoursite.com/2019/06/16/RDL_李宏毅/index.html">
 <meta property="og:site_name" content="Pengmiao&#39;s Blog">
-<meta property="og:description" content="1.Deep Reinforcement Learning https://www.bilibili.com/video/av48285039/?p=81  Outline: Policy_based Actor   Value_based Critic    Policy_based Approach——learn an actor Action= $ \pi(Observation) $ 3">
+<meta property="og:description" content="Deep Reinforcement Learning https://www.bilibili.com/video/av48285039/?p=81  Outline: Policy_based Actor   Value_based Critic    1. Policy_based Approach——learn an actor Action= $ \pi(Observation) $ 3">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/pic/DRL_structure.JPG">
 <meta property="og:image" content="http://yoursite.com/pic/Gradient_Ascent.JPG">
@@ -21,10 +21,16 @@
 <meta property="og:image" content="http://yoursite.com/pic/dlog3.JPG">
 <meta property="og:image" content="http://yoursite.com/pic/dlog4.JPG">
 <meta property="og:image" content="http://yoursite.com/pic/dlog5.JPG">
-<meta property="og:updated_time" content="2019-06-16T02:47:44.919Z">
+<meta property="og:image" content="http://yoursite.com/pic/Tip2.JPG">
+<meta property="og:image" content="http://yoursite.com/pic/Q_learning.JPG">
+<meta property="og:image" content="http://yoursite.com/pic/A2C.JPG">
+<meta property="og:image" content="http://yoursite.com/pic/A3C.JPG">
+<meta property="og:image" content="http://yoursite.com/pic/Pathwise.JPG">
+<meta property="og:image" content="http://yoursite.com/pic/Pathwise2.JPG">
+<meta property="og:updated_time" content="2019-06-20T06:43:16.739Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RDL_李宏毅">
-<meta name="twitter:description" content="1.Deep Reinforcement Learning https://www.bilibili.com/video/av48285039/?p=81  Outline: Policy_based Actor   Value_based Critic    Policy_based Approach——learn an actor Action= $ \pi(Observation) $ 3">
+<meta name="twitter:description" content="Deep Reinforcement Learning https://www.bilibili.com/video/av48285039/?p=81  Outline: Policy_based Actor   Value_based Critic    1. Policy_based Approach——learn an actor Action= $ \pi(Observation) $ 3">
 <meta name="twitter:image" content="http://yoursite.com/pic/DRL_structure.JPG">
   
     <link rel="alternate" href="/atom.xml" title="Pengmiao&#39;s Blog" type="application/atom+xml">
@@ -94,7 +100,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-Deep-Reinforcement-Learning"><a href="#1-Deep-Reinforcement-Learning" class="headerlink" title="1.Deep Reinforcement Learning"></a>1.Deep Reinforcement Learning</h1><ul>
+        <h1 id="Deep-Reinforcement-Learning"><a href="#Deep-Reinforcement-Learning" class="headerlink" title="Deep Reinforcement Learning"></a>Deep Reinforcement Learning</h1><ul>
 <li><a href="https://www.bilibili.com/video/av48285039/?p=81" target="_blank" rel="noopener">https://www.bilibili.com/video/av48285039/?p=81</a></li>
 </ul>
 <h2 id="Outline"><a href="#Outline" class="headerlink" title="Outline:"></a>Outline:</h2><ul>
@@ -107,7 +113,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Policy-based-Approach——learn-an-actor"><a href="#Policy-based-Approach——learn-an-actor" class="headerlink" title="Policy_based Approach——learn an actor"></a>Policy_based Approach——learn an actor</h2><ol>
+<h2 id="1-Policy-based-Approach——learn-an-actor"><a href="#1-Policy-based-Approach——learn-an-actor" class="headerlink" title="1. Policy_based Approach——learn an actor"></a>1. Policy_based Approach——learn an actor</h2><ol>
 <li>Action= $ \pi(Observation) $</li>
 <li>3 steps<ul>
 <li>1) Neural Network as Actor</li>
@@ -166,11 +172,129 @@
 <li>即是dp/p，相当于做了normalization，去除概率大小本身的影响，只考虑变化</li>
 </ul>
 </li>
-<li>Add a baseline: 防止没sample到的action的概率减少</li>
-<li><img src="/pic/dlog5.JPG" alt="Pic_dlog2" title="dlog"></li>
 </ul>
 </li>
 </ul>
+<ol>
+<li>Tips<ul>
+<li><ol>
+<li>Add a baseline: 防止没sample到的action的概率减少<br><img src="/pic/dlog5.JPG" alt="Pic_dlog2" title="dlog"></li>
+</ol>
+</li>
+<li><ol>
+<li>Assigne Suitable Credit 加weight<br><img src="/pic/Tip2.JPG" alt="Pic_dlog2" title="dlog"></li>
+</ol>
+</li>
+<li>只取动作之后的reward，并且按时间远近做discount，$\gamma$, 即遗忘因子</li>
+<li>Advantage Function: $A^{\theta}\left(s_{t}, a_{t}\right)$=$R\left(\tau^{n}\right)$</li>
+</ul>
+</li>
+</ol>
+<h2 id="2-Proximal-Policy-Optimization-PPO"><a href="#2-Proximal-Policy-Optimization-PPO" class="headerlink" title="2. Proximal Policy Optimization (PPO)"></a>2. Proximal Policy Optimization (PPO)</h2><p><a href="https://www.bilibili.com/video/av24724071/?p=2" target="_blank" rel="noopener">https://www.bilibili.com/video/av24724071/?p=2</a></p>
+<ol>
+<li>On-plicy -&gt; off-policy</li>
+<li>PPO:<ul>
+<li>(1) $J_{P P O}^{\theta^{\prime}}(\theta)=J^{\theta^{\prime}}(\theta)-\beta K L\left(\theta, \theta^{\prime}\right)$</li>
+<li>(2) $J^{\theta^{\prime}}(\theta)=E_{\left(s_{t}, a_{t}\right) \sim \pi_{\theta^{\prime}}}\left[\frac{p_{\theta}\left(a_{t} | s_{t}\right)}{p_{\theta^{\prime}}\left(a_{t} | s_{t}\right)} A^{\theta^{\prime}}\left(s_{t}, a_{t}\right)\right]$</li>
+<li>(3) $\nabla f(x)=f(x) \nabla \log f(x)$</li>
+</ul>
+</li>
+<li>解释：(1)为PPO,在J上加入两个分布的KL散度，使两个分布接近；(2) 为off-policy公式，通过$\theta^{\prime}$来得到$\theta$; (3)为f和df的公式</li>
+<li>注意：$\beta K L\left(\theta, \theta^{\prime}\right)$ 不是参数距离，而是action的距离。是output的action distribution的距离。</li>
+<li>PPO2: <script type="math/tex; mode=display">
+J_{P P O 2}^{\theta^{k}}(\theta) \approx \sum_{\left(s_{t}, a_{t}\right)} \min \left(\frac{p_{\theta}\left(a_{t} | s_{t}\right)}{p_{\theta^{k}}\left(a_{t} | s_{t}\right)} A^{\theta^{k}}\left(s_{t}, a_{t}\right)\right.,
+\operatorname{clip}\left(\frac{p_{\theta}\left(a_{t} | s_{t}\right)}{p_{\theta^{k}}\left(a_{t} | s_{t}\right)}, 1-\varepsilon, 1+\varepsilon\right) A^{\theta^{k}}\left(s_{t}, a_{t}\right) )</script></li>
+</ol>
+<h2 id="3-Q-Learning"><a href="#3-Q-Learning" class="headerlink" title="3. Q-Learning"></a>3. Q-Learning</h2><ol>
+<li>训练critic</li>
+<li>how to estimate V(s)<ul>
+<li>$V^\pi(s)$ 是s状态之后按照$\pi$策略所有reward的期望</li>
+<li>Monte-Carlo (MC) based approach：<ul>
+<li>看很多state，玩到游戏结束，获得在这些state之后的V，然后成为 _回归问题_</li>
+</ul>
+</li>
+<li>Temporal-difference(TD) approach<ul>
+<li>前后两个s，a 的 V 做差得到 $r_t$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Another Critic: <strong>Q function</strong></p>
+<ul>
+<li>State-action value function $Q^\pi(s,a)$</li>
+<li>Q function强制使用a at state s when using actor $\pi$；对比：V function只考虑state s and use action a in actor $\pi$</li>
+<li>再解释一遍：V function，计算在状态s以后，使用$\pi$策略的reward； Q function，计算在状态s和使用a动作（这一次不一定按照$\pi$策略）后，后面全部采用$\pi$策略得到的reward</li>
+<li>learn Q，然后找new pi</li>
+<li>一定可以找到比$\pi$好的$\pi’$<script type="math/tex; mode=display">\pi^{\prime}(s)=\arg \max _{a} Q^{\pi}(s, a)</script></li>
+<li>解释：在$\pi$策略下改变a，穷举所有a使得Q最大，则新的a就是$\pi’$</li>
+</ul>
+<p><img src="/pic/Q_learning.JPG" alt="Q_learning" title="Q_learning"></p>
+</li>
+</ol>
+<h2 id="4-Tips"><a href="#4-Tips" class="headerlink" title="4. Tips"></a>4. Tips</h2><h3 id="4-1-Double-DQN"><a href="#4-1-Double-DQN" class="headerlink" title="4.1. Double DQN"></a>4.1. Double DQN</h3><ol>
+<li>Q value is usually over estimated</li>
+<li>Double DQN: two functions Q and Q’</li>
+<li>用真正 Q 选(提案) action，用target Q 执行计算Q value<h3 id="4-2-Dueling-DQN"><a href="#4-2-Dueling-DQN" class="headerlink" title="4.2. Dueling DQN"></a>4.2. Dueling DQN</h3></li>
+<li>改network 架构</li>
+<li>不直接输出Q value，而是：1）V(s);2) A(s,a);求和<h3 id="4-3-Prioritized-Reply"><a href="#4-3-Prioritized-Reply" class="headerlink" title="4.3. Prioritized Reply"></a>4.3. Prioritized Reply</h3><h3 id="4-4-Multi-step"><a href="#4-4-Multi-step" class="headerlink" title="4.4. Multi-step"></a>4.4. Multi-step</h3></li>
+<li>Balance between MC and TD</li>
+<li>N个step以后的reward（既不是只有一个，也不是后面全部）<h3 id="4-5-Noisy-Net"><a href="#4-5-Noisy-Net" class="headerlink" title="4.5. Noisy Net"></a>4.5. Noisy Net</h3></li>
+<li>Noise on Action(Epsilon Greedy)</li>
+<li>Noise on Parameters: 参数加高斯noise，在episode开始添加noise，然后固定<h3 id="4-6-Distributional-Q-function"><a href="#4-6-Distributional-Q-function" class="headerlink" title="4.6. Distributional Q-function"></a>4.6. Distributional Q-function</h3></li>
+<li>model distribution</li>
+<li>原始：期望值</li>
+<li>改进：把每个action拆分成多个bin,然后预测每个bin的几率。<h3 id="4-7-Rainbow-以上所有方法都用上"><a href="#4-7-Rainbow-以上所有方法都用上" class="headerlink" title="4.7. Rainbow : 以上所有方法都用上"></a>4.7. Rainbow : 以上所有方法都用上</h3></li>
+</ol>
+<h2 id="小总结："><a href="#小总结：" class="headerlink" title="小总结："></a>小总结：</h2><ul>
+<li>Policy based, 拟合（learn）神经网络参数，即state-actor函数，目标是最大化reward，梯度优化reward函数。拟合直接得到actor。</li>
+<li>value based， 就是learn（神经网络拟合）V/Q函数(即本次state之后的reward期望)，目标是最大化每一步action的reward(即两个连续state下Q函数的差)，拟合得到对action的评分。</li>
+</ul>
+<h2 id="5-Actor-Critic-（Asynchronous-Advantage-Actor-Critic-A3C-）"><a href="#5-Actor-Critic-（Asynchronous-Advantage-Actor-Critic-A3C-）" class="headerlink" title="5. Actor-Critic （Asynchronous Advantage Actor-Critic (A3C)）"></a>5. Actor-Critic （Asynchronous Advantage Actor-Critic (A3C)）</h2><h3 id="5-1-A2C-Advantage-Actor-Critic"><a href="#5-1-A2C-Advantage-Actor-Critic" class="headerlink" title="5.1 A2C: Advantage Actor-Critic"></a>5.1 A2C: Advantage Actor-Critic</h3><ol>
+<li>advantage function:<script type="math/tex; mode=display">\nabla \overline{R}_{\theta} \approx \frac{1}{N} \sum_{n=1}^{N} \sum_{t=1}^{T_{n}}\left(r_{t}^{n}+V^{\pi}\left(s_{t+1}^{n}\right)-V^{\pi}\left(s_{t}^{n}\right)\right) \nabla \log p_{\theta}\left(a_{t}^{n} | s_{t}^{n}\right)</script></li>
+<li>综合Policy 和 value方式，用V函数表示Policy gradient函数。</li>
+<li>这样就会出现两个Network:一个actor，一个V function. 前面几层可以共用，如CNN<br><img src="/pic/A2C.JPG" alt="这是A2C" title="这是A2C"><h3 id="5-2-A3C：非同步"><a href="#5-2-A3C：非同步" class="headerlink" title="5.2 A3C：非同步"></a>5.2 A3C：非同步</h3>多个CPU同时学习，然后异步上传参数更新，覆盖原有参数<br><img src="/pic/A3C.JPG" alt="这是A3C" title="这是A3C"></li>
+</ol>
+<h3 id="5-3-Pathwise-Derivative-Policy-Gradient"><a href="#5-3-Pathwise-Derivative-Policy-Gradient" class="headerlink" title="5.3. Pathwise Derivative Policy Gradient"></a>5.3. Pathwise Derivative Policy Gradient</h3><ul>
+<li><img src="/pic/Pathwise.JPG" alt="Pathwise" title="Pathwise"></li>
+<li>说明：加一个network生成actor，输入给critic，使得Q增加。训练时fix Q，调节Actor</li>
+<li><img src="/pic/Pathwise2.JPG" alt="Pathwise2" title="Pathwise2"></li>
+</ul>
+<h2 id="6-Sparse-Reward"><a href="#6-Sparse-Reward" class="headerlink" title="6. Sparse Reward"></a>6. Sparse Reward</h2><ol>
+<li>reward shaping, need domain knowledge</li>
+<li>Curiosity: ICM(intrinsic curiosity module )</li>
+<li>Curriculum learning<ul>
+<li>给机器学习做规划，从简单到复杂</li>
+<li>Reverse Curriculum Generation:<ul>
+<li>given a goal state s_g</li>
+<li>sample some states close to s_g</li>
+<li>start from s_1, reward R(s)</li>
+<li>delete s whose reward is too large or too small (too easy or diffiicult at this moment)</li>
+<li>sample s_2 from s_1, start from s_2</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Hierachical Reinforcement learning</li>
+</ol>
+<h2 id="7-Imitation-Learning"><a href="#7-Imitation-Learning" class="headerlink" title="7. Imitation Learning"></a>7. Imitation Learning</h2><ol>
+<li>不知道怎么制定reward，但是可以收集好的操作资料（expert），比如用真人之间的谈话来训练机器</li>
+<li>Behavior Cloning.<ul>
+<li>supervised learning</li>
+<li>问题：observation limited</li>
+<li>解决：Dataset Aggregation. <ul>
+<li>采用特定$\pi$,但是收集期间expert的建议</li>
+<li>用各种情况下expert的建议来学习</li>
+</ul>
+</li>
+<li>问题2：复制无用行为</li>
+</ul>
+</li>
+<li>Inverse Reinforcement Learning<ul>
+<li>有expert的action, 反推Reward Function</li>
+<li>用Reward Function重新找optimal actor</li>
+</ul>
+</li>
+</ol>
 
       
     </div>
