@@ -661,7 +661,7 @@ J_{P P O 2}^{\theta^{k}}(\theta) \approx \sum_{\left(s_{t}, a_{t}\right)} \min \
 <h2 id="0-三个区域"><a href="#0-三个区域" class="headerlink" title="0. 三个区域"></a>0. 三个区域</h2><ul>
 <li>工作区（working Directory）：简单的理解你在<strong>电脑里能看到的目录</strong>。</li>
 <li>暂存区（stage）：Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。</li>
-<li>版本库（Repository）：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。<br><img src="pic/git_3part.png" alt="Pic_dlog2" title="dlog"></li>
+<li>版本库（Repository）：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。<br><img src="/pic/git_3part.png" alt="Pic_dlog2" title="dlog"></li>
 </ul>
 <h2 id="1-创建版本库（仓库）repository"><a href="#1-创建版本库（仓库）repository" class="headerlink" title="1. 创建版本库（仓库）repository"></a>1. 创建版本库（仓库）repository</h2><ol>
 <li>创建空目录，然后cd到此目录下 git init <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir learngit</span><br><span class="line">$ <span class="built_in">cd</span> learngit</span><br><span class="line">$ <span class="built_in">pwd</span></span><br><span class="line">/Users/michael/learngit</span><br></pre></td></tr></table></figure>
@@ -694,7 +694,7 @@ J_{P P O 2}^{\theta^{k}}(\theta) \approx \sum_{\left(s_{t}, a_{t}\right)} \min \
 <li>git reset命令 退回上一版本<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard HEAD^</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>慎用hard<br><img src="pic/git_reset.jpg" alt="Pic_dlog2" title="dlog"></p>
+<p>慎用hard<br><img src="/pic/git_reset.jpg" alt="Pic_dlog2" title="dlog"></p>
 <ol>
 <li>回到未来版本：按照log中的版本号 <code>git reset --hard 1094a</code></li>
 <li>git reflog 查看命令历史</li>
