@@ -661,16 +661,14 @@ J_{P P O 2}^{\theta^{k}}(\theta) \approx \sum_{\left(s_{t}, a_{t}\right)} \min \
 <h2 id="0-三个区域"><a href="#0-三个区域" class="headerlink" title="0. 三个区域"></a>0. 三个区域</h2><ul>
 <li>工作区（working Directory）：简单的理解你在<strong>电脑里能看到的目录</strong>。</li>
 <li>暂存区（stage）：Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。</li>
-<li>版本库（Repository）：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。<br><img src="https://raw.githubusercontent.com/zhangpm/Pictures/master/git_note/git_3part.png" alt="Pic_dlog2" title="dlog"></li>
+<li>版本库（Repository）：工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。<br><img src="pic/git_3part.png" alt="Pic_dlog2" title="dlog"></li>
 </ul>
 <h2 id="1-创建版本库（仓库）repository"><a href="#1-创建版本库（仓库）repository" class="headerlink" title="1. 创建版本库（仓库）repository"></a>1. 创建版本库（仓库）repository</h2><ol>
 <li>创建空目录，然后cd到此目录下 git init <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir learngit</span><br><span class="line">$ <span class="built_in">cd</span> learngit</span><br><span class="line">$ <span class="built_in">pwd</span></span><br><span class="line">/Users/michael/learngit</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line"></span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /Users/michael/learngit/.git/</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
+<ol>
 <li>目录下创建文件，如readme.txt</li>
 </ol>
 <h2 id="2-文件放入仓库"><a href="#2-文件放入仓库" class="headerlink" title="2. 文件放入仓库"></a>2. 文件放入仓库</h2><p>两步</p>
@@ -687,7 +685,6 @@ J_{P P O 2}^{\theta^{k}}(\theta) \approx \sum_{\left(s_{t}, a_{t}\right)} \min \
 </li>
 <li><p>为什么Git添加文件需要add，commit一共两步呢？因为commit可以一次提交很多文件，所以你可以多次add不同的文件，比如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add file1.txt</span><br><span class="line">$ git add file2.txt file3.txt</span><br><span class="line">$ git commit -m <span class="string">"add 3 files."</span></span><br></pre></td></tr></table></figure>
-
 </li>
 </ul>
 <p><code>git add .</code>全部添加</p>
@@ -695,28 +692,24 @@ J_{P P O 2}^{\theta^{k}}(\theta) \approx \sum_{\left(s_{t}, a_{t}\right)} \min \
 <li>git log 查看日志</li>
 <li>用HEAD表示当前版本，上一个版本就是HEAD^，上上一个版本就是HEAD^^，当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100</li>
 <li>git reset命令 退回上一版本<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard HEAD^</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
-<p>慎用hard<br><img src="https://raw.githubusercontent.com/zhangpm/Pictures/master/git_note/git_reset.jpg" alt="Pic_dlog2" title="dlog"></p>
-<ol start="4">
+<p>慎用hard<br><img src="pic/git_reset.jpg" alt="Pic_dlog2" title="dlog"></p>
+<ol>
 <li>回到未来版本：按照log中的版本号 <code>git reset --hard 1094a</code></li>
 <li>git reflog 查看命令历史</li>
 <li>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</li>
 <li>命令git rm用于从版本库删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。</li>
 </ol>
 <h2 id="4-远程仓库连接，创建远程仓库"><a href="#4-远程仓库连接，创建远程仓库" class="headerlink" title="4. 远程仓库连接，创建远程仓库"></a>4. 远程仓库连接，创建远程仓库</h2><h3 id="4-1-先有本地仓库，后连接远程仓库"><a href="#4-1-先有本地仓库，后连接远程仓库" class="headerlink" title="4.1 先有本地仓库，后连接远程仓库"></a>4.1 先有本地仓库，后连接远程仓库</h3><ol>
-<li><p>本地版本库创建：建文件夹</p>
-</li>
-<li><p>登录github，Create a new repo，不要readme</p>
-</li>
+<li>本地版本库创建：建文件夹</li>
+<li>登录github，Create a new repo，不要readme</li>
 <li><p>本地连接和推送到远程</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/zhangpm/git_note.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>origin 是远程默认名，master本地名</p>
 </li>
-<li><p>查看远程，<code>git remote (-v)</code></p>
-</li>
+<li>查看远程，<code>git remote (-v)</code></li>
 </ol>
 <h3 id="4-2-先有远程，后克隆"><a href="#4-2-先有远程，后克隆" class="headerlink" title="4.2 先有远程，后克隆"></a>4.2 先有远程，后克隆</h3><ol>
 <li>github 创建新repository</li>
@@ -790,11 +783,11 @@ J_{P P O 2}^{\theta^{k}}(\theta) \approx \sum_{\left(s_{t}, a_{t}\right)} \min \
 </li>
 </ol>
 <h2 id="6-多人协作"><a href="#6-多人协作" class="headerlink" title="6. 多人协作"></a>6. 多人协作</h2><ol>
-<li>首先，可以试图用git push origin &lt;branch-name&gt;推送自己的修改</li>
+<li>首先，可以试图用git push origin \<branch-name>推送自己的修改</branch-name></li>
 <li>若失败，则git pull先拉取最新版本。</li>
 <li>pull 中会merge本地和拉下来的版本，容易产生冲突，需要手动解决，然后add，commit</li>
-<li>没有冲突或者解决掉冲突后，再用git push origin &lt;branch-name&gt;推送就能成功</li>
-<li>如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令git branch –set-upstream-to <branch-name> origin/<branch-name></branch-name></branch-name></li>
+<li>没有冲突或者解决掉冲突后，再用git push origin \<branch-name>推送就能成功</branch-name></li>
+<li>如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令git branch —set-upstream-to <branch-name> origin/<branch-name></branch-name></branch-name></li>
 </ol>
 <h2 id="7-tag标签"><a href="#7-tag标签" class="headerlink" title="7. tag标签"></a>7. tag标签</h2><ol>
 <li><code>git tag v1.0</code>当前commit打标签“v1.0”</li>
@@ -815,7 +808,7 @@ J_{P P O 2}^{\theta^{k}}(\theta) \approx \sum_{\left(s_{t}, a_{t}\right)} \min \
 <li>自己随便用，push到自己的仓库</li>
 <li>参与开源，则发起pull request，等待原作者审核通过</li>
 </ol>
-<p>–End–</p>
+<p>—End—</p>
 
       
     </div>
