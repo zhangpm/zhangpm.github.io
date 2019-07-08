@@ -62,6 +62,626 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Linux_shell" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/02/Linux_shell/" class="article-date">
+  <time datetime="2019-07-02T08:22:33.017Z" itemprop="datePublished">2019-07-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/02/Linux_shell/">Linux Shell</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.bilibili.com/video/av47009997/?p=245" target="_blank" rel="noopener">https://www.bilibili.com/video/av47009997/?p=245</a></p>
+<p><a href="https://www.youtube.com/watch?v=cQepf9fY6cE&amp;list=PLS1QulWo1RIYmaxcEqw5JhK3b-6rgdWO_&amp;index=1" target="_blank" rel="noopener">https://www.youtube.com/watch?v=cQepf9fY6cE&amp;list=PLS1QulWo1RIYmaxcEqw5JhK3b-6rgdWO_&amp;index=1</a></p>
+<h1 id="p198-Shell基础"><a href="#p198-Shell基础" class="headerlink" title="p198 Shell基础"></a>p198 Shell基础</h1><h2 id="1-脚本执行方式"><a href="#1-脚本执行方式" class="headerlink" title="1. 脚本执行方式"></a>1. 脚本执行方式</h2><ol>
+<li><p>echo 输出命令；<code>-e</code>可使用转义字符<code>\</code>，例如“\t”制表符</p>
+</li>
+<li><p>第一个shell程序：hello.sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"Hello World"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>赋予执行权限：chmod +x hello.sh</p>
+</li>
+<li>运行：./hello.sh<ol>
+<li>说明：运行需要相对路径或绝对路径。</li>
+<li>相对路径：./代表当前目录；~/代表当前用户主目录</li>
+</ol>
+</li>
+<li>或不用3步，直接bash ./hello.sh</li>
+<li>dos2unix 命令，windows格式转化为linux格式</li>
+<li>history命令：历史命令</li>
+</ol>
+<h2 id="2-variables"><a href="#2-variables" class="headerlink" title="2. variables"></a>2. variables</h2><ol>
+<li><p><code>$</code>引用变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name=Mark</span><br><span class="line"><span class="built_in">echo</span> The name is <span class="variable">$name</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>变量名不能用数字开头</p>
+</li>
+</ol>
+<h2 id="3-Read-using-input"><a href="#3-Read-using-input" class="headerlink" title="3. Read using input"></a>3. Read using input</h2><ol>
+<li><p><code>read</code>语句, <code>read name</code>输入变量赋值给name,</p>
+</li>
+<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Enter name"</span></span><br><span class="line"><span class="built_in">read</span> name1 name2</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Entered names: <span class="variable">$name1</span>,<span class="variable">$name2</span>"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多变量：<strong>空格间隔</strong>，输入也是空格间隔</p>
+</li>
+<li><p>read -p 带提示(prompt)的输入; <code>-sp</code> password,输入不显示字符</p>
+</li>
+<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">'username: '</span> username</span><br><span class="line"><span class="built_in">read</span> -sp <span class="string">'password: '</span>password</span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"name: <span class="variable">$username</span>"</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"pass: <span class="variable">$password</span>"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>单引号：完全按照字符输出；双引号：识别特殊符号，例如<code>$</code>符号作为变量, <code>\</code>转义字符，等</p>
+</li>
+<li><p>echo 空，换行</p>
+</li>
+<li><p><code>read -a names</code> 传入array形式. 输出用curly bracket<code>{}</code>括起来.</p>
+</li>
+<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Enter name"</span></span><br><span class="line"><span class="built_in">read</span> -a names</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Entered names: <span class="variable">$&#123;names[0]&#125;</span>,<span class="variable">$&#123;names[1]&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当变量名和后面的内容都是变量名时，是用花括号括起来避免歧义。如names 和names[0].</p>
+</li>
+<li><p>read默认输入变量REPLY, 因此若read 不赋值变量，则可取REPLY获取</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">read</span> </span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$REPLY</span>"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="3-Pass-Argument"><a href="#3-Pass-Argument" class="headerlink" title="3. Pass Argument"></a>3. Pass Argument</h2><ol>
+<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$1</span> <span class="variable">$2</span> <span class="variable">$3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行，加入参数<code>./hello.sh aaa bbb ccc</code>。第一个参数传入$1</p>
+</li>
+<li><p><code>$0</code> is the name of the shell script, here is <code>hello.sh</code></p>
+</li>
+<li><p>传入数组<code>args=(&quot;$@&quot;)</code>，第一个参数传为args[0]</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">args=(<span class="string">"<span class="variable">$@</span>"</span>)</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;args[0]&#125;</span> <span class="variable">$&#123;args[1]&#125;</span> <span class="variable">$&#123;args[2]&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>参数默认传入为$@ （dollar at a rate），因此可直接输出echo \$@  </p>
+</li>
+<li><p>$# 为参数个数 （dollar hash）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$1</span> <span class="variable">$2</span> <span class="variable">$3</span></span><br><span class="line">args=(<span class="string">"<span class="variable">$@</span>"</span>)</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;args[0]&#125;</span> <span class="variable">$&#123;args[1]&#125;</span> <span class="variable">$&#123;args[2]&#125;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$@</span> </span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$#</span></span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<p>aaa bbb ccc<br>aaa bbb ccc<br>aaa bbb ccc<br>3</p>
+</li>
+</ol>
+<h1 id="p201Shell基础"><a href="#p201Shell基础" class="headerlink" title="p201Shell基础"></a>p201Shell基础</h1><h2 id="1-别名"><a href="#1-别名" class="headerlink" title="1. 别名"></a>1. 别名</h2><ol>
+<li><code>alias 别名=‘原命令’</code></li>
+<li><code>alias</code> 查询别名</li>
+<li>别名永久生效：<ol>
+<li>vim /root/.bashrc</li>
+<li>写入<code>alias 别名=‘原命令’</code></li>
+</ol>
+</li>
+<li>删除：unalias</li>
+</ol>
+<h2 id="2-Bash常用快捷键"><a href="#2-Bash常用快捷键" class="headerlink" title="2. Bash常用快捷键"></a>2. Bash常用快捷键</h2><p><img src="G:\git\blog\source\_posts\pic\Bash_hot.JPG" alt="Bash_hot"></p>
+<h2 id="3-输入输出重定向："><a href="#3-输入输出重定向：" class="headerlink" title="3.输入输出重定向："></a>3.输入输出重定向：</h2><ol>
+<li>标准输出重定向<code>&gt;</code>覆盖；<code>&gt;&gt;</code>追加</li>
+<li>标准错误输出重定向：<code>2&gt;</code>,<code>2&gt;&gt;</code></li>
+<li>常用：正确错误同时保存：<code>命令 &amp;&gt;(&gt;&gt;) 文件</code></li>
+<li>正误分别存 <code>命令&gt;&gt;文件1 2&gt;&gt;文件2</code></li>
+<li><code>ls &amp;&gt;/dev/null</code> 输出到黑洞</li>
+<li>输入重定向：<code>wc [选项][文件名]</code><ol>
+<li>wc &lt; 文件</li>
+</ol>
+</li>
+</ol>
+<h2 id="4-bash基本功能"><a href="#4-bash基本功能" class="headerlink" title="4. bash基本功能"></a>4. bash基本功能</h2><ol>
+<li>多命令顺序执行：如：<code>命令1;命令2</code><ol>
+<li><code>；</code> 多命令顺序执行，无逻辑</li>
+<li><code>&amp;&amp;</code> 命令1正确才执行2</li>
+<li><code>||</code>命令1正确不执行2，1不正确才执行2</li>
+<li>判断命令是否正确：<code>命令 &amp;&amp; echo yes || echo no</code></li>
+</ol>
+</li>
+<li>管道符：<code>|</code>  <code>命令1|命令2</code>，1的正确输出作为2的输入<ol>
+<li>ll | more</li>
+</ol>
+</li>
+</ol>
+<h2 id="5-通配符wildcard-character"><a href="#5-通配符wildcard-character" class="headerlink" title="5. 通配符wildcard character"></a>5. 通配符<em>wildcard</em> character</h2><ol>
+<li>用于匹配文件名，跟正则表达式区分</li>
+<li>？匹配一个字符</li>
+<li>*任意</li>
+<li>[]匹配中括号中的字符，如[abc]，匹配a或b或c</li>
+<li>[a-z]匹配a-z的所有字母</li>
+<li>[\^]逻辑非，[\^0-9] 匹配不是数字的字符</li>
+</ol>
+<h2 id="6-Bash-中的特殊符号："><a href="#6-Bash-中的特殊符号：" class="headerlink" title="6. Bash 中的特殊符号："></a>6. Bash 中的特殊符号：</h2><ol>
+<li><code>&#39;&#39;</code> 原文字符</li>
+<li><code>&quot;&quot;</code> 可读取特殊字符</li>
+<li>“``” 反引号，引用系统命令，同$()，不推荐</li>
+<li><code>$()</code> 引用系统命令，赋给变量，推荐使用<ol>
+<li>eg. <code>echo $(ls)</code></li>
+</ol>
+</li>
+<li><code>#</code>注释</li>
+<li><code>$</code>调用变量的值</li>
+<li><code>\</code>转义字符，取消特殊符号的作用，变为普通符号</li>
+</ol>
+<h2 id="7-Bash的变量"><a href="#7-Bash的变量" class="headerlink" title="7. Bash的变量"></a>7. Bash的变量</h2><p>用户自定义变量；环境变量；位置参数变量；预定义变量</p>
+<h2 id="7-1-用户自定义变量"><a href="#7-1-用户自定义变量" class="headerlink" title="7.1 用户自定义变量"></a>7.1 用户自定义变量</h2><ol>
+<li><p>默认类型为字符串型，数值型需指定</p>
+</li>
+<li><p>变量用等号连接，<strong>等号两侧不能有空格</strong></p>
+</li>
+<li><p>变量值有空格，需要用引号括起来</p>
+</li>
+<li><p>变量值中可以使用转义字符\</p>
+</li>
+<li><p><strong>变量叠加</strong>：需要引号或花括号括起来：如<code>“$变量名”</code>  或 <code>${变量名}</code>。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">aa=123</span><br><span class="line">aa=<span class="string">"<span class="variable">$aa</span>"</span>456</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$aa</span></span><br><span class="line">输出：123456</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>命令结果作为变量赋值，需要用反引号或<code>$()</code>括起来</p>
+</li>
+<li><p>环境变量，建议大写</p>
+</li>
+<li><p>set命令，查看系统中所有变量（所有类型）</p>
+</li>
+<li><p>unset， 删除变量</p>
+</li>
+</ol>
+<h2 id="7-2-环境变量"><a href="#7-2-环境变量" class="headerlink" title="7.2 环境变量"></a>7.2 环境变量</h2><ol>
+<li>在当前和子shell中生效，写入配置文件则对所有shell生效</li>
+<li>定义：<code>export 变量名=变量值</code></li>
+<li><code>bash</code> 生成子shell, <code>pstree</code>进程树 </li>
+<li><code>set</code>查询全部变量；<code>env</code>查看环境变量; <code>unset</code>删除变量</li>
+<li>常用环境变量：<code>PATH</code>。自动在PATH路径下搜索命令。例如，把执行程序添加到PATH后，则不需用路径执行，可直接写程序名。<ol>
+<li>eg. <code>PATH=&#39;$PATH&#39;:/root</code>变量叠加，临时更改，重启消失。冒号分割。</li>
+</ol>
+</li>
+<li>PS1,定义系统提示符的变量</li>
+</ol>
+<h2 id="7-3-位置参数变量"><a href="#7-3-位置参数变量" class="headerlink" title="7.3 位置参数变量"></a>7.3 位置参数变量</h2><ol>
+<li><p><img src="G:\git\blog\source\_posts\pic\Bash_Para.JPG" alt="Bash_Para"></p>
+</li>
+<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sum=$((<span class="variable">$1</span>+<span class="variable">$2</span>))</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$sum</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>$*</code>相当于1个字符串整体；<code>$@</code>相当于一个字符串数组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 循环1次</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">"$*"</span></span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">		<span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line">	<span class="keyword">done</span></span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"><span class="comment">#循环多次</span></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="string">"<span class="variable">$@</span>"</span></span><br><span class="line">	<span class="keyword">do</span> </span><br><span class="line">		<span class="built_in">echo</span> <span class="variable">$j</span></span><br><span class="line">	<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hello.sh 1 2 3 4</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1234</span><br><span class="line"></span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="7-4-预定义变量"><a href="#7-4-预定义变量" class="headerlink" title="7.4 预定义变量"></a>7.4 预定义变量</h2><ol>
+<li><p><code>$?</code>上一条命令返回状态；0正确，非零错误</p>
+</li>
+<li><p><code>$$</code>当前进程号</p>
+</li>
+<li><p><code>$!</code>后台运行的最后一个进程的进程号</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"$$"</span></span><br><span class="line">find /root -name hello.sh &amp;</span><br><span class="line"><span class="comment"># &amp;符号为后台执行</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"$!"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接受键盘输入</p>
+<ol>
+<li><code>read [选项][变量]</code></li>
+<li>-p “aa”： 提示信息</li>
+<li>-t 秒数： 等待秒数</li>
+<li>-n 字符数：接受字符数到了就执行，不用回车</li>
+<li>-s ：隐藏输入显示</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">read</span> -t 30 -p <span class="string">"please inpute name: "</span> name</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Name is <span class="variable">$name</span>"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\n"</span> <span class="comment">#-e激活转义字符，“\n”换行</span></span><br><span class="line"><span class="built_in">read</span> -t 30 -n 1 -p <span class="string">"gender[M/F]: "</span> gender</span><br><span class="line"><span class="built_in">echo</span> </span><br><span class="line"><span class="built_in">echo</span> <span class="string">"sex is <span class="variable">$gender</span>"</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-5-数值运算和运算符"><a href="#7-5-数值运算和运算符" class="headerlink" title="7.5 数值运算和运算符"></a>7.5 数值运算和运算符</h2><ol>
+<li><p>默认为字符串型，因此数值不可直接相加</p>
+</li>
+<li><p><code>declare [+/-][选项] 变量名</code>：</p>
+<ol>
+<li>-： 给变量设定类型属性</li>
+<li>+：取消变量的类型属性</li>
+<li>-i：设为整型</li>
+<li>-x：设为环境变量</li>
+<li>-p：查看类型</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">aa=11</span><br><span class="line">bb=22</span><br><span class="line"><span class="built_in">declare</span> -i cc=<span class="variable">$aa</span>+<span class="variable">$bb</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>expr或let数值运算工具</p>
+<ol>
+<li><code>cc=$(expr $aa + $bb)</code> 加号左右两侧空格必要</li>
+</ol>
+</li>
+<li><p><code>$((运算式))</code>或<code>$[运算式]</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cc=$((<span class="variable">$aa</span>+<span class="variable">$bb</span>))</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="7-6-变量测试和内容替换"><a href="#7-6-变量测试和内容替换" class="headerlink" title="7.6 变量测试和内容替换"></a>7.6 变量测试和内容替换</h2><p><img src="G:\git\blog\source\_posts\pic\Bash_ParaTest.JPG" alt="Bash_ParaTest"></p>
+<h1 id="8-环境变量"><a href="#8-环境变量" class="headerlink" title="8. 环境变量"></a>8. 环境变量</h1><p><a href="https://www.bilibili.com/video/av47009997/?p=212" target="_blank" rel="noopener">https://www.bilibili.com/video/av47009997/?p=212</a></p>
+<h2 id="8-1-环境变量配置文件"><a href="#8-1-环境变量配置文件" class="headerlink" title="8.1 环境变量配置文件"></a>8.1 环境变量配置文件</h2><ol>
+<li><p>source命令：<code>source 配置文件</code> 或<code>. 配置文件</code>，让文件直接生效，不需重新登陆。也可理解为“调用”</p>
+</li>
+<li><p>例：PATH: <code>PATH=&quot;$PATH&quot;:/root</code>加入root目录</p>
+</li>
+<li><p>配置文件：</p>
+<ol>
+<li><code>/etc/profile</code>: /etc/下的文件是对所有用户都生效</li>
+<li><code>/etc/profile.d/*.sh</code>：一系列文件</li>
+<li><code>/etc/bashrc</code>：命令提示符等</li>
+<li><code>~/.bash_profile</code>：~/文件下是当前用户的家目录，只对当前用户生效</li>
+<li><code>~/.bashrc</code></li>
+</ol>
+<p>顺序：<code>/etc/profile</code> -&gt; <code>~/.bash_profile</code>-&gt;<code>~/.bashrc</code> -&gt;<code>/etc/bashrc</code> -&gt;<code>（/etc/profile.d/*.sh）</code>-&gt;命令提示符</p>
+</li>
+<li><p>向后的文件优先级高，会覆盖前面的变量</p>
+</li>
+<li><p>本地终端欢迎信息：/etc/issue</p>
+</li>
+<li><p>远程终端欢迎信息：/etc/issue.net; 只能纯文本，转义符不可用</p>
+</li>
+<li><p>本地远程据可用，登陆后欢迎信息：/etc/motd</p>
+</li>
+</ol>
+<h1 id="9-正则表达式"><a href="#9-正则表达式" class="headerlink" title="9. 正则表达式"></a>9. 正则表达式</h1><h2 id="9-1-正则表达式和通配符的区别"><a href="#9-1-正则表达式和通配符的区别" class="headerlink" title="9.1 正则表达式和通配符的区别"></a>9.1 正则表达式和通配符的区别</h2><ul>
+<li>正则匹配字符串，包含匹配（含有就列出），grep,awk,sed</li>
+<li>通配符匹配文件名，完全匹配（只列出完全一样的）,ls,find,cp</li>
+</ul>
+<h2 id="9-2-常用元字符"><a href="#9-2-常用元字符" class="headerlink" title="9.2 常用元字符"></a>9.2 常用元字符</h2><ul>
+<li><code>*</code><strong>前一个字符</strong>匹配0次或任意多次，<strong>0次</strong>也包括。若包含至少一个a,写两个a: <code>aa*</code></li>
+<li><code>.</code> 匹配除了换行符外的任意<strong>1个</strong>字符。<ul>
+<li>例如：<code>s..d</code>匹配s d中两个字母，如said。</li>
+<li><code>s.*d</code>匹配s d中有任意字符</li>
+<li><code>.*</code>匹配所有内容</li>
+</ul>
+</li>
+<li><code>^</code> 匹配行首，如 <code>^hello</code>匹配hello开头的行</li>
+<li><code>$</code> 匹配行尾，如<code>hello$</code>匹配以hello结尾的行<ul>
+<li><code>^$</code>空白行</li>
+</ul>
+</li>
+<li><code>[]</code> 匹配中括号中指定的任意一个字符，如[abc],[0-9]<ul>
+<li>grep -n “s[ao]id”，匹配said和soid</li>
+</ul>
+</li>
+<li><code>[^]</code> 匹配除非中括号字符中的一个字符，即<strong>取非</strong>，如[\^0-9]匹配非数字<ul>
+<li><code>grep &quot;^[^a-zA-Z]&quot;</code>匹配不以所有字母开头的行</li>
+</ul>
+</li>
+<li><code>\</code> 转义字符，取消特殊符号的含义<ul>
+<li><code>grep &quot;\.$&quot;</code>匹配“.”结尾</li>
+</ul>
+</li>
+<li><code>\{n\}</code> 前面的字符连续出现n次（<code>\{</code>即是用转义字符转义了大括号），例如：<code>[0-9]\{4\}</code>匹配4为数字。<code>[1][3-8][0-9]\{9\}</code> 匹配手机号<ul>
+<li><code>grep “a\{3\}”</code>匹配连续出现3个a</li>
+</ul>
+</li>
+<li><code>\{n,\}</code>前面的字符出现不小于n次。例如：<code>[a-z]\{2,\}</code>两位以上字母</li>
+<li><code>\{n,m\}</code>前面的字符出现n-m次。</li>
+</ul>
+<h2 id="If-Statement"><a href="#If-Statement" class="headerlink" title="If Statement"></a>If Statement</h2><ol>
+<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ condition ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	statement</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>注意</strong> 条件语句括号内两边必须留有空格，否则报错！</p>
+</li>
+<li><p>integer comparison</p>
+<ol>
+<li>-eq  is equal to    if [ “\$a” -eq “\$b” ]</li>
+<li>-ne not equal</li>
+<li>-gt greater than</li>
+<li>-ge greater than or equal to</li>
+<li>-lt less than</li>
+<li>-le less than or equal to</li>
+<li>&lt;,&lt;=,&gt;,&gt;=</li>
+</ol>
+</li>
+<li><p>string comparison</p>
+<ol>
+<li>= is equal to</li>
+<li>== is equal to</li>
+<li>!=</li>
+<li>&lt;</li>
+<li>></li>
+<li>-z  is null</li>
+</ol>
+</li>
+<li><p>eg </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">count=10</span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$count</span> -eq 10 ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"it is true"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>或用两个小括号(parenthesis): <code>if (($a &gt;10))</code>, 无需留空格</p>
+</li>
+<li></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/02/Linux_shell/" data-id="cjxuei1c400027sukeac6ysc2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Linux_web" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/23/Linux_web/" class="article-date">
+  <time datetime="2019-06-23T10:08:36.155Z" itemprop="datePublished">2019-06-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/23/Linux_web/">Linux Web</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.bilibili.com/video/av47009997/?p=245" target="_blank" rel="noopener">https://www.bilibili.com/video/av47009997/?p=245</a></p>
+<h1 id="p249-OSI七层模型和TCP四层模型"><a href="#p249-OSI七层模型和TCP四层模型" class="headerlink" title="p249 OSI七层模型和TCP四层模型"></a>p249 OSI七层模型和TCP四层模型</h1><ol>
+<li><p>OSI 七层</p>
+</li>
+<li><p>TCP 4层：应用层，传输层，网际互连层，网络接口层</p>
+<ol>
+<li>网络接口层：ARP协议（地址解析协议），获取MAC地址，即IP地址解析为MAC地址（即物理地址，48位16进制）。局域网内使用mac地址，公网使用ip地址。交换机：记住局域网mac，转为ip</li>
+<li>网际互连层：即网络层，三个主页协议：IP网际协议,IGMP互联网组管理协议,ICMP互联网控制报文协议</li>
+<li>传输层：TCP, UDP协议; TCP/IP 三次握手，可靠，断点连接，</li>
+<li>端口：端口号：相当于收件人。win查看端口：netstat -an。常见端口号是固定的,1024以下：如邮件SMTP:25。端口与服务对应。 </li>
+</ol>
+</li>
+<li><p>TCP/IP数据封装过程：假设是FTP文件：FTP头是FTP文件特征；TCP头是收发端口号等；IP头是收发IP; 以太帧头：收发mac，传递数据。</p>
+<p><img src="/pic/TCPIP.jpg&quot;dlog&quot;" alt="Pic_dlog2"></p>
+</li>
+<li><p>IP 地址分类：A,B,C</p>
+<p>127.0.0.1 本机</p>
+<p>A：网段：ip第一位数，同一网段可通过交换机通信，</p>
+<pre><code>   主机数：ip后三位
+</code></pre><p>B：网段：ip前两位，主机数为后两位</p>
+<p>C：网段：ip前3位，主机后1位</p>
+<p>每个网段有一部分私有ip（内网ip），不需要申请，不同网段内可重叠，如C类：192.168.0.0-192.168.255.255</p>
+</li>
+<li><p>子网掩码：用来划分网段。子网掩码1，代表网络，0代表主机；如255.0.0.0，即第一位为网络，后面为主机，即A类</p>
+</li>
+<li><p>linux网络配置文件</p>
+<ol>
+<li>/etc/sysconfig/network-scripts/ifcfg-eth0</li>
+<li>/etc/sysconfig/network 主机名</li>
+<li>/etc/resolv.conf     DNS信息</li>
+</ol>
+</li>
+<li><p>hostname主机名，默认：localhost.localdomain</p>
+</li>
+<li><p>常用命令：</p>
+<ol>
+<li>ifdown,ifup. 关闭/开启网卡</li>
+<li>netstat 查询网络状态</li>
+<li>ping </li>
+<li>telnet 连接远程主机（古老版ssh，明文无加密）：远程管理和端口探测命令</li>
+<li>traceroute 路由追踪</li>
+<li>wget 下载命令</li>
+</ol>
+</li>
+</ol>
+<h1 id="P256-SSH"><a href="#P256-SSH" class="headerlink" title="P256 SSH"></a>P256 SSH</h1><ol>
+<li>端口号：22</li>
+<li>加密：<ol>
+<li>对称加密：加密解密密钥相同；</li>
+<li>SSH:非对称加密：创建公钥(锁)和私钥(钥匙)；加密：公钥。解密：密码+私钥</li>
+</ol>
+</li>
+<li>SSH配置文件：/etc/ssh/ssh/ssh_config 客户端；/sshd_config 服务器</li>
+<li>命令：<ol>
+<li>ssh 用户名@ip</li>
+<li>scp远程复制</li>
+<li>sftp root@ip 文件传输 <code>get</code>下载,<code>put</code>上传</li>
+<li></li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/23/Linux_web/" data-id="cjxuei1c100017sukcxodpoyd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-A_Cooperative_Multi-Agent_DRL" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/20/A_Cooperative_Multi-Agent_DRL/" class="article-date">
+  <time datetime="2019-06-20T07:32:30.936Z" itemprop="datePublished">2019-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/20/A_Cooperative_Multi-Agent_DRL/">A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load Scheduling</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="A-Cooperative-Multi-Agent-Deep-Reinforcement-Learning-Framework-for-Real-Time-Residential-Load-Scheduling"><a href="#A-Cooperative-Multi-Agent-Deep-Reinforcement-Learning-Framework-for-Real-Time-Residential-Load-Scheduling" class="headerlink" title="A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load Scheduling"></a>A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load Scheduling</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><ol>
+<li>develop a multi-household energy management framework for residential units connected to the same transformer and containing DERs</li>
+<li>schedule controllable household appliances and ESS such that the cost of procuring electricity from the utility over a horizon is minimized while physical grid constraints are satisfied at each scheduling step</li>
+<li>Problems of others’ methods*:  <ul>
+<li>global optimiztion but complex</li>
+<li>decentralized without global concern</li>
+</ul>
+</li>
+<li>Novelty:<ul>
+<li>multiagent reinforcement learning (MARL) </li>
+<li>trains multiple independent learners using historical data</li>
+<li>low complexity cooperation agent <h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2></li>
+</ul>
+</li>
+<li>Markov Decision Process<script type="math/tex; mode=display">M=(S,A,T,\gamma,R)</script><script type="math/tex; mode=display">\pi(a|s): Policy</script><script type="math/tex; mode=display">maximize(\sum_{t=0}^{\infin}\Epsilon[\gamma^tR(s_t,a_t,s_{t+1})])</script></li>
+<li>Deep Reinforcement Learning<script type="math/tex; mode=display">
+\nabla_\theta J(\theta)=\Epsilon[\nabla_\theta(min(r_t(\theta)A_t,clip(r_t(\theta),1-\epsilon,1+\epsilon)A_t))]</script><script type="math/tex; mode=display">
+r_t(\theta)=\frac{\pi_{\theta}}{\pi_{\theta_{old}}}\\
+A_t=\sum_{t'=t}^{\infin}\gamma^{t'-t}R(s_t,a_t)-V(s_t)</script><h2 id="Expansion-of-DRL-in-the-Paper"><a href="#Expansion-of-DRL-in-the-Paper" class="headerlink" title="Expansion of DRL in the Paper"></a>Expansion of DRL in the Paper</h2><h3 id="Value-Function："><a href="#Value-Function：" class="headerlink" title="Value Function："></a>Value Function：</h3></li>
+<li><ul>
+<li>s状态，a动作下，遵循$\pi$策略获得奖励G的期望:<script type="math/tex; mode=display">Q_\pi(s,a)=\Epsilon(G_t|S_t=s,A_t=a)</script></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>奖励函数<script type="math/tex; mode=display">G_t=R_{t+1}+\gamma R_{t+2}+\gamma^2 R_{t+3}+...</script></li>
+<li>$\pi$ 是通过s状态获得a动作的函数<script type="math/tex; mode=display">a=\pi(s)</script></li>
+</ul>
+<ol>
+<li>迭代过程：<ul>
+<li>prediction，给定策略，求Q  </li>
+<li>control 根据Q优化策略<h3 id="Model-Free"><a href="#Model-Free" class="headerlink" title="Model Free"></a>Model Free</h3></li>
+</ul>
+</li>
+<li>无状态S和转移概率。</li>
+<li>Monte Carlo</li>
+</ol>
+<h2 id="Multi-Agent-RL"><a href="#Multi-Agent-RL" class="headerlink" title="Multi-Agent RL"></a>Multi-Agent RL</h2><ol>
+<li>($S_1,…,S_n,A_1,…,A_n,T,\gamma,R$)</li>
+<li>constrains: $f(a_1,a_2,…)\leq C$</li>
+<li>homogeneous sub environment and equally weighed rewards</li>
+<li>innovation:<ul>
+<li>train IL</li>
+<li>use trained IL to cooperate<h2 id="Problem-Setup"><a href="#Problem-Setup" class="headerlink" title="Problem Setup"></a>Problem Setup</h2></li>
+</ul>
+</li>
+<li>Single Household Energy Model<ul>
+<li>T=96(15 min interval)</li>
+<li>ESS Storage, E(t):battery energy in time t<ul>
+<li>$E_{b,n}(t+1)=\eta_{b,n}E_{b,n}(t)+\lambda_{b,n}(t)P_{b,n}\Delta t$</li>
+<li>下一时刻电池能量=效率*上一时刻能量+开关*功率*dt</li>
+</ul>
+</li>
+<li>Loads：<ul>
+<li>Modifiable power loads 可调功率负载<ul>
+<li>HVAC(Heating, Ventilation and Air Conditioning空调),EV charging</li>
+<li>For household n, action: $a_n(t)=(a_{n,1}(t),a_{n,2}(t),…,a_{n,M}(t)) \ a_{n,m}=1/0, turn on/off$</li>
+</ul>
+</li>
+<li>Time shiftable loads<ul>
+<li>fixed power and length,cannot be interrupted(dish washer, laundry units)</li>
+</ul>
+</li>
+<li>Non-shiftable loads</li>
+</ul>
+</li>
+<li>PV generation and Dynamic Price<ul>
+<li>assume only predict by observing history</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Transformer Capacity Constraint<ul>
+<li>|SUM(E)|&lt;Ck</li>
+<li>P,Q limit：real and reactive power<h2 id="Markov-Decision-Process-Setup"><a href="#Markov-Decision-Process-Setup" class="headerlink" title="Markov Decision Process Setup"></a>Markov Decision Process Setup</h2><h3 id="State-Space"><a href="#State-Space" class="headerlink" title="State Space"></a>State Space</h3></li>
+</ul>
+</li>
+<li>Local fully observable states:<ul>
+<li>at time t, remaining load vector</li>
+</ul>
+</li>
+<li>Local partial observable states<ul>
+<li>PV before time t. pv(0),pv(1)…pv(t-1)</li>
+</ul>
+</li>
+<li>Global partial obervable states:<br>price before time t:c(0)…c(t-1)<br>【<strong>不知t时刻state</strong>】</li>
+<li>Initial State<ul>
+<li>The remaining load ln,m(1) = Ln,m,∀n,m. </li>
+<li><strong>$L_n,m$为负载所需运行时间数；$l_n,m$为负载剩余运行时间数（时间数为15min一个数）</strong></li>
+<li>random initial storage Eb,n(1)</li>
+<li>generated household PV generation and unit energ price<h3 id="4-1-Action-Space"><a href="#4-1-Action-Space" class="headerlink" title="4.1 Action Space"></a>4.1 Action Space</h3></li>
+</ul>
+</li>
+<li>The binary vector an(t) to turn on/off each load</li>
+<li>battery operation $\lambda$ <h3 id="4-2-Transition-Mode"><a href="#4-2-Transition-Mode" class="headerlink" title="4.2 Transition Mode"></a>4.2 Transition Mode</h3></li>
+</ol>
+<ul>
+<li><strong>$E_{grid}$和动作a，$\lambda$的关系</strong>：$\star<script type="math/tex">\star</script>\star$<script type="math/tex; mode=display">\sum a(t)P_n+\lambda(t)P_b=pv(t)+E_{grid}(t)/{\Delta t},\forall n,t</script></li>
+<li>ln,m(t + 1) = ln,m(t) − an,m(t),∀m,n<br>下一时刻剩余负载=本时刻剩余负载-本时刻动作</li>
+<li>eg. 本时刻n家庭m设备剩余15时间数，动作是on（即1），下一时刻剩余14时间数；动作是off（即0）,则下一时刻仍然剩余15时间数。</li>
+<li>适用modifiable loads，其他化为此类<h3 id="4-3-System-Constrains"><a href="#4-3-System-Constrains" class="headerlink" title="4.3 System Constrains"></a>4.3 System Constrains</h3></li>
+</ul>
+<ol>
+<li>Local,turning on time = load time requirment.<script type="math/tex; mode=display">\sum_{t=1}^Ta_{n,m}(t)=L_{n,m},\forall m,n</script></li>
+<li><p>Global, |E|&lt;C</p>
+<h3 id="4-4-Objective"><a href="#4-4-Objective" class="headerlink" title="4.4 Objective"></a>4.4 Objective</h3><p>minimize energy cost:</p>
+<script type="math/tex; mode=display">J=\sum_{t=1}^T\sum_{n=1}^NE_{grid,n}(t)c(t)</script><p>subject to |E|&lt;C<br>其中E由$\star<script type="math/tex">\star</script>\star$中的关系替代，则目标是动作a和$\lambda$</p>
+<h2 id="5-APPROACH"><a href="#5-APPROACH" class="headerlink" title="5 APPROACH"></a>5 APPROACH</h2><h3 id="5-1-Baseline-Approaches"><a href="#5-1-Baseline-Approaches" class="headerlink" title="5.1 Baseline Approaches"></a>5.1 Baseline Approaches</h3><blockquote>
+<ol>
+<li>offline optimization</li>
+<li>online opt</li>
+<li>centralized reinforcement learning agent</li>
+</ol>
+</blockquote>
+</li>
+<li><p>offline. day-ahead planning</p>
+<ul>
+<li>Integer Linear Programming (ILP)</li>
+<li><strong>python PuLP 包</strong> <a href="https://pythonhosted.org/PuLP/" target="_blank" rel="noopener">https://pythonhosted.org/PuLP/</a></li>
+<li>“w.r.t = with respect to 关于”</li>
+<li>解得动作a和$\lambda$</li>
+</ul>
+<ol>
+<li>Online Optimization</li>
+</ol>
+<ul>
+<li>also use ILP</li>
+<li>also generate a sequence</li>
+<li>only use next step action</li>
+</ul>
+<ol>
+<li>Centralized Reinforcement Learning<h3 id="5-2-Cooperative-RL"><a href="#5-2-Cooperative-RL" class="headerlink" title="5.2 Cooperative RL"></a>5.2 Cooperative RL</h3></li>
+</ol>
+</li>
+<li>discretize capacity C into {0,1,…C’}</li>
+<li>for each c $\in${0,1…C’} and household n, train Independent Learner. $A_{n,c}$,using PPO.</li>
+<li>coopoeration:select action from each household such that Sum(c)$\leq$C’and reward is max.</li>
+<li>Solution of above problem: dynamic programming formulation.<script type="math/tex; mode=display">\Phi(c,n+1)=\max_{c'\in \{0,1...C'\}}\{\Phi(c-ac_{n+1,c'},n)+r_{n+1,c'}\}</script><h4 id="5-2-1-Indipendent-Learners"><a href="#5-2-1-Indipendent-Learners" class="headerlink" title="5.2.1 Indipendent Learners"></a>5.2.1 Indipendent Learners</h4></li>
+<li>PPO</li>
+<li>model relationship between different actions,use <strong>Multivariate Gaussian Controller</strong>_?_(mean,covariance matrix)</li>
+<li>neg reward when &gt;C</li>
+<li>too noisy -&gt; supervised train first with ILP result.<h4 id="5-2-2-Approximation-Algorithm——to-reduce-time-complexity"><a href="#5-2-2-Approximation-Algorithm——to-reduce-time-complexity" class="headerlink" title="5.2.2 Approximation Algorithm——to reduce time complexity"></a>5.2.2 Approximation Algorithm——to reduce time complexity</h4></li>
+<li>algorithm come from paper ‘Thomas Erlebach, Hans Kellerer, and Ulrich Pferschy. 2002. Approximating<br>multiobjective knapsack problems. Management Science 48, 12 (2002), 1603–1612.’</li>
+<li>Knapsack problem 背包问题，与本文问题类似<br>‘<a href="https://wenku.baidu.com/view/9f584b8b70fe910ef12d2af90242a8956becaa6b.html?rec_flag=default&amp;sxts=1560244579999" target="_blank" rel="noopener">https://wenku.baidu.com/view/9f584b8b70fe910ef12d2af90242a8956becaa6b.html?rec_flag=default&amp;sxts=1560244579999</a>‘</li>
+</ol>
+<h2 id="6-Experimental-Setup"><a href="#6-Experimental-Setup" class="headerlink" title="6 Experimental Setup"></a>6 Experimental Setup</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/20/A_Cooperative_Multi-Agent_DRL/" data-id="cjxuei1bd00007suk1q56c2rn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Linux_note" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/06/17/Linux_note/" class="article-date">
@@ -234,11 +854,41 @@
 <li>前台程序</li>
 </ul>
 </li>
-<li><p>top 动态查看进程 </p>
-<p>|PID| USER|     PR | NI  |  VIRT  |  RES  |  SHR| S | %CPU| %MEM|<br>|-|-|-|-|-|-|-|-|-|-|<br>|进程号|用户||nice优先级||实际使用内存大小|进程状态（6条）||||</p>
-</li>
-<li><p>q退出, M 按内存排序，P 按CPU排序,&lt;&gt;翻页</p>
-</li>
+<li>top 动态查看进程 </li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>PID</th>
+<th>USER</th>
+<th>PR</th>
+<th>NI</th>
+<th>VIRT</th>
+<th>RES</th>
+<th>SHR</th>
+<th>S</th>
+<th>%CPU</th>
+<th>%MEM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>进程号</td>
+<td>用户</td>
+<td></td>
+<td>nice优先级</td>
+<td></td>
+<td>实际使用内存大小</td>
+<td>进程状态（6条）</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li>q退出, M 按内存排序，P 按CPU排序,&lt;&gt;翻页</li>
 <li><strong>kill 信号 PID</strong> 停止（控制）进程； 信号：</li>
 </ol>
 <ul>
@@ -318,7 +968,64 @@
 </ul>
 </li>
 </ol>
-<h1 id="P25-文件查找命令"><a href="#P25-文件查找命令" class="headerlink" title="P25 文件查找命令"></a>P25 文件查找命令</h1><p>1. </p>
+<h1 id="P25-文件查找命令"><a href="#P25-文件查找命令" class="headerlink" title="P25 文件查找命令"></a>P25 文件查找命令</h1><ol>
+<li><p>find, which, whereis, locate, grep</p>
+</li>
+<li><p>grep: 过滤</p>
+<ul>
+<li><code>grep --color root /etc/passwd</code> 查找文件中带root的内容</li>
+<li><code>ps -axu | grep vim</code> 前面的内容管道给后面grep输入，查找vim</li>
+</ul>
+</li>
+<li><p>find [目录] [条件] [动作]</p>
+<ul>
+<li>[目录]，默认为当前目录</li>
+<li>[条件]： <ul>
+<li>-user -group -nouser -nogroup; <code>-user zhangm</code></li>
+<li>-type (f 文件，d 目录，l连接，p管道…)</li>
+<li>eg. <code>find /home/ -type d</code> 只查找目录</li>
+<li>-name 按名字查，用 <code>*</code>号通配符匹配。<code>find /home/ -name *pass*</code></li>
+<li>-size +NM 大于NM，-NM 小于NM <code>find /boot/ -size +2M</code></li>
+<li>-mtime （modification time）修改内容时间； -atime -ctime； eg <code>find -mtime 1</code> 1天前（即前天）+1是两天前的所有。-1前天之内（即前天到当前）；ctime（change time）任意改变（包括属性）时间。atime（access time）访问时间</li>
+<li>-perm 权限</li>
+<li>-maxdepth 目录深度</li>
+<li><strong>多条件：-a -o  ! 或 -and -or -not</strong> <code>find -type f -and -perm -002</code></li>
+</ul>
+</li>
+<li>[动作]：-ls -ok -exec -print -printf<ul>
+<li><code>find /root/test -type f -exec rm {} \;</code></li>
+<li>找到type为f的文件，执行rm即删除操作，{}表示查找出来的内容，\;为动作固定结尾</li>
+</ul>
+</li>
+</ul>
+<h1 id="硬盘分区"><a href="#硬盘分区" class="headerlink" title="硬盘分区"></a>硬盘分区</h1><h2 id="1-硬盘分区"><a href="#1-硬盘分区" class="headerlink" title="1. 硬盘分区"></a>1. 硬盘分区</h2><ol>
+<li>主分区：相当于C盘</li>
+<li>扩展分区：相当于其他所有控件</li>
+<li>逻辑分区：在扩展分区下分出DCE区</li>
+</ol>
+<h2 id="2-挂载"><a href="#2-挂载" class="headerlink" title="2. 挂载"></a>2. 挂载</h2><ol>
+<li><p>即将文件目录挂载到硬盘上</p>
+</li>
+<li><p>eg.<code>mkdir /sda5</code> ，<code>mount /dev/sda5 /sda5/</code>把sda5目录挂载到/dev/sda5分区上</p>
+</li>
+<li>df -h 查看分区和挂载</li>
+</ol>
+<h2 id="3-卷标"><a href="#3-卷标" class="headerlink" title="3. 卷标"></a>3. 卷标</h2><ol>
+<li>e2label /dev/sda1 查看卷标</li>
+<li>e2label /dev/sda1 home-1 创建卷标，即起名字</li>
+<li>开机自动挂载：修改配置文件。vim /etc/fstab</li>
+<li>验证挂载：umount 卸载；mount -a 读fstab挂载</li>
+</ol>
+<h2 id="4-无法卸载"><a href="#4-无法卸载" class="headerlink" title="4. 无法卸载"></a>4. 无法卸载</h2><ol>
+<li>有文件占用，命令：lsof(list open files)，查看哪些文件被那些命令打开。语法 lsof 文件系统挂载点</li>
+<li>或fuser：<code>fuser -m -u -v /sda5</code></li>
+<li>kill -9 ID，杀进程</li>
+</ol>
+<h2 id="5-GPT分区表：Guid-Partition-Table"><a href="#5-GPT分区表：Guid-Partition-Table" class="headerlink" title="5. GPT分区表：Guid Partition Table"></a>5. GPT分区表：Guid Partition Table</h2><ol>
+<li>parted 磁盘分区工具</li>
+</ol>
+</li>
+</ol>
 
       
     </div>
@@ -953,7 +1660,7 @@ J_{P P O 2}^{\theta^{k}}(\theta) \approx \sum_{\left(s_{t}, a_{t}\right)} \min \
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li></ul>
     </div>
   </div>
 
@@ -966,23 +1673,23 @@ J_{P P O 2}^{\theta^{k}}(\theta) \approx \sum_{\left(s_{t}, a_{t}\right)} \min \
       <ul>
         
           <li>
+            <a href="/2019/07/02/Linux_shell/">Linux Shell</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/23/Linux_web/">Linux Web</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/20/A_Cooperative_Multi-Agent_DRL/">A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load Scheduling</a>
+          </li>
+        
+          <li>
             <a href="/2019/06/17/Linux_note/">Linux Note</a>
           </li>
         
           <li>
             <a href="/2019/06/16/RDL_李宏毅/">RDL_李宏毅</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/11/Dynamic_Programming/">Dynamic Programming</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/09/git/">GitHub_Learn</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/09/hexo_gitpage/">Hexo + GitHub 个人主页</a>
           </li>
         
       </ul>

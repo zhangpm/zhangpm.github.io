@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Pengmiao&#39;s Blog">
 <meta property="og:description" content="https://www.bilibili.com/video/av47009997/?p=25 文件操作 shell 提示符[用户@主机名 目录]提示符  root：#   用户：$ linux 命令输入规律：命令 [选项]（[参数]）[选项的值]（[参数的值]） 常见选项：-h —help -字母，—单词 hwclock 硬件时间 关机： shutdown,init,reboot init 命令">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-17T02:22:44.351Z">
+<meta property="og:updated_time" content="2019-06-20T13:47:02.389Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux Note">
 <meta name="twitter:description" content="https://www.bilibili.com/video/av47009997/?p=25 文件操作 shell 提示符[用户@主机名 目录]提示符  root：#   用户：$ linux 命令输入规律：命令 [选项]（[参数]）[选项的值]（[参数的值]） 常见选项：-h —help -字母，—单词 hwclock 硬件时间 关机： shutdown,init,reboot init 命令">
@@ -236,11 +236,41 @@
 <li>前台程序</li>
 </ul>
 </li>
-<li><p>top 动态查看进程 </p>
-<p>|PID| USER|     PR | NI  |  VIRT  |  RES  |  SHR| S | %CPU| %MEM|<br>|-|-|-|-|-|-|-|-|-|-|<br>|进程号|用户||nice优先级||实际使用内存大小|进程状态（6条）||||</p>
-</li>
-<li><p>q退出, M 按内存排序，P 按CPU排序,&lt;&gt;翻页</p>
-</li>
+<li>top 动态查看进程 </li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>PID</th>
+<th>USER</th>
+<th>PR</th>
+<th>NI</th>
+<th>VIRT</th>
+<th>RES</th>
+<th>SHR</th>
+<th>S</th>
+<th>%CPU</th>
+<th>%MEM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>进程号</td>
+<td>用户</td>
+<td></td>
+<td>nice优先级</td>
+<td></td>
+<td>实际使用内存大小</td>
+<td>进程状态（6条）</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol>
+<li>q退出, M 按内存排序，P 按CPU排序,&lt;&gt;翻页</li>
 <li><strong>kill 信号 PID</strong> 停止（控制）进程； 信号：</li>
 </ol>
 <ul>
@@ -320,7 +350,64 @@
 </ul>
 </li>
 </ol>
-<h1 id="P25-文件查找命令"><a href="#P25-文件查找命令" class="headerlink" title="P25 文件查找命令"></a>P25 文件查找命令</h1><p>1. </p>
+<h1 id="P25-文件查找命令"><a href="#P25-文件查找命令" class="headerlink" title="P25 文件查找命令"></a>P25 文件查找命令</h1><ol>
+<li><p>find, which, whereis, locate, grep</p>
+</li>
+<li><p>grep: 过滤</p>
+<ul>
+<li><code>grep --color root /etc/passwd</code> 查找文件中带root的内容</li>
+<li><code>ps -axu | grep vim</code> 前面的内容管道给后面grep输入，查找vim</li>
+</ul>
+</li>
+<li><p>find [目录] [条件] [动作]</p>
+<ul>
+<li>[目录]，默认为当前目录</li>
+<li>[条件]： <ul>
+<li>-user -group -nouser -nogroup; <code>-user zhangm</code></li>
+<li>-type (f 文件，d 目录，l连接，p管道…)</li>
+<li>eg. <code>find /home/ -type d</code> 只查找目录</li>
+<li>-name 按名字查，用 <code>*</code>号通配符匹配。<code>find /home/ -name *pass*</code></li>
+<li>-size +NM 大于NM，-NM 小于NM <code>find /boot/ -size +2M</code></li>
+<li>-mtime （modification time）修改内容时间； -atime -ctime； eg <code>find -mtime 1</code> 1天前（即前天）+1是两天前的所有。-1前天之内（即前天到当前）；ctime（change time）任意改变（包括属性）时间。atime（access time）访问时间</li>
+<li>-perm 权限</li>
+<li>-maxdepth 目录深度</li>
+<li><strong>多条件：-a -o  ! 或 -and -or -not</strong> <code>find -type f -and -perm -002</code></li>
+</ul>
+</li>
+<li>[动作]：-ls -ok -exec -print -printf<ul>
+<li><code>find /root/test -type f -exec rm {} \;</code></li>
+<li>找到type为f的文件，执行rm即删除操作，{}表示查找出来的内容，\;为动作固定结尾</li>
+</ul>
+</li>
+</ul>
+<h1 id="硬盘分区"><a href="#硬盘分区" class="headerlink" title="硬盘分区"></a>硬盘分区</h1><h2 id="1-硬盘分区"><a href="#1-硬盘分区" class="headerlink" title="1. 硬盘分区"></a>1. 硬盘分区</h2><ol>
+<li>主分区：相当于C盘</li>
+<li>扩展分区：相当于其他所有控件</li>
+<li>逻辑分区：在扩展分区下分出DCE区</li>
+</ol>
+<h2 id="2-挂载"><a href="#2-挂载" class="headerlink" title="2. 挂载"></a>2. 挂载</h2><ol>
+<li><p>即将文件目录挂载到硬盘上</p>
+</li>
+<li><p>eg.<code>mkdir /sda5</code> ，<code>mount /dev/sda5 /sda5/</code>把sda5目录挂载到/dev/sda5分区上</p>
+</li>
+<li>df -h 查看分区和挂载</li>
+</ol>
+<h2 id="3-卷标"><a href="#3-卷标" class="headerlink" title="3. 卷标"></a>3. 卷标</h2><ol>
+<li>e2label /dev/sda1 查看卷标</li>
+<li>e2label /dev/sda1 home-1 创建卷标，即起名字</li>
+<li>开机自动挂载：修改配置文件。vim /etc/fstab</li>
+<li>验证挂载：umount 卸载；mount -a 读fstab挂载</li>
+</ol>
+<h2 id="4-无法卸载"><a href="#4-无法卸载" class="headerlink" title="4. 无法卸载"></a>4. 无法卸载</h2><ol>
+<li>有文件占用，命令：lsof(list open files)，查看哪些文件被那些命令打开。语法 lsof 文件系统挂载点</li>
+<li>或fuser：<code>fuser -m -u -v /sda5</code></li>
+<li>kill -9 ID，杀进程</li>
+</ol>
+<h2 id="5-GPT分区表：Guid-Partition-Table"><a href="#5-GPT分区表：Guid-Partition-Table" class="headerlink" title="5. GPT分区表：Guid Partition Table"></a>5. GPT分区表：Guid Partition Table</h2><ol>
+<li>parted 磁盘分区工具</li>
+</ol>
+</li>
+</ol>
 
       
     </div>
@@ -333,6 +420,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2019/06/20/A_Cooperative_Multi-Agent_DRL/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load Scheduling
+        
+      </div>
+    </a>
   
   
     <a href="/2019/06/16/RDL_李宏毅/" id="article-nav-older" class="article-nav-link-wrap">
@@ -361,7 +457,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li></ul>
     </div>
   </div>
 
@@ -374,23 +470,23 @@
       <ul>
         
           <li>
+            <a href="/2019/07/02/Linux_shell/">Linux Shell</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/23/Linux_web/">Linux Web</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/20/A_Cooperative_Multi-Agent_DRL/">A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load Scheduling</a>
+          </li>
+        
+          <li>
             <a href="/2019/06/17/Linux_note/">Linux Note</a>
           </li>
         
           <li>
             <a href="/2019/06/16/RDL_李宏毅/">RDL_李宏毅</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/11/Dynamic_Programming/">Dynamic Programming</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/09/git/">GitHub_Learn</a>
-          </li>
-        
-          <li>
-            <a href="/2019/06/09/hexo_gitpage/">Hexo + GitHub 个人主页</a>
           </li>
         
       </ul>

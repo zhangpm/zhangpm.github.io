@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load Scheduling | Pengmiao&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load SchedulingAbstract develop a multi-household energy management framework for residential units connected">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load Scheduling">
+<meta property="og:url" content="http://yoursite.com/2019/06/20/A_Cooperative_Multi-Agent_DRL/index.html">
+<meta property="og:site_name" content="Pengmiao&#39;s Blog">
+<meta property="og:description" content="A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load SchedulingAbstract develop a multi-household energy management framework for residential units connected">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-20T13:47:00.757Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load Scheduling">
+<meta name="twitter:description" content="A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load SchedulingAbstract develop a multi-household energy management framework for residential units connected">
+  
+    <link rel="alternate" href="/atom.xml" title="Pengmiao&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Pengmiao&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-A_Cooperative_Multi-Agent_DRL" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/20/A_Cooperative_Multi-Agent_DRL/" class="article-date">
+  <time datetime="2019-06-20T07:32:30.936Z" itemprop="datePublished">2019-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load Scheduling
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="A-Cooperative-Multi-Agent-Deep-Reinforcement-Learning-Framework-for-Real-Time-Residential-Load-Scheduling"><a href="#A-Cooperative-Multi-Agent-Deep-Reinforcement-Learning-Framework-for-Real-Time-Residential-Load-Scheduling" class="headerlink" title="A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load Scheduling"></a>A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load Scheduling</h1><h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><ol>
+<li>develop a multi-household energy management framework for residential units connected to the same transformer and containing DERs</li>
+<li>schedule controllable household appliances and ESS such that the cost of procuring electricity from the utility over a horizon is minimized while physical grid constraints are satisfied at each scheduling step</li>
+<li>Problems of others’ methods*:  <ul>
+<li>global optimiztion but complex</li>
+<li>decentralized without global concern</li>
+</ul>
+</li>
+<li>Novelty:<ul>
+<li>multiagent reinforcement learning (MARL) </li>
+<li>trains multiple independent learners using historical data</li>
+<li>low complexity cooperation agent <h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2></li>
+</ul>
+</li>
+<li>Markov Decision Process<script type="math/tex; mode=display">M=(S,A,T,\gamma,R)</script><script type="math/tex; mode=display">\pi(a|s): Policy</script><script type="math/tex; mode=display">maximize(\sum_{t=0}^{\infin}\Epsilon[\gamma^tR(s_t,a_t,s_{t+1})])</script></li>
+<li>Deep Reinforcement Learning<script type="math/tex; mode=display">
+\nabla_\theta J(\theta)=\Epsilon[\nabla_\theta(min(r_t(\theta)A_t,clip(r_t(\theta),1-\epsilon,1+\epsilon)A_t))]</script><script type="math/tex; mode=display">
+r_t(\theta)=\frac{\pi_{\theta}}{\pi_{\theta_{old}}}\\
+A_t=\sum_{t'=t}^{\infin}\gamma^{t'-t}R(s_t,a_t)-V(s_t)</script><h2 id="Expansion-of-DRL-in-the-Paper"><a href="#Expansion-of-DRL-in-the-Paper" class="headerlink" title="Expansion of DRL in the Paper"></a>Expansion of DRL in the Paper</h2><h3 id="Value-Function："><a href="#Value-Function：" class="headerlink" title="Value Function："></a>Value Function：</h3></li>
+<li><ul>
+<li>s状态，a动作下，遵循$\pi$策略获得奖励G的期望:<script type="math/tex; mode=display">Q_\pi(s,a)=\Epsilon(G_t|S_t=s,A_t=a)</script></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>奖励函数<script type="math/tex; mode=display">G_t=R_{t+1}+\gamma R_{t+2}+\gamma^2 R_{t+3}+...</script></li>
+<li>$\pi$ 是通过s状态获得a动作的函数<script type="math/tex; mode=display">a=\pi(s)</script></li>
+</ul>
+<ol>
+<li>迭代过程：<ul>
+<li>prediction，给定策略，求Q  </li>
+<li>control 根据Q优化策略<h3 id="Model-Free"><a href="#Model-Free" class="headerlink" title="Model Free"></a>Model Free</h3></li>
+</ul>
+</li>
+<li>无状态S和转移概率。</li>
+<li>Monte Carlo</li>
+</ol>
+<h2 id="Multi-Agent-RL"><a href="#Multi-Agent-RL" class="headerlink" title="Multi-Agent RL"></a>Multi-Agent RL</h2><ol>
+<li>($S_1,…,S_n,A_1,…,A_n,T,\gamma,R$)</li>
+<li>constrains: $f(a_1,a_2,…)\leq C$</li>
+<li>homogeneous sub environment and equally weighed rewards</li>
+<li>innovation:<ul>
+<li>train IL</li>
+<li>use trained IL to cooperate<h2 id="Problem-Setup"><a href="#Problem-Setup" class="headerlink" title="Problem Setup"></a>Problem Setup</h2></li>
+</ul>
+</li>
+<li>Single Household Energy Model<ul>
+<li>T=96(15 min interval)</li>
+<li>ESS Storage, E(t):battery energy in time t<ul>
+<li>$E_{b,n}(t+1)=\eta_{b,n}E_{b,n}(t)+\lambda_{b,n}(t)P_{b,n}\Delta t$</li>
+<li>下一时刻电池能量=效率*上一时刻能量+开关*功率*dt</li>
+</ul>
+</li>
+<li>Loads：<ul>
+<li>Modifiable power loads 可调功率负载<ul>
+<li>HVAC(Heating, Ventilation and Air Conditioning空调),EV charging</li>
+<li>For household n, action: $a_n(t)=(a_{n,1}(t),a_{n,2}(t),…,a_{n,M}(t)) \ a_{n,m}=1/0, turn on/off$</li>
+</ul>
+</li>
+<li>Time shiftable loads<ul>
+<li>fixed power and length,cannot be interrupted(dish washer, laundry units)</li>
+</ul>
+</li>
+<li>Non-shiftable loads</li>
+</ul>
+</li>
+<li>PV generation and Dynamic Price<ul>
+<li>assume only predict by observing history</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Transformer Capacity Constraint<ul>
+<li>|SUM(E)|&lt;Ck</li>
+<li>P,Q limit：real and reactive power<h2 id="Markov-Decision-Process-Setup"><a href="#Markov-Decision-Process-Setup" class="headerlink" title="Markov Decision Process Setup"></a>Markov Decision Process Setup</h2><h3 id="State-Space"><a href="#State-Space" class="headerlink" title="State Space"></a>State Space</h3></li>
+</ul>
+</li>
+<li>Local fully observable states:<ul>
+<li>at time t, remaining load vector</li>
+</ul>
+</li>
+<li>Local partial observable states<ul>
+<li>PV before time t. pv(0),pv(1)…pv(t-1)</li>
+</ul>
+</li>
+<li>Global partial obervable states:<br>price before time t:c(0)…c(t-1)<br>【<strong>不知t时刻state</strong>】</li>
+<li>Initial State<ul>
+<li>The remaining load ln,m(1) = Ln,m,∀n,m. </li>
+<li><strong>$L_n,m$为负载所需运行时间数；$l_n,m$为负载剩余运行时间数（时间数为15min一个数）</strong></li>
+<li>random initial storage Eb,n(1)</li>
+<li>generated household PV generation and unit energ price<h3 id="4-1-Action-Space"><a href="#4-1-Action-Space" class="headerlink" title="4.1 Action Space"></a>4.1 Action Space</h3></li>
+</ul>
+</li>
+<li>The binary vector an(t) to turn on/off each load</li>
+<li>battery operation $\lambda$ <h3 id="4-2-Transition-Mode"><a href="#4-2-Transition-Mode" class="headerlink" title="4.2 Transition Mode"></a>4.2 Transition Mode</h3></li>
+</ol>
+<ul>
+<li><strong>$E_{grid}$和动作a，$\lambda$的关系</strong>：$\star<script type="math/tex">\star</script>\star$<script type="math/tex; mode=display">\sum a(t)P_n+\lambda(t)P_b=pv(t)+E_{grid}(t)/{\Delta t},\forall n,t</script></li>
+<li>ln,m(t + 1) = ln,m(t) − an,m(t),∀m,n<br>下一时刻剩余负载=本时刻剩余负载-本时刻动作</li>
+<li>eg. 本时刻n家庭m设备剩余15时间数，动作是on（即1），下一时刻剩余14时间数；动作是off（即0）,则下一时刻仍然剩余15时间数。</li>
+<li>适用modifiable loads，其他化为此类<h3 id="4-3-System-Constrains"><a href="#4-3-System-Constrains" class="headerlink" title="4.3 System Constrains"></a>4.3 System Constrains</h3></li>
+</ul>
+<ol>
+<li>Local,turning on time = load time requirment.<script type="math/tex; mode=display">\sum_{t=1}^Ta_{n,m}(t)=L_{n,m},\forall m,n</script></li>
+<li><p>Global, |E|&lt;C</p>
+<h3 id="4-4-Objective"><a href="#4-4-Objective" class="headerlink" title="4.4 Objective"></a>4.4 Objective</h3><p>minimize energy cost:</p>
+<script type="math/tex; mode=display">J=\sum_{t=1}^T\sum_{n=1}^NE_{grid,n}(t)c(t)</script><p>subject to |E|&lt;C<br>其中E由$\star<script type="math/tex">\star</script>\star$中的关系替代，则目标是动作a和$\lambda$</p>
+<h2 id="5-APPROACH"><a href="#5-APPROACH" class="headerlink" title="5 APPROACH"></a>5 APPROACH</h2><h3 id="5-1-Baseline-Approaches"><a href="#5-1-Baseline-Approaches" class="headerlink" title="5.1 Baseline Approaches"></a>5.1 Baseline Approaches</h3><blockquote>
+<ol>
+<li>offline optimization</li>
+<li>online opt</li>
+<li>centralized reinforcement learning agent</li>
+</ol>
+</blockquote>
+</li>
+<li><p>offline. day-ahead planning</p>
+<ul>
+<li>Integer Linear Programming (ILP)</li>
+<li><strong>python PuLP 包</strong> <a href="https://pythonhosted.org/PuLP/" target="_blank" rel="noopener">https://pythonhosted.org/PuLP/</a></li>
+<li>“w.r.t = with respect to 关于”</li>
+<li>解得动作a和$\lambda$</li>
+</ul>
+<ol>
+<li>Online Optimization</li>
+</ol>
+<ul>
+<li>also use ILP</li>
+<li>also generate a sequence</li>
+<li>only use next step action</li>
+</ul>
+<ol>
+<li>Centralized Reinforcement Learning<h3 id="5-2-Cooperative-RL"><a href="#5-2-Cooperative-RL" class="headerlink" title="5.2 Cooperative RL"></a>5.2 Cooperative RL</h3></li>
+</ol>
+</li>
+<li>discretize capacity C into {0,1,…C’}</li>
+<li>for each c $\in${0,1…C’} and household n, train Independent Learner. $A_{n,c}$,using PPO.</li>
+<li>coopoeration:select action from each household such that Sum(c)$\leq$C’and reward is max.</li>
+<li>Solution of above problem: dynamic programming formulation.<script type="math/tex; mode=display">\Phi(c,n+1)=\max_{c'\in \{0,1...C'\}}\{\Phi(c-ac_{n+1,c'},n)+r_{n+1,c'}\}</script><h4 id="5-2-1-Indipendent-Learners"><a href="#5-2-1-Indipendent-Learners" class="headerlink" title="5.2.1 Indipendent Learners"></a>5.2.1 Indipendent Learners</h4></li>
+<li>PPO</li>
+<li>model relationship between different actions,use <strong>Multivariate Gaussian Controller</strong>_?_(mean,covariance matrix)</li>
+<li>neg reward when &gt;C</li>
+<li>too noisy -&gt; supervised train first with ILP result.<h4 id="5-2-2-Approximation-Algorithm——to-reduce-time-complexity"><a href="#5-2-2-Approximation-Algorithm——to-reduce-time-complexity" class="headerlink" title="5.2.2 Approximation Algorithm——to reduce time complexity"></a>5.2.2 Approximation Algorithm——to reduce time complexity</h4></li>
+<li>algorithm come from paper ‘Thomas Erlebach, Hans Kellerer, and Ulrich Pferschy. 2002. Approximating<br>multiobjective knapsack problems. Management Science 48, 12 (2002), 1603–1612.’</li>
+<li>Knapsack problem 背包问题，与本文问题类似<br>‘<a href="https://wenku.baidu.com/view/9f584b8b70fe910ef12d2af90242a8956becaa6b.html?rec_flag=default&amp;sxts=1560244579999" target="_blank" rel="noopener">https://wenku.baidu.com/view/9f584b8b70fe910ef12d2af90242a8956becaa6b.html?rec_flag=default&amp;sxts=1560244579999</a>‘</li>
+</ol>
+<h2 id="6-Experimental-Setup"><a href="#6-Experimental-Setup" class="headerlink" title="6 Experimental Setup"></a>6 Experimental Setup</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/06/20/A_Cooperative_Multi-Agent_DRL/" data-id="cjxuei1bd00007suk1q56c2rn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/23/Linux_web/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linux Web
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/17/Linux_note/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Linux Note</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/02/Linux_shell/">Linux Shell</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/23/Linux_web/">Linux Web</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/20/A_Cooperative_Multi-Agent_DRL/">A Cooperative Multi-Agent Deep Reinforcement Learning Framework for Real-Time Residential Load Scheduling</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/17/Linux_note/">Linux Note</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/16/RDL_李宏毅/">RDL_李宏毅</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+
+</body>
+</html>
